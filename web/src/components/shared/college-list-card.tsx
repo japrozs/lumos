@@ -57,6 +57,7 @@ export const CollegeListCard: React.FC<CollegeListCardProps> = ({
                             ,{college.content.entity.location?.split(",")[1]}
                         </p>
                     </div>
+                    {/* TODO – add alerts in the bottom right when you delete a list entry */}
                     <RiDeleteBin6Line
                         onClick={() => {
                             const listCopy = [...list];
