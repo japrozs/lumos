@@ -1,0 +1,3 @@
+mutation updateCollegeList($collegeList: String!) {
+    updateCollegeList(collegeList: $collegeList)
+}

@@ -1,0 +1,8 @@
+fragment RegularEssay on Essay {
+    id
+    title
+    body
+    creatorId
+    createdAt
+    updatedAt
+}
