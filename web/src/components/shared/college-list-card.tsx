@@ -28,7 +28,7 @@ export const CollegeListCard: React.FC<CollegeListCardProps> = ({
 }) => {
     return (
         <>
-            <div className="max-w-xs flex flex-col pb-2 m-3 rounded-md border border-gray-200 overflow-hidden">
+            <div className="max-w-xs flex flex-col pb-2 m-3 rounded-2xl border border-gray-300 overflow-hidden">
                 {/* <img
                     src={college.content.photos.default.crops.DesktopHeader}
                     alt=""
@@ -46,7 +46,7 @@ export const CollegeListCard: React.FC<CollegeListCardProps> = ({
                             className="w-10 h-10 rounded-md mr-2.5 object-cover object-center"
                         />
                     </div>
-                    <div className="truncate line-clamp-1">
+                    <div className="w-full truncate line-clamp-1">
                         <p className="text-xl font-bold mb-0.5 leading-tight truncate text-ellipsis">
                             {college.content.entity.name}
                         </p>
@@ -57,6 +57,14 @@ export const CollegeListCard: React.FC<CollegeListCardProps> = ({
                             ,{college.content.entity.location?.split(",")[1]}
                         </p>
                     </div>
+                    <RiDeleteBin6Line
+                        onClick={() => {
+                            const listCopy = [...list];
+                            listCopy.splice(index, 1);
+                            setList(listCopy);
+                        }}
+                        className="ml-1.5 text-2xl self-start hover:text-red-500 cursor-pointer transition"
+                    />
                 </div>
                 <div className="px-2  flex flex-wrap space-x-2">
                     <div className="my-0.5">
@@ -102,7 +110,7 @@ export const CollegeListCard: React.FC<CollegeListCardProps> = ({
                 </div>
                 {college.content.photos.mapbox_header?.crops.DesktopHeader && (
                     <img
-                        className="p-2 h-28 object-cover object-center rounded-2xl"
+                        className="p-2 h-28 pb-0 object-cover object-center rounded-2xl"
                         src={
                             college.content.photos.mapbox_header?.crops
                                 .DesktopHeader
