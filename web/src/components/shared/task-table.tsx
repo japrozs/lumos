@@ -1,6 +1,6 @@
 import { Column } from "@/types";
 import { Droppable, Draggable } from "@hello-pangea/dnd";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { BiDetail, BiPlus } from "react-icons/bi";
 import { v4 } from "uuid";
 import { PiPencil } from "react-icons/pi";
@@ -12,6 +12,8 @@ import { useUpdateTasksMutation } from "@/generated/graphql";
 import { useApolloClient } from "@apollo/client";
 import { matchFilter } from "../../utils/utils";
 import { AiOutlineDelete } from "react-icons/ai";
+import { IoIosMore } from "react-icons/io";
+import ContentEditable from "react-contenteditable";
 
 interface TableProps {
     columnId: string;
@@ -30,11 +32,12 @@ export const Table: React.FC<TableProps> = ({
 }) => {
     const [creatingNewNote, setCreatingNewNote] = useState(false);
     const [note, setNote] = useState("");
-    const [open, setOpen] = useState(false);
     const [updateTasksMutation] = useUpdateTasksMutation();
     const client = useApolloClient();
-    console.log(column);
+    const [columnTitle, setColumnTitle] = useState(column.name);
     console.log("columnId ::", columnId);
+
+    const titleElementRef = useRef<HTMLParagraphElement>(null);
 
     useEffect(() => {
         console.log(`something changed with column ${column.name}`);
@@ -52,23 +55,47 @@ export const Table: React.FC<TableProps> = ({
         })();
     }, [column.items]);
 
+    useEffect(() => {
+        const timeout = setTimeout(async () => {
+            const boardCopy = structuredClone(board);
+            boardCopy[columnId].name = columnTitle;
+            console.log(boardCopy);
+            setBoard(boardCopy);
+        }, 500);
+
+        return () => clearTimeout(timeout);
+    }, [columnTitle]);
+
     // TODO – add functionality to edit cards and column information
 
     return (
-        <div className="flex flex-col" key={columnId}>
+        <div
+            className="flex flex-col"
+            style={{
+                maxWidth: "21rem",
+            }}
+            key={columnId}
+        >
             <div className="mr-5">
-                <div className="flex items-center p-5 pt-2.5 rounded-tr-lg rounded-tl-lg px-3 border-t border-l border-r bg-gray-50 border-gray-200">
-                    <p className="font-medium ">{column.name}</p>
+                <div className="flex items-center p-5 pt-2.5 truncate text-ellipsis rounded-tr-lg rounded-tl-lg px-3 border-t border-l border-r bg-gray-50 border-gray-200">
+                    {/* <p className="font-medium cursor-pointer">{column.name}</p> */}
+                    <ContentEditable
+                        innerRef={titleElementRef}
+                        tagName="p"
+                        html={columnTitle}
+                        className="focus:outline-none font-medium cursor-pointer truncate line-clamp-1 w-full mr-2"
+                        onChange={(e) => setColumnTitle(e.target.value)}
+                    />
                     <div className="flex items-center ml-auto mr-1">
-                        <PiPencil
+                        {/* <PiPencil
                             onClick={() => setOpen(true)}
                             className="text-lg cursor-pointer mx-1.5 text-gray-400 hover:text-purple-500"
-                        />
+                        /> */}
                         {/* <BiPlus
                             onClick={() => setCreatingNewNote(true)}
                             className="text-xl cursor-pointer mx-1.5 text-gray-400 hover:text-blue-500"
                         /> */}
-                        <RiDeleteBin6Line
+                        <AiOutlineDelete
                             onClick={() => {
                                 const boardCopy = structuredClone(board);
                                 delete boardCopy[columnId];
@@ -78,8 +105,27 @@ export const Table: React.FC<TableProps> = ({
                                 );
                                 setBoard(boardCopy);
                             }}
-                            className="text-lg cursor-pointer mx-1.5 text-gray-400 hover:text-red-500"
+                            className="text-lg cursor-pointer text-gray-400 hover:text-red-500"
                         />
+                        {/* <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <ShadCNButton variant={"ghost"} className="p-0">
+                                    <IoIosMore className="text-lg cursor-pointer text-gray-600 hover:text-gray-900" />
+                                </ShadCNButton>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="w-56">
+                                <DropdownMenuGroup>
+                                    <DropdownMenuItem className="flex items-center font-medium cursor-pointer">
+                                        <PiPencil className="text-base cursor-pointer mr-2 text-slate-500 hover:text-purple-500" />
+                                        Edit Column
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem className="flex items-center font-medium cursor-pointer">
+                                        <RiDeleteBin6Line className="text-base cursor-pointer mr-2 text-slate-500 hover:text-purple-500" />
+                                        Delete Column
+                                    </DropdownMenuItem>
+                                </DropdownMenuGroup>
+                            </DropdownMenuContent>
+                        </DropdownMenu> */}
                         {/* <BoardMenu
                             column={column}
                             columnId={columnId}
@@ -155,7 +201,7 @@ export const Table: React.FC<TableProps> = ({
                                 <div
                                     {...provided.droppableProps}
                                     ref={provided.innerRef}
-                                    className="p-2 rounded-bl-lg min-h-screen rounded-br-lg px-3 border-b bg-gray-50 border-gray-200"
+                                    className="p-2 rounded-bl-lg min-h-screen rounded-br-lg border-b bg-gray-50 border-gray-200"
                                     style={{
                                         width: "310px",
                                         minHeight: "70vh",

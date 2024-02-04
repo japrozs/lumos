@@ -1,4 +1,3 @@
-import { Wrapper } from "@/components/shared/wrapper";
 import React from "react";
 
 export default function Home() {
@@ -12,11 +11,8 @@ export default function Home() {
                 /login
             </a>
             <br />
-            <a
-                href="/sign-up"
-                className="menlo text-purple-500 hover:underline"
-            >
-                /sign-up
+            <a href="/signup" className="menlo text-purple-500 hover:underline">
+                /signup
             </a>
         </div>
     );
