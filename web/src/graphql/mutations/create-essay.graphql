@@ -1,0 +1,5 @@
+mutation createEssay($title: String!) {
+    createEssay(title: $title) {
+        ...RegularEssay
+    }
+}

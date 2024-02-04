@@ -24,7 +24,7 @@ const List: React.FC<ListProps> = ({}) => {
     return (
         <>
             <Wrapper>
-                <div className="px-4 py-3 border-b border-gray-200">
+                <div className="bg-white z-10 sticky top-0 px-4 py-3 border-b border-gray-200">
                     <p className="text-lg blair">college list</p>
                 </div>
                 {!loading ? (

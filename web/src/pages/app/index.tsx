@@ -21,6 +21,7 @@ import { PiSuitcaseSimple } from "react-icons/pi";
 import { paginate, search } from "@/utils/utils";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { useIsAuth } from "@/utils/use-is-auth";
+import { FaRankingStar } from "react-icons/fa6";
 
 export default function MainApp() {
     useIsAuth();
@@ -52,7 +53,7 @@ export default function MainApp() {
     return (
         <div>
             <Wrapper>
-                <div className="px-4 py-3 border-b border-gray-200">
+                <div className="bg-white z-10 sticky top-0 px-4 py-3 border-b border-gray-200">
                     <p className="text-lg blair">colleges</p>
                 </div>
                 <div className="p-4">
@@ -117,7 +118,6 @@ export default function MainApp() {
                             )}
                         </div>
                     </div>
-
                     <Table>
                         <TableHeader>
                             <TableRow className="border-t border-gray-200">
@@ -132,7 +132,7 @@ export default function MainApp() {
                                 </TableHead>
                                 <TableHead className="border-r border-gray-200">
                                     <div className="flex items-center">
-                                        <RiMapPin2Line className="mr-1" />
+                                        <FaRankingStar className="mr-2" />
                                         Rating
                                     </div>
                                 </TableHead>

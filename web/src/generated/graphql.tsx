@@ -146,6 +146,13 @@ export type RegularUserResponseFragment = { __typename?: 'UserResponse', errors?
 
 export type RegularUserFragment = { __typename: 'User', id: number, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string }> };
 
+export type CreateEssayMutationVariables = Exact<{
+  title: Scalars['String']['input'];
+}>;
+
+
+export type CreateEssayMutation = { __typename?: 'Mutation', createEssay: { __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string } };
+
 export type LoginMutationVariables = Exact<{
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
@@ -172,6 +179,13 @@ export type UpdateCollegeListMutationVariables = Exact<{
 
 
 export type UpdateCollegeListMutation = { __typename?: 'Mutation', updateCollegeList: boolean };
+
+export type GetEssayQueryVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type GetEssayQuery = { __typename?: 'Query', getEssay: { __typename?: 'Essay', id: string, title: string, body: string, creatorId: string, createdAt: string, updatedAt: string } };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -220,6 +234,39 @@ export const RegularUserResponseFragmentDoc = gql`
 }
     ${RegularErrorFragmentDoc}
 ${RegularUserFragmentDoc}`;
+export const CreateEssayDocument = gql`
+    mutation createEssay($title: String!) {
+  createEssay(title: $title) {
+    ...RegularEssay
+  }
+}
+    ${RegularEssayFragmentDoc}`;
+export type CreateEssayMutationFn = Apollo.MutationFunction<CreateEssayMutation, CreateEssayMutationVariables>;
+
+/**
+ * __useCreateEssayMutation__
+ *
+ * To run a mutation, you first call `useCreateEssayMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateEssayMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createEssayMutation, { data, loading, error }] = useCreateEssayMutation({
+ *   variables: {
+ *      title: // value for 'title'
+ *   },
+ * });
+ */
+export function useCreateEssayMutation(baseOptions?: Apollo.MutationHookOptions<CreateEssayMutation, CreateEssayMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateEssayMutation, CreateEssayMutationVariables>(CreateEssayDocument, options);
+      }
+export type CreateEssayMutationHookResult = ReturnType<typeof useCreateEssayMutation>;
+export type CreateEssayMutationResult = Apollo.MutationResult<CreateEssayMutation>;
+export type CreateEssayMutationOptions = Apollo.BaseMutationOptions<CreateEssayMutation, CreateEssayMutationVariables>;
 export const LoginDocument = gql`
     mutation Login($email: String!, $password: String!) {
   login(email: $email, password: $password) {
@@ -348,6 +395,46 @@ export function useUpdateCollegeListMutation(baseOptions?: Apollo.MutationHookOp
 export type UpdateCollegeListMutationHookResult = ReturnType<typeof useUpdateCollegeListMutation>;
 export type UpdateCollegeListMutationResult = Apollo.MutationResult<UpdateCollegeListMutation>;
 export type UpdateCollegeListMutationOptions = Apollo.BaseMutationOptions<UpdateCollegeListMutation, UpdateCollegeListMutationVariables>;
+export const GetEssayDocument = gql`
+    query getEssay($id: String!) {
+  getEssay(id: $id) {
+    ...RegularEssay
+  }
+}
+    ${RegularEssayFragmentDoc}`;
+
+/**
+ * __useGetEssayQuery__
+ *
+ * To run a query within a React component, call `useGetEssayQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetEssayQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetEssayQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetEssayQuery(baseOptions: Apollo.QueryHookOptions<GetEssayQuery, GetEssayQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetEssayQuery, GetEssayQueryVariables>(GetEssayDocument, options);
+      }
+export function useGetEssayLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetEssayQuery, GetEssayQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetEssayQuery, GetEssayQueryVariables>(GetEssayDocument, options);
+        }
+export function useGetEssaySuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetEssayQuery, GetEssayQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetEssayQuery, GetEssayQueryVariables>(GetEssayDocument, options);
+        }
+export type GetEssayQueryHookResult = ReturnType<typeof useGetEssayQuery>;
+export type GetEssayLazyQueryHookResult = ReturnType<typeof useGetEssayLazyQuery>;
+export type GetEssaySuspenseQueryHookResult = ReturnType<typeof useGetEssaySuspenseQuery>;
+export type GetEssayQueryResult = Apollo.QueryResult<GetEssayQuery, GetEssayQueryVariables>;
 export const MeDocument = gql`
     query Me {
   me {
