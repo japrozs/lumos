@@ -18,14 +18,23 @@ export class EssayResolver {
 
     @UseMiddleware(isAuth)
     @Query(() => Essay)
-    async getEssay(@Arg("id", () => String) id: string) {
-        return Essay.findOne({ where: { id } });
+    async getEssay(
+        @Arg("id", () => String) id: string,
+        @Ctx() { req }: Context
+    ) {
+        return Essay.findOne({ where: { id, creatorId: req.session.userId } });
     }
 
     @UseMiddleware(isAuth)
     @Mutation(() => Boolean)
-    async starOrUnStarEssay(@Arg("id", () => String) id: string) {
+    async starOrUnStarEssay(
+        @Arg("id", () => String) id: string,
+        @Ctx() { req }: Context
+    ) {
         const essay = await Essay.findOne(id);
+        if (essay?.creator.id != req.session.userId) {
+            return false;
+        }
         await Essay.update({ id }, { starred: !essay?.starred });
         return true;
     }
