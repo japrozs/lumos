@@ -77,7 +77,8 @@ let UserResolver = class UserResolver {
                 ],
             };
         }
-        const user = await user_1.User.findOne(userId, {
+        const userIdNum = parseInt(userId);
+        const user = await user_1.User.findOne(userIdNum, {
             relations: [],
         });
         if (!user) {
@@ -90,7 +91,7 @@ let UserResolver = class UserResolver {
                 ],
             };
         }
-        await user_1.User.update({ id: userId }, {
+        await user_1.User.update({ id: userIdNum }, {
             password: await argon2_1.default.hash(newPassword),
         });
         await redis.del(key);

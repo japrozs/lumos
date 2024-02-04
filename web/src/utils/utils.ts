@@ -1,6 +1,7 @@
 import { MAIN_COLLEGE_LIST } from "@/pages/data/colleges";
 import { CollegeListItem } from "@/types";
 import { useEffect } from "react";
+import sanitizeHTML from "sanitize-html";
 
 export const toTitleCase = (str: string) => {
     return str?.replace(/\w\S*/g, function (txt) {
@@ -144,3 +145,38 @@ const useAutosizeTextArea = (
 };
 
 export default useAutosizeTextArea;
+
+export const formatText = (str: string) => {
+    str = sanitizeHTML(str);
+    str = str?.replace(/(www|http:|https:)+[^\s]+[\w]/g, (t) => {
+        console.log("link ::", t);
+
+        return `<a href="${t}" class="text-blue-500 hover:underline"  target="_blank">${t}</a>`;
+    });
+
+    // match tildes/backticks(`) - (code)
+    console.log(str);
+    str = str?.replace(/`(.*?)`/g, (t) => {
+        console.log("code in tilde ::", t);
+        return `<code>${t.substring(1, t.length - 1)}</code>`;
+    });
+    return str;
+};
+
+export const matchFilter = (filter: string, text: string) => {
+    if (filter.trim().length == 0) {
+        return true;
+    }
+
+    if (
+        text
+            .trim()
+            .split(" ")
+            .join("")
+            .toLowerCase()
+            .includes(filter.trim().split(" ").join("").toLowerCase())
+    ) {
+        return true;
+    }
+    return false;
+};

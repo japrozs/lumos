@@ -85,7 +85,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                         </Accordion>
                         <a href="/app/essays">
                             <div
-                                className={`flex items-center pt-1.5 px-2 mx-2 pb-2 rounded-md cursor-pointer ${
+                                className={`flex items-center pt-1.5 px-2 my-1 mx-2 pb-2 rounded-md cursor-pointer ${
                                     pathname == "/app/essays"
                                         ? "bg-gray-200"
                                         : "hover:bg-gray-200"
@@ -95,11 +95,21 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                                 <p className="text-sm font-medium ">Essays</p>
                             </div>
                         </a>
-                        <div className="flex items-center pt-1.5 px-2 pb-2 mx-2 rounded-md cursor-pointer hover:bg-gray-200">
-                            <IoMdCheckmarkCircleOutline className="mr-2 text-base text-slate-500" />{" "}
-                            <p className="text-sm font-medium ">Task Board</p>
-                        </div>
-                        <div className="flex items-center pt-1.5 px-2 pb-2 mx-2 rounded-md cursor-pointer hover:bg-gray-200">
+                        <a href="/app/tasks">
+                            <div
+                                className={`flex items-center pt-1.5 px-2 pb-2 my-1 mx-2 rounded-md cursor-pointer ${
+                                    pathname == "/app/tasks"
+                                        ? "bg-gray-200"
+                                        : "hover:bg-gray-200"
+                                }`}
+                            >
+                                <IoMdCheckmarkCircleOutline className="mr-2 my-1 text-base text-slate-500" />{" "}
+                                <p className="text-sm font-medium ">
+                                    Task Board
+                                </p>
+                            </div>
+                        </a>
+                        <div className="flex items-center pt-1.5 px-2 pb-2 my-1 mx-2 rounded-md cursor-pointer hover:bg-gray-200">
                             <IoSettingsOutline className="mr-2 text-base text-slate-500" />{" "}
                             <p className="text-sm font-medium ">Settings</p>
                         </div>

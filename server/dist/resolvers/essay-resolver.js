@@ -29,6 +29,11 @@ class EssayResolver {
     async getEssay(id) {
         return essay_1.Essay.findOne({ where: { id } });
     }
+    async starOrUnStarEssay(id) {
+        const essay = await essay_1.Essay.findOne(id);
+        await essay_1.Essay.update({ id }, { starred: !(essay === null || essay === void 0 ? void 0 : essay.starred) });
+        return true;
+    }
     async updateEssay(id, title, body, { req }) {
         const essay = await essay_1.Essay.findOne(id, { relations: ["creator"] });
         if ((essay === null || essay === void 0 ? void 0 : essay.creator.id) != req.session.userId) {
@@ -66,6 +71,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], EssayResolver.prototype, "getEssay", null);
+__decorate([
+    (0, type_graphql_1.UseMiddleware)(is_auth_1.isAuth),
+    (0, type_graphql_1.Mutation)(() => Boolean),
+    __param(0, (0, type_graphql_1.Arg)("id", () => String)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], EssayResolver.prototype, "starOrUnStarEssay", null);
 __decorate([
     (0, type_graphql_1.UseMiddleware)(is_auth_1.isAuth),
     (0, type_graphql_1.Mutation)(() => Boolean),

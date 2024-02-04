@@ -7,7 +7,6 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
     OneToMany,
-    PrimaryColumn,
 } from "typeorm";
 import { Essay } from "./essay";
 
@@ -16,7 +15,7 @@ import { Essay } from "./essay";
 export class User extends BaseEntity {
     @Field()
     @PrimaryGeneratedColumn()
-    id!: number;
+    id: number;
 
     @Field()
     @Column()

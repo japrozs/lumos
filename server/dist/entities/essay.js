@@ -26,6 +26,11 @@ __decorate([
     __metadata("design:type", String)
 ], Essay.prototype, "title", void 0);
 __decorate([
+    (0, type_graphql_1.Field)(),
+    (0, typeorm_1.Column)({ default: false }),
+    __metadata("design:type", Boolean)
+], Essay.prototype, "starred", void 0);
+__decorate([
     (0, type_graphql_1.Field)(() => String),
     (0, typeorm_1.Column)({ nullable: true, default: "Start writing here..." }),
     __metadata("design:type", String)

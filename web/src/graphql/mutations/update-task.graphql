@@ -1,0 +1,3 @@
+mutation updateTasks($tasks: String!) {
+    updateTasks(tasks: $tasks)
+}

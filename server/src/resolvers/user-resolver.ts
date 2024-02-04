@@ -67,7 +67,9 @@ export class UserResolver {
                 ],
             };
         }
-        const user = await User.findOne(userId, {
+
+        const userIdNum = parseInt(userId);
+        const user = await User.findOne(userIdNum, {
             relations: [],
         });
 
@@ -83,7 +85,7 @@ export class UserResolver {
         }
 
         await User.update(
-            { id: userId },
+            { id: userIdNum },
             {
                 password: await argon2.hash(newPassword),
             }

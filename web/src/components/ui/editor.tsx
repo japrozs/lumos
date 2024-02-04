@@ -71,7 +71,7 @@ export const Editor: React.FC<EditorProps> = ({ essay }) => {
                 style={{
                     maxWidth: "54rem",
                 }}
-                className="mx-auto m-4 flex items-center"
+                className="px-4 mx-auto m-4 flex items-center"
             >
                 <p className="text-sm font-medium text-gray-600">
                     {body.trim().length === 0 ? 0 : body.split(" ").length}{" "}
@@ -90,6 +90,7 @@ export const Editor: React.FC<EditorProps> = ({ essay }) => {
                             </p>
                         </div>
                     )}
+                    {/* TODO – implement share functionality */}
                     <div className="w-24 mr-3">
                         <Button
                             // onClick={() => setOpen(true)}

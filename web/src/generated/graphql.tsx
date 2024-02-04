@@ -210,6 +210,13 @@ export type UpdateEssayMutationVariables = Exact<{
 
 export type UpdateEssayMutation = { __typename?: 'Mutation', updateEssay: boolean };
 
+export type UpdateTasksMutationVariables = Exact<{
+  tasks: Scalars['String']['input'];
+}>;
+
+
+export type UpdateTasksMutation = { __typename?: 'Mutation', updateTasks: boolean };
+
 export type GetEssayQueryVariables = Exact<{
   id: Scalars['String']['input'];
 }>;
@@ -521,6 +528,37 @@ export function useUpdateEssayMutation(baseOptions?: Apollo.MutationHookOptions<
 export type UpdateEssayMutationHookResult = ReturnType<typeof useUpdateEssayMutation>;
 export type UpdateEssayMutationResult = Apollo.MutationResult<UpdateEssayMutation>;
 export type UpdateEssayMutationOptions = Apollo.BaseMutationOptions<UpdateEssayMutation, UpdateEssayMutationVariables>;
+export const UpdateTasksDocument = gql`
+    mutation updateTasks($tasks: String!) {
+  updateTasks(tasks: $tasks)
+}
+    `;
+export type UpdateTasksMutationFn = Apollo.MutationFunction<UpdateTasksMutation, UpdateTasksMutationVariables>;
+
+/**
+ * __useUpdateTasksMutation__
+ *
+ * To run a mutation, you first call `useUpdateTasksMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateTasksMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateTasksMutation, { data, loading, error }] = useUpdateTasksMutation({
+ *   variables: {
+ *      tasks: // value for 'tasks'
+ *   },
+ * });
+ */
+export function useUpdateTasksMutation(baseOptions?: Apollo.MutationHookOptions<UpdateTasksMutation, UpdateTasksMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateTasksMutation, UpdateTasksMutationVariables>(UpdateTasksDocument, options);
+      }
+export type UpdateTasksMutationHookResult = ReturnType<typeof useUpdateTasksMutation>;
+export type UpdateTasksMutationResult = Apollo.MutationResult<UpdateTasksMutation>;
+export type UpdateTasksMutationOptions = Apollo.BaseMutationOptions<UpdateTasksMutation, UpdateTasksMutationVariables>;
 export const GetEssayDocument = gql`
     query getEssay($id: String!) {
   getEssay(id: $id) {

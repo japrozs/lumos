@@ -3,3 +3,7 @@
 -   peer review for helping students with essays.
 -   profile builder? (using AI, and the college list data, give tips)
 -   job shadowing and internship oppurtunities
+
+========
+
+-   do the vscode 'organise imports' thingy

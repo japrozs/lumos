@@ -24,6 +24,14 @@ export class EssayResolver {
 
     @UseMiddleware(isAuth)
     @Mutation(() => Boolean)
+    async starOrUnStarEssay(@Arg("id", () => String) id: string) {
+        const essay = await Essay.findOne(id);
+        await Essay.update({ id }, { starred: !essay?.starred });
+        return true;
+    }
+
+    @UseMiddleware(isAuth)
+    @Mutation(() => Boolean)
     async updateEssay(
         @Arg("id", () => String!) id: string,
         @Arg("title") title: string,
