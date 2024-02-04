@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { Exact, MeQuery, Query, useMeQuery } from "../generated/graphql";
 import { QueryResult } from "@apollo/client";
 
-// TODO: fix this, this is most probably wrong
 export const useIsAuth = (): ReturnType<typeof useMeQuery> => {
     const { data, loading, ...rest } = useMeQuery();
     const router: NextRouter = useRouter();

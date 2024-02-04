@@ -180,3 +180,14 @@ export const matchFilter = (filter: string, text: string) => {
     }
     return false;
 };
+
+// const essayTitles: string[] = [
+//     "Bears, beets, battlestar galactica",
+//     "I declare bankruptcy",
+//     "that's what she said",
+//     "michael scott",
+// ];
+
+// export const essayTitleGenerator = () => {
+//     return bios[Math.floor(Math.random() * essayTitles.length)];
+// };

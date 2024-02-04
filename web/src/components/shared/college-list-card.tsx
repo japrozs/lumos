@@ -12,6 +12,7 @@ import { Pill } from "../ui/pill";
 import { Button } from "../ui/button";
 import { AiOutlineDelete } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { toast } from "sonner";
 
 interface CollegeListCardProps {
     college: CollegeListItem;
@@ -63,6 +64,7 @@ export const CollegeListCard: React.FC<CollegeListCardProps> = ({
                             const listCopy = [...list];
                             listCopy.splice(index, 1);
                             setList(listCopy);
+                            toast.success("College removed from list");
                         }}
                         className="ml-1.5 text-2xl self-start hover:text-red-500 cursor-pointer transition"
                     />

@@ -4,6 +4,7 @@ import { Transition, Dialog } from "@headlessui/react";
 import { list } from "postcss";
 import React, { Dispatch, Fragment, SetStateAction, useState } from "react";
 import { BiSearch } from "react-icons/bi";
+import { toast } from "sonner";
 
 interface AddCollegeModalProps {
     open: boolean;
@@ -24,7 +25,7 @@ export const AddCollegeModal: React.FC<AddCollegeModalProps> = ({
         <Transition.Root show={open} as={Fragment}>
             <Dialog
                 as="div"
-                className="fixed inset-0 30 overflow-y-auto"
+                className="fixed inset-0 z-30 overflow-y-auto"
                 onClose={setOpen}
             >
                 <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
@@ -73,6 +74,9 @@ export const AddCollegeModal: React.FC<AddCollegeModalProps> = ({
                                             setList([college, ...list]);
                                             setQuery("");
                                             setOpen(false);
+                                            toast.success(
+                                                "College added successfully"
+                                            );
                                         }}
                                         key={idx}
                                         className="p-2.5 cursor-pointer hover:bg-gray-200 flex items-center"

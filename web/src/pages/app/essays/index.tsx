@@ -43,9 +43,7 @@ const Essays: React.FC<EssaysProps> = ({}) => {
     const createEssay = async () => {
         const essay = await createEssaymutation({
             variables: {
-                // TODO – get a random name inspired by the office characters
-                //        as the new essay name
-                title: `😄 Untitled`,
+                title: `new essay`,
             },
         });
         router.push(`/app/essays/${essay.data?.createEssay.id}`);

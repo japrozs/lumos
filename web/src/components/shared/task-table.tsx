@@ -14,6 +14,7 @@ import { matchFilter } from "../../utils/utils";
 import { AiOutlineDelete } from "react-icons/ai";
 import { IoIosMore } from "react-icons/io";
 import ContentEditable from "react-contenteditable";
+import { toast } from "sonner";
 
 interface TableProps {
     columnId: string;
@@ -66,8 +67,6 @@ export const Table: React.FC<TableProps> = ({
         return () => clearTimeout(timeout);
     }, [columnTitle]);
 
-    // TODO – add functionality to edit cards and column information
-
     return (
         <div
             className="flex flex-col"
@@ -104,6 +103,7 @@ export const Table: React.FC<TableProps> = ({
                                     boardCopy
                                 );
                                 setBoard(boardCopy);
+                                toast.success("Column removed from list");
                             }}
                             className="text-lg cursor-pointer text-gray-400 hover:text-red-500"
                         />
@@ -166,6 +166,9 @@ export const Table: React.FC<TableProps> = ({
                                                         setNote("");
                                                         setCreatingNewNote(
                                                             false
+                                                        );
+                                                        toast.success(
+                                                            "Card added to column"
                                                         );
                                                     }}
                                                 />
@@ -289,6 +292,9 @@ export const Table: React.FC<TableProps> = ({
                                                                                     );
                                                                                     console.log(
                                                                                         "--- END delete note output ---"
+                                                                                    );
+                                                                                    toast.success(
+                                                                                        "Card removed from column"
                                                                                     );
                                                                                 }}
                                                                                 className="text-base cursor-pointer text-gray-400 hover:text-red-500"

@@ -8,6 +8,7 @@ import { useDeleteEssayMutation } from "@/generated/graphql";
 import { Button } from "../ui/button";
 import { GoShare } from "react-icons/go";
 import { AiOutlineDelete } from "react-icons/ai";
+import { toast } from "sonner";
 
 interface DeleteEssayModalProps {
     open: boolean;
@@ -32,6 +33,7 @@ export const DeleteEssayModal: React.FC<DeleteEssayModalProps> = ({
         });
         router.push("/app/essays");
         await client.resetStore();
+        toast.success("Essay deleted successfully");
     };
 
     return (

@@ -12,6 +12,7 @@ import { IoMdCheckmark } from "react-icons/io";
 import { Table } from "../shared/task-table";
 import { v4 } from "uuid";
 import { FiDownload } from "react-icons/fi";
+import { toast } from "sonner";
 
 interface TaskBoardProps {
     data: MeQuery;
@@ -95,6 +96,7 @@ export const TaskBoard: React.FC<TaskBoardProps> = ({ data }) => {
         // clean up & remove anchor tag
         document.body.removeChild(link);
         URL.revokeObjectURL(href);
+        toast.success("Task board exported successfully");
     };
 
     return (
@@ -104,7 +106,6 @@ export const TaskBoard: React.FC<TaskBoardProps> = ({ data }) => {
             </div>
             <div className="p-4">
                 <div className="flex items-center mb-7">
-                    {/* TODO – implement this search functionality */}
                     <div className="self-center flex items-center max-w-md w-full rounded-md py-1.5 mr-5 px-2 border border-gray-300 focus-within:outline-none focus-within:border-blue-500 focus-within:ring text-gray-700 text-sm">
                         <BiSearch className="text-slate-500 text-xl" />
                         <input
@@ -145,6 +146,7 @@ export const TaskBoard: React.FC<TaskBoardProps> = ({ data }) => {
                                             items: [],
                                         },
                                     });
+                                    toast.success("Column added to board");
                                 }}
                                 label="Add table"
                                 icon={FiPlus}

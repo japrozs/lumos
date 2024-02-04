@@ -37,7 +37,6 @@ export const CollegeTable: React.FC<CollegeTableProps> = ({ query, data }) => {
             </TableCell>
             <TableCell className="text-gray-500 border-r border-gray-200">
                 <div className="w-16">
-                    {/* TODO – instead of showing 4.33, show A+  */}
                     <Pill
                         borderColor={getPillBorderColor(data)}
                         textColor={getPillTextColor(data)}

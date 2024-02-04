@@ -38,7 +38,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                             alt="logo"
                         />
                     </div>
-                    <div className="pb-16 border-b border-gray-200">
+                    {/* <div className="pb-16 border-b border-gray-200"> */}
+                    <div className="pb-16 border-gray-200">
                         <Accordion
                             type="single"
                             collapsible
@@ -114,7 +115,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                             <p className="text-sm font-medium ">Settings</p>
                         </div>
                     </div>
-                    <div className="mt-2">
+                    {/* <div className="mt-2">
                         <div className="flex items-center pt-1.5 px-2 mx-2 pb-2 rounded-md cursor-pointer hover:bg-gray-200">
                             <IoBookmarksOutline className="mr-2 text-base text-slate-500" />{" "}
                             <p className="text-sm font-medium ">
@@ -125,7 +126,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                             <FaRegFolderOpen className="mr-2 text-base text-slate-500" />{" "}
                             <p className="text-sm font-medium ">Collections</p>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="flex flex-col mt-auto mb-0 border-t border-gray-200 z-[0]">
                         <div className="flex items-center pt-3.5 px-4 pb-2">
                             <img
