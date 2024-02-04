@@ -52,6 +52,8 @@ export const Table: React.FC<TableProps> = ({
         })();
     }, [column.items]);
 
+    // TODO – add functionality to edit cards and column information
+
     return (
         <div className="flex flex-col" key={columnId}>
             <div className="mr-5">

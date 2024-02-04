@@ -119,7 +119,7 @@ export const TaskBoard: React.FC<TaskBoardProps> = ({ data }) => {
                                     setBoard({
                                         ...board,
                                         [v4()]: {
-                                            name: "New Column",
+                                            name: "New table",
                                             items: [],
                                         },
                                     });
