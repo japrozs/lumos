@@ -20,11 +20,14 @@ import { Spinner } from "@/components/shared/spinner";
 import {
     RegularEssayFragment,
     useCreateEssayMutation,
+    useStarOrUnStarEssayMutation,
 } from "@/generated/graphql";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
-import { FaRegStar } from "react-icons/fa6";
+import { FaRegStar, FaStar } from "react-icons/fa6";
 import { useRouter } from "next/router";
+import { DeleteEssayModal } from "@/components/modals/delete-essay";
+import { useApolloClient } from "@apollo/client";
 
 interface EssaysProps {}
 
@@ -33,16 +36,30 @@ const Essays: React.FC<EssaysProps> = ({}) => {
     const [query, setQuery] = useState("");
     const router = useRouter();
     const [createEssaymutation] = useCreateEssayMutation();
-    console.log(data?.me?.essays);
+    const [starOrUnStarMutation] = useStarOrUnStarEssayMutation();
+    const client = useApolloClient();
+    const [open, setOpen] = useState(false);
 
     const createEssay = async () => {
         const essay = await createEssaymutation({
             variables: {
+                // TODO – get a random name inspired by the office characters
+                //        as the new essay name
                 title: `😄 Untitled`,
             },
         });
         router.push(`/app/essays/${essay.data?.createEssay.id}`);
     };
+
+    const starEssay = async (id: string) => {
+        await starOrUnStarMutation({
+            variables: {
+                id,
+            },
+        });
+        await client.resetStore();
+    };
+
     return (
         <>
             <Wrapper>
@@ -52,6 +69,7 @@ const Essays: React.FC<EssaysProps> = ({}) => {
                 {!loading ? (
                     <div className="p-4">
                         <div className="flex items-center mb-7">
+                            {/* TODO – implement this search functionality */}
                             <div className="self-center flex items-center max-w-md w-full rounded-md py-1.5 mr-5 px-2 border border-gray-300 focus-within:outline-none focus-within:border-blue-500 focus-within:ring text-gray-700 text-sm">
                                 <BiSearch className="text-slate-500 text-xl" />
                                 <input
@@ -114,18 +132,17 @@ const Essays: React.FC<EssaysProps> = ({}) => {
                             <TableBody>
                                 {data?.me?.essays.map(
                                     (essay: RegularEssayFragment) => (
-                                        <TableRow
-                                            onClick={() =>
-                                                router.push(
-                                                    `/app/essays/${essay.id}`
-                                                )
-                                            }
-                                            className="group cursor-pointer"
-                                        >
-                                            <TableCell className="font-medium border-r border-gray-200">
-                                                <p className="group-hover:underline">
-                                                    {essay.title}
-                                                </p>
+                                        <TableRow className="group cursor-pointer">
+                                            <TableCell className="font-medium border-r border-gray-200 flex ">
+                                                <a
+                                                    href={`/app/essays/${essay.id}`}
+                                                    className="w-full flex items-center group-hover:underline"
+                                                >
+                                                    {essay.title}{" "}
+                                                    {essay.starred && (
+                                                        <FaStar className="ml-3 text-purple-500 text-lg" />
+                                                    )}
+                                                </a>
                                             </TableCell>
                                             <TableCell className="text-gray-500 border-r border-gray-200">
                                                 <p>
@@ -146,10 +163,34 @@ const Essays: React.FC<EssaysProps> = ({}) => {
                                             {/* <TableCell className="text-gray-500 border-r border-gray-200">
                                     <p>hi there</p>
                                 </TableCell> */}
-                                            <TableCell className="transition opacity-0 group-hover:opacity-100 flex items-center text-right space-x-2">
-                                                <FaRegStar className="mr-3 text-xl self-start hover:text-purple-500 cursor-pointer transition " />
-                                                <AiOutlineDelete className="ml-10 text-xl self-start hover:text-red-500 cursor-pointer transition" />
+                                            <TableCell className="opacity-0 group-hover:opacity-100 flex items-center text-right space-x-2">
+                                                {essay.starred ? (
+                                                    <FaStar
+                                                        onClick={() =>
+                                                            starEssay(essay.id)
+                                                        }
+                                                        className="mr-3 text-xl self-start text-purple-500 cursor-pointer transition "
+                                                    />
+                                                ) : (
+                                                    <FaRegStar
+                                                        onClick={() =>
+                                                            starEssay(essay.id)
+                                                        }
+                                                        className="mr-3 text-xl self-start hover:text-purple-500 cursor-pointer transition "
+                                                    />
+                                                )}
+                                                <AiOutlineDelete
+                                                    onClick={() =>
+                                                        setOpen(true)
+                                                    }
+                                                    className="ml-10 text-xl self-start hover:text-red-500 cursor-pointer transition"
+                                                />
                                             </TableCell>
+                                            <DeleteEssayModal
+                                                open={open}
+                                                setOpen={setOpen}
+                                                id={essay.id}
+                                            />
                                         </TableRow>
                                     )
                                 )}

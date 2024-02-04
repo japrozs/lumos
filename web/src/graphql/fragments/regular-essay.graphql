@@ -2,6 +2,7 @@ fragment RegularEssay on Essay {
     id
     title
     body
+    starred
     creatorId
     createdAt
     updatedAt

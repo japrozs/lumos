@@ -1,0 +1,3 @@
+mutation starOrUnStarEssay($id: String!) {
+    starOrUnStarEssay(id: $id)
+}

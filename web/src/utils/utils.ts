@@ -1,5 +1,6 @@
 import { MAIN_COLLEGE_LIST } from "@/pages/data/colleges";
 import { CollegeListItem } from "@/types";
+import { useEffect } from "react";
 
 export const toTitleCase = (str: string) => {
     return str?.replace(/\w\S*/g, function (txt) {
@@ -123,3 +124,23 @@ export const timeSinceShort = (date: string | undefined) => {
     }
     return Math.floor(seconds) + " s";
 };
+
+// Updates the height of a <textarea> when the value changes.
+const useAutosizeTextArea = (
+    textAreaRef: HTMLTextAreaElement | null,
+    value: string
+) => {
+    useEffect(() => {
+        if (textAreaRef) {
+            // We need to reset the height momentarily to get the correct scrollHeight for the textarea
+            textAreaRef.style.height = "0px";
+            const scrollHeight = textAreaRef.scrollHeight;
+
+            // We then set the height directly, outside of the render loop
+            // Trying to set this with state or a ref will product an incorrect value.
+            textAreaRef.style.height = scrollHeight + "px";
+        }
+    }, [textAreaRef, value]);
+};
+
+export default useAutosizeTextArea;

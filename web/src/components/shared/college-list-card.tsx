@@ -10,7 +10,7 @@ import { toTitleCase } from "@/utils/utils";
 import React, { Dispatch, SetStateAction } from "react";
 import { Pill } from "../ui/pill";
 import { Button } from "../ui/button";
-import { FiExternalLink } from "react-icons/fi";
+import { AiOutlineDelete } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 interface CollegeListCardProps {
@@ -58,7 +58,7 @@ export const CollegeListCard: React.FC<CollegeListCardProps> = ({
                         </p>
                     </div>
                     {/* TODO – add alerts in the bottom right when you delete a list entry */}
-                    <RiDeleteBin6Line
+                    <AiOutlineDelete
                         onClick={() => {
                             const listCopy = [...list];
                             listCopy.splice(index, 1);

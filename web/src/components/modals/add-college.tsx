@@ -24,7 +24,7 @@ export const AddCollegeModal: React.FC<AddCollegeModalProps> = ({
         <Transition.Root show={open} as={Fragment}>
             <Dialog
                 as="div"
-                className="fixed inset-0 max-z-10 overflow-y-auto"
+                className="fixed inset-0 30 overflow-y-auto"
                 onClose={setOpen}
             >
                 <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">

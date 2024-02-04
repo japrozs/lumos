@@ -1,0 +1,3 @@
+mutation updateEssay($id: String!, $title: String!, $body: String!) {
+    updateEssay(id: $id, title: $title, body: $body)
+}

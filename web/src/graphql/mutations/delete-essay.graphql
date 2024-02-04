@@ -1,0 +1,3 @@
+mutation deleteEssay($id: String!) {
+    deleteEssay(id: $id)
+}

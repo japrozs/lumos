@@ -22,8 +22,10 @@
         "next": "14.1.0",
         "next-transition-bar": "^1.1.1",
         "react": "^18",
+        "react-contenteditable": "^3.3.7",
         "react-dom": "^18",
         "react-icons": "^5.0.1",
+        "react-textarea-autosize": "^8.5.3",
         "tailwind-merge": "^2.2.1",
         "tailwindcss-animate": "^1.0.7"
     },

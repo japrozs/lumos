@@ -11,6 +11,7 @@ type ButtonProps = {
     loading?: boolean;
     iconAnimate?: boolean;
     iconRight?: boolean;
+    iconMargin?: number;
     icon?: IconType;
 } & React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -27,6 +28,7 @@ export const Button: React.FC<ButtonProps> = ({
     loading = false,
     iconRight,
     className,
+    iconMargin,
     ...props
 }) => {
     return (
@@ -65,8 +67,20 @@ export const Button: React.FC<ButtonProps> = ({
                                         label.length != 0 &&
                                         `${
                                             iconAnimate
-                                                ? "mr-1 group-hover:ml-2"
-                                                : "mr-1"
+                                                ? `mr-${
+                                                      iconMargin
+                                                          ? iconMargin
+                                                          : "1"
+                                                  } group-hover:ml-${
+                                                      iconMargin
+                                                          ? iconMargin
+                                                          : "2"
+                                                  }`
+                                                : `mr-${
+                                                      iconMargin
+                                                          ? iconMargin
+                                                          : "1"
+                                                  }`
                                         }`
                                     } text-lg`}
                                 />
@@ -82,8 +96,20 @@ export const Button: React.FC<ButtonProps> = ({
                                         label.length != 0 &&
                                         `${
                                             iconAnimate
-                                                ? "mr-1 group-hover:ml-2"
-                                                : "mr-1"
+                                                ? `mr-${
+                                                      iconMargin
+                                                          ? iconMargin
+                                                          : "1"
+                                                  } group-hover:ml-${
+                                                      iconMargin
+                                                          ? iconMargin
+                                                          : "2"
+                                                  }`
+                                                : `mr-${
+                                                      iconMargin
+                                                          ? iconMargin
+                                                          : "1"
+                                                  }`
                                         }`
                                     } text-lg`}
                                 />

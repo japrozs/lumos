@@ -109,6 +109,11 @@ input[data-autocompleted] {
     letter-spacing: -0.0269em;
 }
 
+/* .textarea[contenteditable]:empty::before {
+    content: "Placeholder still possible";
+    color: gray;
+} */
+
 .text {
     font-weight: 400;
     font-size: 1rem;
@@ -119,4 +124,16 @@ input[data-autocompleted] {
 
 .disabled {
     opacity: 0.4 !important;
+}
+
+@layer utilities {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
 }
