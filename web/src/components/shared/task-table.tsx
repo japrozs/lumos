@@ -239,61 +239,61 @@ export const Table: React.FC<TableProps> = ({
                                                                                 .style,
                                                                         }}
                                                                     >
-                                                                        {/* <div className="hidden group-hover:block bg-gray-900 rounded p-1.5 group-hover:flex items-center border border-gray-700 absolute top-1 right-1 z-30">
-                                                                        <PiPencil
-                                                                            onClick={() => {
-                                                                                setNote(
-                                                                                    item.content
-                                                                                );
-                                                                                setCreatingNewNote(
-                                                                                    true
-                                                                                );
-                                                                                // discretely delete the old note
-                                                                                const boardCopy: any =
-                                                                                    structuredClone(
-                                                                                        board
+                                                                        <div className="hidden group-hover:block bg-gray-100  rounded p-1.5 group-hover:flex items-center border border-gray-200 absolute top-1 right-1 z-30">
+                                                                            <PiPencil
+                                                                                onClick={() => {
+                                                                                    setNote(
+                                                                                        item.content
                                                                                     );
-                                                                                boardCopy[
-                                                                                    columnId
-                                                                                ].items.splice(
-                                                                                    index,
-                                                                                    1
-                                                                                );
-                                                                                setBoard(
-                                                                                    boardCopy
-                                                                                );
-                                                                            }}
-                                                                            className="text-base mr-2 cursor-pointer text-gray-400 hover:text-purple-500"
-                                                                        />
+                                                                                    setCreatingNewNote(
+                                                                                        true
+                                                                                    );
+                                                                                    // discretely delete the old note
+                                                                                    const boardCopy: any =
+                                                                                        structuredClone(
+                                                                                            board
+                                                                                        );
+                                                                                    boardCopy[
+                                                                                        columnId
+                                                                                    ].items.splice(
+                                                                                        index,
+                                                                                        1
+                                                                                    );
+                                                                                    setBoard(
+                                                                                        boardCopy
+                                                                                    );
+                                                                                }}
+                                                                                className="text-base mr-2 cursor-pointer text-slate-500 hover:text-purple-500"
+                                                                            />
 
-                                                                        <RiDeleteBin6Line
-                                                                            onClick={() => {
-                                                                                console.log(
-                                                                                    "--- delete note output ---"
-                                                                                );
-                                                                                console.log(
-                                                                                    board
-                                                                                );
-                                                                                const boardCopy: any =
-                                                                                    structuredClone(
+                                                                            <AiOutlineDelete
+                                                                                onClick={() => {
+                                                                                    console.log(
+                                                                                        "--- delete note output ---"
+                                                                                    );
+                                                                                    console.log(
                                                                                         board
                                                                                     );
-                                                                                boardCopy[
-                                                                                    columnId
-                                                                                ].items.splice(
-                                                                                    index,
-                                                                                    1
-                                                                                );
-                                                                                setBoard(
-                                                                                    boardCopy
-                                                                                );
-                                                                                console.log(
-                                                                                    "--- END delete note output ---"
-                                                                                );
-                                                                            }}
-                                                                            className="text-base cursor-pointer text-gray-400 hover:text-red-500"
-                                                                        />
-                                                                    </div> */}
+                                                                                    const boardCopy: any =
+                                                                                        structuredClone(
+                                                                                            board
+                                                                                        );
+                                                                                    boardCopy[
+                                                                                        columnId
+                                                                                    ].items.splice(
+                                                                                        index,
+                                                                                        1
+                                                                                    );
+                                                                                    setBoard(
+                                                                                        boardCopy
+                                                                                    );
+                                                                                    console.log(
+                                                                                        "--- END delete note output ---"
+                                                                                    );
+                                                                                }}
+                                                                                className="text-base cursor-pointer text-gray-400 hover:text-red-500"
+                                                                            />
+                                                                        </div>
                                                                         <p
                                                                             className="w-full text-sm font-medium text-slate-900 break-words"
                                                                             style={{

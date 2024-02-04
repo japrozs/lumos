@@ -11,6 +11,7 @@ import { GoPlus } from "react-icons/go";
 import { IoMdCheckmark } from "react-icons/io";
 import { Table } from "../shared/task-table";
 import { v4 } from "uuid";
+import { FiDownload } from "react-icons/fi";
 
 interface TaskBoardProps {
     data: MeQuery;
@@ -21,6 +22,7 @@ export const TaskBoard: React.FC<TaskBoardProps> = ({ data }) => {
     const [board, setBoard] = useState(JSON.parse(data.me?.tasks || "{}"));
     const [updateTasksMutation, { loading }] = useUpdateTasksMutation();
     const client = useApolloClient();
+    const [exportLoading, setExportLoading] = useState(false);
 
     const onDragEnd = (result: any, columns: any, setColumns: any) => {
         if (!result.destination) return;
@@ -75,6 +77,26 @@ export const TaskBoard: React.FC<TaskBoardProps> = ({ data }) => {
         return () => clearTimeout(timeout);
     }, [board]);
 
+    const exportTaskBoard = () => {
+        setExportLoading(true);
+        const filename = "task-board";
+        const json = JSON.stringify(board, null, 4);
+        const blob = new Blob([json], { type: "application/json" });
+        const href = URL.createObjectURL(blob);
+
+        // create anchor tag with link to download the file
+        const link = document.createElement("a");
+        link.href = href;
+        link.download = `${filename}.json`;
+        document.body.appendChild(link);
+        link.click();
+        setExportLoading(false);
+
+        // clean up & remove anchor tag
+        document.body.removeChild(link);
+        URL.revokeObjectURL(href);
+    };
+
     return (
         <>
             <div className="bg-white z-10 sticky top-0 px-4 py-3 border-b border-gray-200">
@@ -126,6 +148,23 @@ export const TaskBoard: React.FC<TaskBoardProps> = ({ data }) => {
                                 }}
                                 label="Add table"
                                 icon={FiPlus}
+                            />
+                        </div>
+                        <div className="w-24">
+                            <Button
+                                // onClick={() => {
+                                //     setBoard({
+                                //         ...board,
+                                //         [v4()]: {
+                                //             name: "New table",
+                                //             items: [],
+                                //         },
+                                //     });
+                                // }}
+                                onClick={exportTaskBoard}
+                                label="Export"
+                                loading={exportLoading}
+                                icon={FiDownload}
                             />
                         </div>
                     </div>
