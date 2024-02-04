@@ -55,7 +55,7 @@ export const Button: React.FC<ButtonProps> = ({
         >
             {loading ? (
                 <>
-                    <Spinner className="w-6 h-6 text-gray-700 fill-dark-compliment hover:fill-dark-compliment-hovered" />
+                    <Spinner className="w-6 h-6 text-gray-200 fill-primary-color" />
                 </>
             ) : (
                 <>

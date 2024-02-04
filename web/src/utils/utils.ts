@@ -1,3 +1,4 @@
+import { MeQuery, RegularEssayFragment } from "@/generated/graphql";
 import { MAIN_COLLEGE_LIST } from "@/pages/data/colleges";
 import { CollegeListItem } from "@/types";
 import { useEffect } from "react";
@@ -46,25 +47,82 @@ export const searchCollegeWithList = (
     list: CollegeListItem[]
 ): CollegeListItem[] => {
     const results = MAIN_COLLEGE_LIST.filter((college) => {
-        return (
-            college.content.entity.name
-                .trim()
-                .replaceAll("-", "")
-                .replaceAll(".", "")
-                .split(" ")
-                .join("")
-                .toLowerCase()
-                .includes(
-                    query
-                        .trim()
-                        .replaceAll("-", "")
-                        .replaceAll(".", "")
-                        .split(" ")
-                        .join("")
-                        .toLowerCase()
-                ) && !list.includes(college)
-        );
-    }).slice(0, 5);
+        return college.content.entity.name
+            .trim()
+            .replaceAll("-", "")
+            .replaceAll(".", "")
+            .split(" ")
+            .join("")
+            .toLowerCase()
+            .includes(
+                query
+                    .trim()
+                    .replaceAll("-", "")
+                    .replaceAll(".", "")
+                    .split(" ")
+                    .join("")
+                    .toLowerCase()
+            );
+        // TODO FIX – find a way to make this faster
+        // && !list.some((c) => JSON.stringify(c) === JSON.stringify(college)
+    });
+    // results.forEach((college) => {
+    //     console.log({
+    //         name: college.content.entity.name,
+    //         list,
+    //         college,
+    //         includes: list.some(
+    //             (c) => JSON.stringify(c) === JSON.stringify(college)
+    //         ),
+    //     });
+    // });
+    return results;
+};
+
+export const searchCollegeList = (query: string, list: CollegeListItem[]) => {
+    const results = list.filter((listItem: CollegeListItem) => {
+        return listItem.content.entity.name
+            .trim()
+            .replaceAll("-", "")
+            .replaceAll(".", "")
+            .split(" ")
+            .join("")
+            .toLowerCase()
+            .includes(
+                query
+                    .trim()
+                    .replaceAll("-", "")
+                    .replaceAll(".", "")
+                    .split(" ")
+                    .join("")
+                    .toLowerCase()
+            );
+    });
+    return results;
+};
+
+export const searchEssayList = (
+    query: string,
+    list: RegularEssayFragment[]
+): RegularEssayFragment[] => {
+    const results = list.filter((essay: RegularEssayFragment) => {
+        return essay.title
+            .trim()
+            .replaceAll("-", "")
+            .replaceAll(".", "")
+            .split(" ")
+            .join("")
+            .toLowerCase()
+            .includes(
+                query
+                    .trim()
+                    .replaceAll("-", "")
+                    .replaceAll(".", "")
+                    .split(" ")
+                    .join("")
+                    .toLowerCase()
+            );
+    });
     return results;
 };
 

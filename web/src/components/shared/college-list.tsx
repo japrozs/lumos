@@ -10,6 +10,11 @@ import { Button } from "../ui/button";
 import { CollegeListCard } from "./college-list-card";
 import { useApolloClient } from "@apollo/client";
 import { MeQuery, useUpdateCollegeListMutation } from "@/generated/graphql";
+import {
+    searchCollegeList,
+    searchCollegeWithList,
+    searchEssayList,
+} from "@/utils/utils";
 
 interface CollegeListProps {
     data: MeQuery | undefined;
@@ -99,15 +104,27 @@ export const CollegeList: React.FC<CollegeListProps> = ({
                     </p>
                 )}
                 <div className="flex flex-wrap">
-                    {list.map((college: CollegeListItem, idx: number) => (
-                        <CollegeListCard
-                            key={idx}
-                            index={idx}
-                            college={college}
-                            list={list}
-                            setList={setList}
-                        />
-                    ))}
+                    {query.length === 0
+                        ? list.map((college: CollegeListItem, idx: number) => (
+                              <CollegeListCard
+                                  key={idx}
+                                  index={idx}
+                                  college={college}
+                                  list={list}
+                                  setList={setList}
+                              />
+                          ))
+                        : searchCollegeList(query, list).map(
+                              (college: CollegeListItem, idx: number) => (
+                                  <CollegeListCard
+                                      key={idx}
+                                      index={idx}
+                                      college={college}
+                                      list={list}
+                                      setList={setList}
+                                  />
+                              )
+                          )}
                 </div>
             </div>
             <AddCollegeModal

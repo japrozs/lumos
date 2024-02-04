@@ -52,6 +52,7 @@ export default function MainApp() {
 
     return (
         <div>
+            {/* Add meta tags and titles, favicons and other shit */}
             <Wrapper>
                 <div className="bg-white z-10 sticky top-0 px-4 py-3 border-b border-gray-200">
                     <p className="text-lg blair">colleges</p>
