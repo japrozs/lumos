@@ -7,7 +7,7 @@ import { LuSettings } from "react-icons/lu";
 import { BiSearch, BiSortAlt2 } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
 import { CollegeTable } from "@/components/shared/college-table";
-import { MAIN_COLLEGE_LIST } from "../data/colleges";
+import { MAIN_COLLEGE_LIST } from "../../data/colleges";
 import { CollegeListItem } from "@/types";
 import {
     Table,

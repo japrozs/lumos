@@ -17,7 +17,7 @@ import { IoBookmarksOutline } from "react-icons/io5";
 import { FaRegFolderOpen } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { usePathname } from "next/navigation";
-import { MAIN_COLLEGE_LIST } from "@/pages/data/colleges";
+import { MAIN_COLLEGE_LIST } from "@/data/colleges";
 import { useIsAuth } from "@/utils/use-is-auth";
 
 interface SidebarProps {}

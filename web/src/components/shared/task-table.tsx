@@ -78,6 +78,7 @@ export const Table: React.FC<TableProps> = ({
             <div className="mr-5">
                 <div className="flex items-center p-5 pt-2.5 truncate text-ellipsis rounded-tr-lg rounded-tl-lg px-3 border-t border-l border-r bg-gray-50 border-gray-200">
                     {/* <p className="font-medium cursor-pointer">{column.name}</p> */}
+                    {/* TODO – add an emoji picker and pick an emoji for the column like notion */}
                     <ContentEditable
                         innerRef={titleElementRef}
                         tagName="p"

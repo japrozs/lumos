@@ -5,7 +5,7 @@ import { BiSearch, BiSortAlt2 } from "react-icons/bi";
 import { LuSettings } from "react-icons/lu";
 import { RxCross2 } from "react-icons/rx";
 import { FiPlus } from "react-icons/fi";
-import { MAIN_COLLEGE_LIST } from "../data/colleges";
+import { MAIN_COLLEGE_LIST } from "../../data/colleges";
 import { CollegeListItem } from "@/types";
 import { CollegeListCard } from "@/components/shared/college-list-card";
 import { AddCollegeModal } from "@/components/modals/add-college";
