@@ -1,6 +1,6 @@
 import { Wrapper } from "@/components/shared/wrapper";
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { FiPlus } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
@@ -31,14 +31,84 @@ import { useApolloClient } from "@apollo/client";
 import { searchEssayList } from "@/utils/utils";
 
 interface EssaysProps {}
+interface EssayCardProps {
+    essay: RegularEssayFragment;
+    open: boolean;
+    setOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+const EssayCardComponent: React.FC<EssayCardProps> = ({
+    essay,
+    open,
+    setOpen,
+}) => {
+    const [starOrUnStarMutation] = useStarOrUnStarEssayMutation();
+    const client = useApolloClient();
+
+    const starEssay = async (id: string) => {
+        await starOrUnStarMutation({
+            variables: {
+                id,
+            },
+        });
+        await client.resetStore();
+    };
+
+    return (
+        <TableRow className="group cursor-pointer">
+            <TableCell className="font-medium border-r border-gray-200 flex ">
+                <a
+                    href={`/app/essays/${essay.id}`}
+                    className="w-full flex items-center group-hover:underline"
+                >
+                    {essay.title}{" "}
+                    {essay.starred && (
+                        <FaStar className="ml-3 text-purple-500 text-lg" />
+                    )}
+                </a>
+            </TableCell>
+            <TableCell className="text-gray-500 border-r border-gray-200">
+                <p>
+                    {new Date(parseInt(essay.updatedAt)).toLocaleDateString(
+                        "en-us",
+                        {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                        }
+                    )}
+                </p>
+            </TableCell>
+            {/* <TableCell className="text-gray-500 border-r border-gray-200">
+                                    <p>hi there</p>
+                                </TableCell> */}
+            <TableCell className="opacity-0 group-hover:opacity-100 flex items-center text-right space-x-2">
+                {essay.starred ? (
+                    <FaStar
+                        onClick={() => starEssay(essay.id)}
+                        className="mr-3 text-xl self-start text-purple-500 cursor-pointer transition "
+                    />
+                ) : (
+                    <FaRegStar
+                        onClick={() => starEssay(essay.id)}
+                        className="mr-3 text-xl self-start hover:text-purple-500 cursor-pointer transition "
+                    />
+                )}
+                <AiOutlineDelete
+                    onClick={() => setOpen(true)}
+                    className="ml-10 text-xl self-start hover:text-red-500 cursor-pointer transition"
+                />
+            </TableCell>
+            <DeleteEssayModal open={open} setOpen={setOpen} id={essay.id} />
+        </TableRow>
+    );
+};
 
 const Essays: React.FC<EssaysProps> = ({}) => {
     const { data, loading } = useIsAuth();
     const [query, setQuery] = useState("");
     const router = useRouter();
     const [createEssaymutation] = useCreateEssayMutation();
-    const [starOrUnStarMutation] = useStarOrUnStarEssayMutation();
-    const client = useApolloClient();
     const [open, setOpen] = useState(false);
 
     const createEssay = async () => {
@@ -48,15 +118,6 @@ const Essays: React.FC<EssaysProps> = ({}) => {
             },
         });
         router.push(`/app/essays/${essay.data?.createEssay.id}`);
-    };
-
-    const starEssay = async (id: string) => {
-        await starOrUnStarMutation({
-            variables: {
-                id,
-            },
-        });
-        await client.resetStore();
     };
 
     return (
@@ -130,71 +191,16 @@ const Essays: React.FC<EssaysProps> = ({}) => {
                             <TableBody>
                                 {query.trim().length === 0
                                     ? data?.me?.essays.map(
-                                          (essay: RegularEssayFragment) => (
-                                              <TableRow className="group cursor-pointer">
-                                                  <TableCell className="font-medium border-r border-gray-200 flex ">
-                                                      <a
-                                                          href={`/app/essays/${essay.id}`}
-                                                          className="w-full flex items-center group-hover:underline"
-                                                      >
-                                                          {essay.title}{" "}
-                                                          {essay.starred && (
-                                                              <FaStar className="ml-3 text-purple-500 text-lg" />
-                                                          )}
-                                                      </a>
-                                                  </TableCell>
-                                                  <TableCell className="text-gray-500 border-r border-gray-200">
-                                                      <p>
-                                                          {new Date(
-                                                              parseInt(
-                                                                  essay.updatedAt
-                                                              )
-                                                          ).toLocaleDateString(
-                                                              "en-us",
-                                                              {
-                                                                  year: "numeric",
-                                                                  month: "short",
-                                                                  day: "numeric",
-                                                              }
-                                                          )}
-                                                      </p>
-                                                  </TableCell>
-                                                  {/* <TableCell className="text-gray-500 border-r border-gray-200">
-                                    <p>hi there</p>
-                                </TableCell> */}
-                                                  <TableCell className="opacity-0 group-hover:opacity-100 flex items-center text-right space-x-2">
-                                                      {essay.starred ? (
-                                                          <FaStar
-                                                              onClick={() =>
-                                                                  starEssay(
-                                                                      essay.id
-                                                                  )
-                                                              }
-                                                              className="mr-3 text-xl self-start text-purple-500 cursor-pointer transition "
-                                                          />
-                                                      ) : (
-                                                          <FaRegStar
-                                                              onClick={() =>
-                                                                  starEssay(
-                                                                      essay.id
-                                                                  )
-                                                              }
-                                                              className="mr-3 text-xl self-start hover:text-purple-500 cursor-pointer transition "
-                                                          />
-                                                      )}
-                                                      <AiOutlineDelete
-                                                          onClick={() =>
-                                                              setOpen(true)
-                                                          }
-                                                          className="ml-10 text-xl self-start hover:text-red-500 cursor-pointer transition"
-                                                      />
-                                                  </TableCell>
-                                                  <DeleteEssayModal
-                                                      open={open}
-                                                      setOpen={setOpen}
-                                                      id={essay.id}
-                                                  />
-                                              </TableRow>
+                                          (
+                                              essay: RegularEssayFragment,
+                                              idx: number
+                                          ) => (
+                                              <EssayCardComponent
+                                                  key={idx}
+                                                  essay={essay}
+                                                  open={open}
+                                                  setOpen={setOpen}
+                                              />
                                           )
                                       )
                                     : searchEssayList(
@@ -206,74 +212,12 @@ const Essays: React.FC<EssaysProps> = ({}) => {
                                               essay: RegularEssayFragment,
                                               idx: number
                                           ) => (
-                                              // TODO – refactor this into another component to prevent repetitive stuff
-                                              <TableRow
+                                              <EssayCardComponent
                                                   key={idx}
-                                                  className="group cursor-pointer"
-                                              >
-                                                  <TableCell className="font-medium border-r border-gray-200 flex ">
-                                                      <a
-                                                          href={`/app/essays/${essay.id}`}
-                                                          className="w-full flex items-center group-hover:underline"
-                                                      >
-                                                          {essay.title}{" "}
-                                                          {essay.starred && (
-                                                              <FaStar className="ml-3 text-purple-500 text-lg" />
-                                                          )}
-                                                      </a>
-                                                  </TableCell>
-                                                  <TableCell className="text-gray-500 border-r border-gray-200">
-                                                      <p>
-                                                          {new Date(
-                                                              parseInt(
-                                                                  essay.updatedAt
-                                                              )
-                                                          ).toLocaleDateString(
-                                                              "en-us",
-                                                              {
-                                                                  year: "numeric",
-                                                                  month: "short",
-                                                                  day: "numeric",
-                                                              }
-                                                          )}
-                                                      </p>
-                                                  </TableCell>
-                                                  {/* <TableCell className="text-gray-500 border-r border-gray-200">
-                                    <p>hi there</p>
-                                </TableCell> */}
-                                                  <TableCell className="opacity-0 group-hover:opacity-100 flex items-center text-right space-x-2">
-                                                      {essay.starred ? (
-                                                          <FaStar
-                                                              onClick={() =>
-                                                                  starEssay(
-                                                                      essay.id
-                                                                  )
-                                                              }
-                                                              className="mr-3 text-xl self-start text-purple-500 cursor-pointer transition "
-                                                          />
-                                                      ) : (
-                                                          <FaRegStar
-                                                              onClick={() =>
-                                                                  starEssay(
-                                                                      essay.id
-                                                                  )
-                                                              }
-                                                              className="mr-3 text-xl self-start hover:text-purple-500 cursor-pointer transition "
-                                                          />
-                                                      )}
-                                                      <AiOutlineDelete
-                                                          onClick={() =>
-                                                              setOpen(true)
-                                                          }
-                                                          className="ml-10 text-xl self-start hover:text-red-500 cursor-pointer transition"
-                                                      />
-                                                  </TableCell>
-                                                  <DeleteEssayModal
-                                                      open={open}
-                                                      setOpen={setOpen}
-                                                      id={essay.id}
-                                                  />
-                                              </TableRow>
+                                                  essay={essay}
+                                                  open={open}
+                                                  setOpen={setOpen}
+                                              />
                                           )
                                       )}
                                 {query.trim().length != 0 &&

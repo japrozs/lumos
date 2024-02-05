@@ -30,7 +30,8 @@ class EssayResolver {
         return essay_1.Essay.findOne({ where: { id, creatorId: req.session.userId } });
     }
     async starOrUnStarEssay(id, { req }) {
-        const essay = await essay_1.Essay.findOne(id);
+        console.log(id);
+        const essay = await essay_1.Essay.findOne(id, { relations: ["creator"] });
         if ((essay === null || essay === void 0 ? void 0 : essay.creator.id) != req.session.userId) {
             return false;
         }

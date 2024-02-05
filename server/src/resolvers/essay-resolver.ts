@@ -31,7 +31,8 @@ export class EssayResolver {
         @Arg("id", () => String) id: string,
         @Ctx() { req }: Context
     ) {
-        const essay = await Essay.findOne(id);
+        console.log(id);
+        const essay = await Essay.findOne(id, { relations: ["creator"] });
         if (essay?.creator.id != req.session.userId) {
             return false;
         }

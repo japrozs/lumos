@@ -28,7 +28,6 @@ export const CollegeList: React.FC<CollegeListProps> = ({
     const client = useApolloClient();
     const [updateCollegeListMutation, { loading }] =
         useUpdateCollegeListMutation();
-    // TODO – implement search functionality here
     const [query, setQuery] = useState("");
     const [list, setList] = useState<CollegeListItem[]>(
         (
@@ -125,6 +124,10 @@ export const CollegeList: React.FC<CollegeListProps> = ({
                                   />
                               )
                           )}
+                    {query.length != 0 &&
+                        searchCollegeList(query, list).length === 0 && (
+                            <p>no results found</p>
+                        )}
                 </div>
             </div>
             <AddCollegeModal
