@@ -90,15 +90,15 @@ export const Editor: React.FC<EditorProps> = ({ essay }) => {
                             </p>
                         </div>
                     )}
-                    {/* TODO – implement share functionality */}
-                    <div className="w-24 mr-3">
+                    {/* FIX – implement share functionality */}
+                    {/* <div className="w-24 mr-3">
                         <Button
                             // onClick={() => setOpen(true)}
                             label="Share"
                             iconMargin={2}
                             icon={GoShare}
                         />
-                    </div>
+                    </div> */}
                     <div className="w-24">
                         <Button
                             onClick={() => setOpen(true)}

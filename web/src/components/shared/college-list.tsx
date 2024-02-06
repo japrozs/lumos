@@ -126,7 +126,11 @@ export const CollegeList: React.FC<CollegeListProps> = ({
                           )}
                     {query.length != 0 &&
                         searchCollegeList(query, list).length === 0 && (
-                            <p>no results found</p>
+                            <div className="flex flex-col items-center justify-center w-full h-full p-24">
+                                <p className="text-slate-500 menlo">
+                                    No results found
+                                </p>
+                            </div>
                         )}
                 </div>
             </div>

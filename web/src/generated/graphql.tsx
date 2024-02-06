@@ -210,6 +210,13 @@ export type UpdateEssayMutationVariables = Exact<{
 
 export type UpdateEssayMutation = { __typename?: 'Mutation', updateEssay: boolean };
 
+export type UpdateNameMutationVariables = Exact<{
+  name: Scalars['String']['input'];
+}>;
+
+
+export type UpdateNameMutation = { __typename?: 'Mutation', updateName: boolean };
+
 export type UpdateTasksMutationVariables = Exact<{
   tasks: Scalars['String']['input'];
 }>;
@@ -528,6 +535,37 @@ export function useUpdateEssayMutation(baseOptions?: Apollo.MutationHookOptions<
 export type UpdateEssayMutationHookResult = ReturnType<typeof useUpdateEssayMutation>;
 export type UpdateEssayMutationResult = Apollo.MutationResult<UpdateEssayMutation>;
 export type UpdateEssayMutationOptions = Apollo.BaseMutationOptions<UpdateEssayMutation, UpdateEssayMutationVariables>;
+export const UpdateNameDocument = gql`
+    mutation updateName($name: String!) {
+  updateName(name: $name)
+}
+    `;
+export type UpdateNameMutationFn = Apollo.MutationFunction<UpdateNameMutation, UpdateNameMutationVariables>;
+
+/**
+ * __useUpdateNameMutation__
+ *
+ * To run a mutation, you first call `useUpdateNameMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateNameMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateNameMutation, { data, loading, error }] = useUpdateNameMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useUpdateNameMutation(baseOptions?: Apollo.MutationHookOptions<UpdateNameMutation, UpdateNameMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateNameMutation, UpdateNameMutationVariables>(UpdateNameDocument, options);
+      }
+export type UpdateNameMutationHookResult = ReturnType<typeof useUpdateNameMutation>;
+export type UpdateNameMutationResult = Apollo.MutationResult<UpdateNameMutation>;
+export type UpdateNameMutationOptions = Apollo.BaseMutationOptions<UpdateNameMutation, UpdateNameMutationVariables>;
 export const UpdateTasksDocument = gql`
     mutation updateTasks($tasks: String!) {
   updateTasks(tasks: $tasks)

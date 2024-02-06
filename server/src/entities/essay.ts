@@ -26,7 +26,7 @@ export class Essay extends BaseEntity {
     starred: boolean;
 
     @Field(() => String)
-    @Column({ nullable: true, default: "Start writing here..." })
+    @Column({ default: "" })
     body: string;
 
     @Field(() => User)

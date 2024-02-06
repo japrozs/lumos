@@ -63,7 +63,7 @@ export const searchCollegeWithList = (
                     .join("")
                     .toLowerCase()
             );
-        // TODO FIX – find a way to make this faster
+        // FIX – find a way to make this faster
         //            or find a simpler way to do this
         // && !list.some((c) => JSON.stringify(c) === JSON.stringify(college)
     });

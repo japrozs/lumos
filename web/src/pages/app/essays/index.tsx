@@ -225,7 +225,13 @@ const Essays: React.FC<EssaysProps> = ({}) => {
                                         query,
                                         data?.me
                                             ?.essays as RegularEssayFragment[]
-                                    ).length === 0 && <p>no results found</p>}
+                                    ).length === 0 && (
+                                        <div className="flex flex-col items-center justify-center w-full h-full p-24">
+                                            <p className="text-slate-500 menlo">
+                                                No results found
+                                            </p>
+                                        </div>
+                                    )}
                             </TableBody>
                         </Table>
                     </div>

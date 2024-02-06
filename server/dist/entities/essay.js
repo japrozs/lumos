@@ -32,7 +32,7 @@ __decorate([
 ], Essay.prototype, "starred", void 0);
 __decorate([
     (0, type_graphql_1.Field)(() => String),
-    (0, typeorm_1.Column)({ nullable: true, default: "Start writing here..." }),
+    (0, typeorm_1.Column)({ default: "" }),
     __metadata("design:type", String)
 ], Essay.prototype, "body", void 0);
 __decorate([

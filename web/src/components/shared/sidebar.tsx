@@ -110,10 +110,18 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                                 </p>
                             </div>
                         </a>
-                        <div className="flex items-center pt-1.5 px-2 pb-2 my-1 mx-2 rounded-md cursor-pointer hover:bg-gray-200">
-                            <IoSettingsOutline className="mr-2 text-base text-slate-500" />{" "}
-                            <p className="text-sm font-medium ">Settings</p>
-                        </div>
+                        <a href="/app/settings">
+                            <div
+                                className={`flex items-center pt-1.5 px-2 pb-2 my-1 mx-2 rounded-md cursor-pointer ${
+                                    pathname == "/app/settings"
+                                        ? "bg-gray-200"
+                                        : "hover:bg-gray-200"
+                                }`}
+                            >
+                                <IoSettingsOutline className="mr-2 text-base text-slate-500" />{" "}
+                                <p className="text-sm font-medium ">Settings</p>
+                            </div>
+                        </a>
                     </div>
                     {/* <div className="mt-2">
                         <div className="flex items-center pt-1.5 px-2 mx-2 pb-2 rounded-md cursor-pointer hover:bg-gray-200">
@@ -129,10 +137,10 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                     </div> */}
                     <div className="flex flex-col mt-auto mb-0 border-t border-gray-200 z-[0]">
                         <div className="flex items-center pt-3.5 px-4 pb-2">
-                            <img
+                            {/* <img
                                 src="https://i.redd.it/80hxyr8x3h6z.jpg"
                                 className="h-8 w-8 object-cover rounded-full mr-2"
-                            />
+                            /> */}
                             <div className="flex flex-col truncate line-clamp-1">
                                 <p className="text-sm text-slate-800 font-medium ">
                                     {data?.me?.name}
