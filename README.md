@@ -1,3 +1,11 @@
+![Screenshot](assets/homepage.png)
+![Screenshot](assets/delete-essay.png)
+![Screenshot](assets/essay.png)
+![Screenshot](assets/essays.png)
+![Screenshot](assets/explore-colleges.png)
+![Screenshot](assets/list.png)
+![Screenshot](assets/tasks.png)
+
 -   resources tab should contain info about financial aid, international student immigration stuff, mental health
 -   AI help in writing your college essays
 -   peer review for helping students with essays.
