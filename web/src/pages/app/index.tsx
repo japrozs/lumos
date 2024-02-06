@@ -22,6 +22,8 @@ import { paginate, search } from "@/utils/utils";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import { useIsAuth } from "@/utils/use-is-auth";
 import { FaRankingStar } from "react-icons/fa6";
+import { Meta } from "@/components/shared/meta";
+import Head from "next/head";
 
 export default function MainApp() {
     useIsAuth();
@@ -52,7 +54,10 @@ export default function MainApp() {
 
     return (
         <div>
-            {/* Add meta tags and titles, favicons and other shit */}
+            <Head>
+                <Meta title={"Colleges"} />
+                <title>Dashboard - Lumos</title>
+            </Head>
             <Wrapper>
                 <div className="bg-white z-10 sticky top-0 px-4 py-3 border-b border-gray-200">
                     <p className="text-lg blair">colleges</p>

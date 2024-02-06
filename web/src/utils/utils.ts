@@ -66,7 +66,7 @@ export const searchCollegeWithList = (
         // FIX – find a way to make this faster
         //            or find a simpler way to do this
         // && !list.some((c) => JSON.stringify(c) === JSON.stringify(college)
-    });
+    }).slice(0, 5);
     // results.forEach((college) => {
     //     console.log({
     //         name: college.content.entity.name,

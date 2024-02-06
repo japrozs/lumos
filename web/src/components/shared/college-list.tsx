@@ -96,11 +96,11 @@ export const CollegeList: React.FC<CollegeListProps> = ({
                     </div>
                 </div>
                 {list.length === 0 && (
-                    <p>
-                        you have no colleges in your target list as of now.
-                        click on the add college button to add potential
-                        colleges to your list
-                    </p>
+                    <div className="flex flex-col items-center justify-center w-full h-full p-24">
+                        <p className="text-slate-500 menlo">
+                            Add colleges to your list
+                        </p>
+                    </div>
                 )}
                 <div className="flex flex-wrap">
                     {query.length === 0

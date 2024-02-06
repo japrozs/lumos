@@ -15,6 +15,8 @@ import { useApolloClient } from "@apollo/client";
 import { useRouter } from "next/router";
 import { IoMdCheckmark } from "react-icons/io";
 import { DeleteEssayModal } from "../modals/delete-essay";
+import Head from "next/head";
+import { Meta } from "../shared/meta";
 
 interface EditorProps {
     essay: GetEssayQuery["getEssay"];
@@ -47,6 +49,10 @@ export const Editor: React.FC<EditorProps> = ({ essay }) => {
 
     return (
         <>
+            <Head>
+                <Meta title={"Colleges"} />
+                <title>{essay.title}</title>
+            </Head>
             <div className="px-4 py-3 border-b border-gray-200">
                 <div
                     style={{

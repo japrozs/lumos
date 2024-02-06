@@ -91,14 +91,15 @@ const Login: React.FC<LoginProps> = ({}) => {
                             Sign up
                         </a>
                     </p>
-                    <p className="text-gray-600 text-smol mt-2">
+                    {/* TODO – build pages for forgot password */}
+                    {/* <p className="text-gray-600 text-smol mt-2">
                         <a
                             href="/forgot-password"
                             className="hover:underline hover:text-primary-color transition-all"
                         >
                             Forgot password?
                         </a>
-                    </p>
+                    </p> */}
                 </div>
             </div>
         </div>

@@ -92,14 +92,15 @@ const Signup: React.FC<SignupProps> = ({}) => {
                             Login
                         </a>
                     </p>
-                    <p className="text-gray-600 text-smol mt-2">
+                    {/* TODO – add functionality to forget your password, if that makes sense */}
+                    {/* <p className="text-gray-600 text-smol mt-2">
                         <a
                             href="/forgot-password"
                             className="underline hover:text-primary-color transition-all"
                         >
                             Forgot password?
                         </a>
-                    </p>
+                    </p> */}
                 </div>
             </div>
         </div>

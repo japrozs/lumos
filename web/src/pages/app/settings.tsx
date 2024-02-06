@@ -1,3 +1,4 @@
+import { Meta } from "@/components/shared/meta";
 import { Spinner } from "@/components/shared/spinner";
 import { Wrapper } from "@/components/shared/wrapper";
 import { Button } from "@/components/ui/button";
@@ -6,6 +7,7 @@ import { useUpdateNameMutation } from "@/generated/graphql";
 import { useIsAuth } from "@/utils/use-is-auth";
 import { useApolloClient } from "@apollo/client";
 import { Form, Formik } from "formik";
+import Head from "next/head";
 import React from "react";
 import { toast } from "sonner";
 
@@ -18,6 +20,10 @@ const Settings: React.FC<SettingsProps> = ({}) => {
 
     return (
         <Wrapper>
+            <Head>
+                <Meta title={"Colleges"} />
+                <title>Settings – Lumos</title>
+            </Head>
             <div className="bg-white z-10 sticky top-0 px-4 py-3 border-b border-gray-200">
                 <p className="max-w-xl mx-auto text-lg blair">settings</p>
             </div>

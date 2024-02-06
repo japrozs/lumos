@@ -29,6 +29,8 @@ import { useRouter } from "next/router";
 import { DeleteEssayModal } from "@/components/modals/delete-essay";
 import { useApolloClient } from "@apollo/client";
 import { searchEssayList } from "@/utils/utils";
+import Head from "next/head";
+import { Meta } from "@/components/shared/meta";
 
 interface EssaysProps {}
 interface EssayCardProps {
@@ -122,6 +124,10 @@ const Essays: React.FC<EssaysProps> = ({}) => {
 
     return (
         <>
+            <Head>
+                <Meta title={"Colleges"} />
+                <title>Essays - Lumos</title>
+            </Head>
             <Wrapper>
                 <div className="bg-white z-10 sticky top-0 px-4 py-3 border-b border-gray-200">
                     <p className="text-lg blair">essays</p>

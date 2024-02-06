@@ -19,12 +19,25 @@ import { useRouter } from "next/router";
 import { usePathname } from "next/navigation";
 import { MAIN_COLLEGE_LIST } from "@/data/colleges";
 import { useIsAuth } from "@/utils/use-is-auth";
+import { FiLogOut } from "react-icons/fi";
+import { useLogoutMutation } from "@/generated/graphql";
+import { useApolloClient } from "@apollo/client";
 
 interface SidebarProps {}
 
 export const Sidebar: React.FC<SidebarProps> = ({}) => {
     const pathname = usePathname();
     const { data, loading } = useIsAuth();
+    const [logout] = useLogoutMutation();
+    const client = useApolloClient();
+    const router = useRouter();
+
+    const logUserOut = async () => {
+        await logout();
+        router.push("/");
+        await client.resetStore();
+    };
+
     return (
         <>
             {!loading && (
@@ -39,7 +52,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                         />
                     </div>
                     {/* <div className="pb-16 border-b border-gray-200"> */}
-                    <div className="pb-16 border-gray-200">
+                    <div className="pb-16 border-b border-gray-200">
                         <Accordion
                             type="single"
                             collapsible
@@ -123,18 +136,21 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                             </div>
                         </a>
                     </div>
-                    {/* <div className="mt-2">
-                        <div className="flex items-center pt-1.5 px-2 mx-2 pb-2 rounded-md cursor-pointer hover:bg-gray-200">
-                            <IoBookmarksOutline className="mr-2 text-base text-slate-500" />{" "}
-                            <p className="text-sm font-medium ">
-                                Saved searches
+                    <div className="mt-2">
+                        <div
+                            onClick={logUserOut}
+                            className="flex items-center pt-1.5 px-2 mx-2 pb-2 rounded-md cursor-pointer hover:bg-gray-200"
+                        >
+                            <FiLogOut className="mr-2 text-base text-red-500" />{" "}
+                            <p className="text-sm text-red-500 font-medium ">
+                                Logout
                             </p>
                         </div>
-                        <div className="flex items-center pt-1.5 px-2 mx-2 pb-2 rounded-md cursor-pointer hover:bg-gray-200">
+                        {/* <div className="flex items-center pt-1.5 px-2 mx-2 pb-2 rounded-md cursor-pointer hover:bg-gray-200">
                             <FaRegFolderOpen className="mr-2 text-base text-slate-500" />{" "}
                             <p className="text-sm font-medium ">Collections</p>
-                        </div>
-                    </div> */}
+                        </div> */}
+                    </div>
                     <div className="flex flex-col mt-auto mb-0 border-t border-gray-200 z-[0]">
                         <div className="flex items-center pt-3.5 px-4 pb-2">
                             {/* <img

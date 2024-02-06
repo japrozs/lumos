@@ -15,6 +15,8 @@ import { useApolloClient } from "@apollo/client";
 import { IoMdCheckmark } from "react-icons/io";
 import { Spinner } from "@/components/shared/spinner";
 import { CollegeList } from "@/components/shared/college-list";
+import Head from "next/head";
+import { Meta } from "@/components/shared/meta";
 
 interface ListProps {}
 
@@ -23,6 +25,10 @@ const List: React.FC<ListProps> = ({}) => {
 
     return (
         <>
+            <Head>
+                <Meta title={"Colleges"} />
+                <title>College list - Lumos</title>
+            </Head>
             <Wrapper>
                 <div className="bg-white z-10 sticky top-0 px-4 py-3 border-b border-gray-200">
                     <p className="text-lg blair">college list</p>
