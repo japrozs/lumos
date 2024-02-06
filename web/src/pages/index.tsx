@@ -316,7 +316,7 @@ export default function Home() {
                                 Desktop & mobile
                             </p>
                             <p className="text text-gray-400">
-                                The Chronos desktop and mobile apps are about to
+                                The Lumos desktop and mobile apps are about to
                                 launched for mac, iOS, Windows and Android so
                                 that you can search your files anywhere,
                                 anytime.
