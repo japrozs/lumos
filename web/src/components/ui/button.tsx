@@ -96,7 +96,7 @@ export const Button: React.FC<ButtonProps> = ({
                                         label.length != 0 &&
                                         `${
                                             iconAnimate
-                                                ? `mr-${
+                                                ? `ml-${
                                                       iconMargin
                                                           ? iconMargin
                                                           : "1"
@@ -105,7 +105,7 @@ export const Button: React.FC<ButtonProps> = ({
                                                           ? iconMargin
                                                           : "2"
                                                   }`
-                                                : `mr-${
+                                                : `ml-${
                                                       iconMargin
                                                           ? iconMargin
                                                           : "1"

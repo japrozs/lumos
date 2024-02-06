@@ -174,10 +174,11 @@ export const TaskBoard: React.FC<TaskBoardProps> = ({ data }) => {
 
                 {data.me?.tasks === "{}" ? (
                     <>
-                        <p>
-                            click on the new table button to get started with
-                            tasks
-                        </p>
+                        <div className="flex flex-col items-center justify-center w-full h-full p-24">
+                            <p className="text-slate-500 menlo">
+                                Add a table to manage your tasks
+                            </p>
+                        </div>
                     </>
                 ) : (
                     <>
