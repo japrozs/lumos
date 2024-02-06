@@ -4,6 +4,7 @@ import { Meta } from "@/components/shared/meta";
 import { Button } from "@/components/ui/button";
 import { useIsAuth } from "@/utils/use-is-auth";
 import { Disclosure } from "@headlessui/react";
+import Head from "next/head";
 import Image from "next/image";
 import { BiRightArrowAlt } from "react-icons/bi";
 
@@ -11,7 +12,10 @@ export default function Home() {
     useIsAuth();
     return (
         <>
-            <Meta title="Chronos – Spotlight search for all your cloud apps" />
+            <Head>
+                <Meta title={"Colleges"} />
+                <title>Lumos</title>
+            </Head>
             <Banner />
             <div className="px-6 py-3  border-b ">
                 <div className="flex items-center">
