@@ -41,7 +41,7 @@ export const CollegeListCard: React.FC<CollegeListCardProps> = ({
                             src={
                                 college.content.photos.default?.crops
                                     .DesktopHeader ||
-                                college.badge.photoURLs.desktop
+                                "https://d33a4decm84gsn.cloudfront.net/search/2024/colleges/colleges-best_2048.png"
                             }
                             alt=""
                             className="w-10 h-10 rounded-md mr-2.5 object-cover object-center"

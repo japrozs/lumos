@@ -46,8 +46,9 @@ const main = async () => {
         cookie: {
             maxAge: 1000 * 60 * 60 * 24 * 365 * 10,
             httpOnly: true,
-            secure: false,
-            domain: undefined,
+            sameSite: "lax",
+            secure: constants_1.__prod__,
+            domain: constants_1.__prod__ ? ".japroz.me" : undefined,
         },
         saveUninitialized: false,
         secret: process.env.SESSION_SECRET,

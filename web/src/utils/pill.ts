@@ -51,7 +51,7 @@ export const getPillEmoji = (item: CollegeListItem): string => {
     const rate = item.content.facts[0].value * 100;
     if (0 <= rate && rate < 20) {
         return "🟢";
-    } else if (20 <= rate && rate <= 50) {
+    } else if (20 <= rate && rate <= 60) {
         return "🟡";
     } else {
         return "🔴";

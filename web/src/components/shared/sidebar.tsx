@@ -53,7 +53,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                         />
                     </div>
                     {/* <div className="pb-16 border-b border-gray-200"> */}
-                    <div className="pb-16 border-b border-gray-200">
+                    {/* <div className="border-b border-gray-200"> */}
+                    <div>
                         <Accordion
                             type="single"
                             collapsible
@@ -92,12 +93,26 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                                             } px-3 py-1.5 `}
                                         >
                                             <MdFormatListBulleted className="mr-2 text-base text-purple-500" />{" "}
-                                            Your list
+                                            My list
                                         </div>
                                     </AccordionContent>
                                 </Link>
                             </AccordionItem>
                         </Accordion>
+                        <Link href="/app/tasks">
+                            <div
+                                className={`flex items-center pt-1.5 px-2 pb-2 my-1 mx-2 rounded-md cursor-pointer ${
+                                    pathname == "/app/tasks"
+                                        ? "bg-gray-200"
+                                        : "hover:bg-gray-200"
+                                }`}
+                            >
+                                <IoMdCheckmarkCircleOutline className="mr-2 my-1 text- text-slate-500" />{" "}
+                                <p className="text-sm font-medium ">
+                                    Task Board
+                                </p>
+                            </div>
+                        </Link>
                         <Link href="/app/essays">
                             <div
                                 className={`flex items-center pt-1.5 px-2 my-1 mx-2 pb-2 rounded-md cursor-pointer ${
@@ -110,21 +125,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                                 <p className="text-sm font-medium ">Essays</p>
                             </div>
                         </Link>
-                        <Link href="/app/tasks">
-                            <div
-                                className={`flex items-center pt-1.5 px-2 pb-2 my-1 mx-2 rounded-md cursor-pointer ${
-                                    pathname == "/app/tasks"
-                                        ? "bg-gray-200"
-                                        : "hover:bg-gray-200"
-                                }`}
-                            >
-                                <IoMdCheckmarkCircleOutline className="mr-2 my-1 text-base text-slate-500" />{" "}
-                                <p className="text-sm font-medium ">
-                                    Task Board
-                                </p>
-                            </div>
-                        </Link>
-                        <Link href="/app/settings">
+
+                        {/* <Link href="/app/settings">
                             <div
                                 className={`flex items-center pt-1.5 px-2 pb-2 my-1 mx-2 rounded-md cursor-pointer ${
                                     pathname == "/app/settings"
@@ -135,25 +137,25 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                                 <IoSettingsOutline className="mr-2 text-base text-slate-500" />{" "}
                                 <p className="text-sm font-medium ">Settings</p>
                             </div>
-                        </Link>
+                        </Link> */}
                     </div>
-                    <div className="mt-2">
-                        <div
-                            onClick={logUserOut}
-                            className="flex items-center pt-1.5 px-2 mx-2 pb-2 rounded-md cursor-pointer hover:bg-gray-200"
-                        >
-                            <FiLogOut className="mr-2 text-base text-red-500" />{" "}
-                            <p className="text-sm text-red-500 font-medium ">
-                                Logout
-                            </p>
-                        </div>
-                        {/* <div className="flex items-center pt-1.5 px-2 mx-2 pb-2 rounded-md cursor-pointer hover:bg-gray-200">
+                    <div className="flex flex-col mt-auto mb-0">
+                        <div className="my-2">
+                            <div
+                                onClick={logUserOut}
+                                className="flex items-center pt-1.5 px-2 mx-2 pb-2 rounded-md cursor-pointer hover:bg-gray-200"
+                            >
+                                <FiLogOut className="mr-2 text-base text-red-500" />{" "}
+                                <p className="text-sm text-red-500 font-medium ">
+                                    Logout
+                                </p>
+                            </div>
+                            {/* <div className="flex items-center pt-1.5 px-2 mx-2 pb-2 rounded-md cursor-pointer hover:bg-gray-200">
                             <FaRegFolderOpen className="mr-2 text-base text-slate-500" />{" "}
                             <p className="text-sm font-medium ">Collections</p>
                         </div> */}
-                    </div>
-                    <div className="flex flex-col mt-auto mb-0 border-t border-gray-200 z-[0]">
-                        <div className="flex items-center pt-3.5 px-4 pb-2">
+                        </div>
+                        <div className="flex items-center pt-3.5 px-4 pb-2 border-t border-gray-200 z-[0]">
                             {/* <img
                                 src="https://i.redd.it/80hxyr8x3h6z.jpg"
                                 className="h-8 w-8 object-cover rounded-full mr-2"
