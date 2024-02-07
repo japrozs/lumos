@@ -20,17 +20,17 @@
 
 === feedback ====
 
--   add button to explore colleges and add them to your list from that page itself
+-   ✅ add button to explore colleges and add them to your list from that page itself
 -   better filtering options for colleges (search by ivy league, state schools, and location)
 -   sort by rank, grades, by money advance
--   add numbers next to explore college page
+-   ❓ add numbers next to explore college page
 
 -   add default columns to task board (dream, target, safety)
 -   create a college page to show useful information and not trash people
 -   create college profile builder
--   add logout to the bottom of the sidebar
+-   ✅ add logout to the bottom of the sidebar
 -   hide settings (add a popup on the sidebar profile section)
--   move logout to the bottom
+-   ✅ move logout to the bottom
 -   link kanban board to your list
 -   replace "college highlights" with something else
 -   view data in "my list" as cards or as list

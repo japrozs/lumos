@@ -35,12 +35,14 @@ interface CollegeTableProps {
     data: CollegeListItem;
     list: CollegeListItem[];
     setList: Dispatch<SetStateAction<CollegeListItem[]>>;
+    hideAddToList?: boolean;
 }
 
 export const CollegeTable: React.FC<CollegeTableProps> = ({
     data,
     list,
     setList,
+    hideAddToList,
 }) => {
     const [isCollegePresentInList, setIsCollegePresentInList] = useState(
         list.some((c) => JSON.stringify(c) === JSON.stringify(data))
@@ -50,58 +52,62 @@ export const CollegeTable: React.FC<CollegeTableProps> = ({
         <TableRow>
             <TableCell className="flex items-center font-medium border-r border-gray-200">
                 {data.content.entity.name}
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <ShadCNButton
-                                variant={"ghost"}
-                                className="ml-auto mr-0"
-                            >
+                {!hideAddToList && (
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <ShadCNButton
+                                    variant={"ghost"}
+                                    className="ml-auto mr-0"
+                                >
+                                    {isCollegePresentInList ? (
+                                        <FaSquareMinus
+                                            onClick={() => {
+                                                const index = list.findIndex(
+                                                    (c) =>
+                                                        JSON.stringify(c) ===
+                                                        JSON.stringify(data)
+                                                );
+                                                if (index === -1) {
+                                                    return;
+                                                }
+                                                const listCopy = [...list];
+                                                listCopy.splice(index, 1);
+                                                setList(listCopy);
+                                                setIsCollegePresentInList(
+                                                    false
+                                                );
+                                                toast.success(
+                                                    "College removed from my list"
+                                                );
+                                            }}
+                                            className="text-lg self-start text-primary-color cursor-pointer transition "
+                                        />
+                                    ) : (
+                                        <FaRegSquarePlus
+                                            onClick={() => {
+                                                setList([data, ...list]);
+                                                setIsCollegePresentInList(true);
+                                                toast.success(
+                                                    "College added to my list"
+                                                );
+                                            }}
+                                            className="text-lg self-start text-slate-400 cursor-pointer transition "
+                                        />
+                                    )}
+                                </ShadCNButton>
+                            </TooltipTrigger>
+                            {/* <TooltipContent className="bg-gray-50 text-gray-900 border border-gray-200"> */}
+                            <TooltipContent>
                                 {isCollegePresentInList ? (
-                                    <FaSquareMinus
-                                        onClick={() => {
-                                            const index = list.findIndex(
-                                                (c) =>
-                                                    JSON.stringify(c) ===
-                                                    JSON.stringify(data)
-                                            );
-                                            if (index === -1) {
-                                                return;
-                                            }
-                                            const listCopy = [...list];
-                                            listCopy.splice(index, 1);
-                                            setList(listCopy);
-                                            setIsCollegePresentInList(false);
-                                            toast.success(
-                                                "College removed from my list"
-                                            );
-                                        }}
-                                        className="text-lg self-start text-primary-color cursor-pointer transition "
-                                    />
+                                    <p>Remove from my list</p>
                                 ) : (
-                                    <FaRegSquarePlus
-                                        onClick={() => {
-                                            setList([data, ...list]);
-                                            setIsCollegePresentInList(true);
-                                            toast.success(
-                                                "College added to my list"
-                                            );
-                                        }}
-                                        className="text-lg self-start text-slate-400 cursor-pointer transition "
-                                    />
+                                    <p>Add to my list</p>
                                 )}
-                            </ShadCNButton>
-                        </TooltipTrigger>
-                        {/* <TooltipContent className="bg-gray-50 text-gray-900 border border-gray-200"> */}
-                        <TooltipContent>
-                            {isCollegePresentInList ? (
-                                <p>Remove from my list</p>
-                            ) : (
-                                <p>Add to my list</p>
-                            )}
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+                )}
                 {/* <FaSquarePlus className="ml-auto mr-2 text-xl self-start text-primary-color cursor-pointer transition " /> */}
             </TableCell>
             <TableCell className="text-gray-500 border-r border-gray-200">

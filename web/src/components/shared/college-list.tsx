@@ -15,11 +15,66 @@ import {
     searchCollegeWithList,
     searchEssayList,
 } from "@/utils/utils";
+import { BsColumnsGap } from "react-icons/bs";
+import { IoListOutline } from "react-icons/io5";
+import { PiSquaresFourFill, PiSuitcaseSimple } from "react-icons/pi";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { ShadCNButton } from "../ui/shadcn-button";
+import { CollegeTable } from "./college-table";
+import {
+    Table,
+    TableBody,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table";
+import { RiMapPin2Line } from "react-icons/ri";
+import { FaRankingStar } from "react-icons/fa6";
 
 interface CollegeListProps {
     data: MeQuery | undefined;
     dataLoading: boolean;
 }
+
+const CollegeTableWrapper: React.FC<{ children: React.ReactNode }> = ({
+    children,
+}) => {
+    return (
+        <Table>
+            <TableHeader>
+                <TableRow className="border-t border-gray-200">
+                    <TableHead className=" border-r border-gray-200">
+                        College
+                    </TableHead>
+                    <TableHead className="border-r border-gray-200">
+                        <div className="flex items-center ">
+                            <RiMapPin2Line className="mr-1" />
+                            Location
+                        </div>
+                    </TableHead>
+                    <TableHead className="border-r border-gray-200">
+                        <div className="flex items-center">
+                            <FaRankingStar className="mr-2" />
+                            Rating
+                        </div>
+                    </TableHead>
+                    <TableHead className="">
+                        <div className="flex items-center">
+                            <PiSuitcaseSimple className="mr-1" />
+                            College Highlights
+                        </div>
+                    </TableHead>
+                </TableRow>
+            </TableHeader>
+            <TableBody>{children}</TableBody>
+        </Table>
+    );
+};
 
 export const CollegeList: React.FC<CollegeListProps> = ({
     data,
@@ -37,6 +92,7 @@ export const CollegeList: React.FC<CollegeListProps> = ({
         ).list
     );
     const [open, setOpen] = useState(false);
+    const [showAsCards, setShowAsCards] = useState(true);
 
     useEffect(() => {
         console.log("start saving...", list);
@@ -86,6 +142,67 @@ export const CollegeList: React.FC<CollegeListProps> = ({
                                 </p>
                             </div>
                         )}
+                        <div className="flex items-center w-20">
+                            {showAsCards ? (
+                                <>
+                                    <PiSquaresFourFill className="mr-4 cursor-default text-2xl self-start text-primary-color transition " />
+                                    <TooltipProvider>
+                                        <Tooltip>
+                                            <TooltipTrigger
+                                                asChild
+                                                className="p-0 m-0 transition "
+                                            >
+                                                <ShadCNButton
+                                                    variant={"ghost"}
+                                                    className="p-0"
+                                                >
+                                                    <IoListOutline
+                                                        onClick={() =>
+                                                            setShowAsCards(
+                                                                false
+                                                            )
+                                                        }
+                                                        className="text-2xl hover:bg-gray-100 rounded self-start text-slate-600 cursor-pointer transition "
+                                                    />
+                                                </ShadCNButton>
+                                            </TooltipTrigger>
+                                            {/* <TooltipContent className="bg-gray-50 text-gray-900 border border-gray-200"> */}
+                                            <TooltipContent>
+                                                <p>Show as list</p>
+                                            </TooltipContent>
+                                        </Tooltip>
+                                    </TooltipProvider>
+                                </>
+                            ) : (
+                                <>
+                                    <TooltipProvider>
+                                        <Tooltip>
+                                            <TooltipTrigger
+                                                asChild
+                                                className="p-0 m-0 transition"
+                                            >
+                                                <ShadCNButton
+                                                    variant={"ghost"}
+                                                    className="p-0"
+                                                >
+                                                    <PiSquaresFourFill
+                                                        onClick={() =>
+                                                            setShowAsCards(true)
+                                                        }
+                                                        className="mr-4 hover:bg-gray-100 rounded cursor-pointer text-2xl self-start text-slate-400 transition"
+                                                    />
+                                                </ShadCNButton>
+                                            </TooltipTrigger>
+                                            {/* <TooltipContent className="bg-gray-50 text-gray-900 border border-gray-200"> */}
+                                            <TooltipContent>
+                                                <p>Show as cards</p>
+                                            </TooltipContent>
+                                        </Tooltip>
+                                    </TooltipProvider>
+                                    <IoListOutline className="text-2xl self-start text-primary-color cursor-default transition" />
+                                </>
+                            )}
+                        </div>
                         <div className="w-32">
                             <Button
                                 onClick={() => setOpen(true)}
@@ -102,37 +219,79 @@ export const CollegeList: React.FC<CollegeListProps> = ({
                         </p>
                     </div>
                 )}
-                <div className="flex flex-wrap">
-                    {query.length === 0
-                        ? list.map((college: CollegeListItem, idx: number) => (
-                              <CollegeListCard
-                                  key={idx}
-                                  index={idx}
-                                  college={college}
-                                  list={list}
-                                  setList={setList}
-                              />
-                          ))
-                        : searchCollegeList(query, list).map(
-                              (college: CollegeListItem, idx: number) => (
-                                  <CollegeListCard
-                                      key={idx}
-                                      index={idx}
-                                      college={college}
-                                      list={list}
-                                      setList={setList}
-                                  />
+                {showAsCards ? (
+                    <div className="flex flex-wrap">
+                        {query.length === 0
+                            ? list.map(
+                                  (college: CollegeListItem, idx: number) => (
+                                      <>
+                                          {showAsCards && (
+                                              <CollegeListCard
+                                                  key={idx}
+                                                  index={idx}
+                                                  college={college}
+                                                  list={list}
+                                                  setList={setList}
+                                              />
+                                          )}
+                                      </>
+                                  )
                               )
-                          )}
-                    {query.length != 0 &&
-                        searchCollegeList(query, list).length === 0 && (
-                            <div className="flex flex-col items-center justify-center w-full h-full p-24">
-                                <p className="text-slate-500 menlo">
-                                    No results found
-                                </p>
-                            </div>
-                        )}
-                </div>
+                            : searchCollegeList(query, list).map(
+                                  (college: CollegeListItem, idx: number) => (
+                                      <>
+                                          {showAsCards && (
+                                              <CollegeListCard
+                                                  key={idx}
+                                                  index={idx}
+                                                  college={college}
+                                                  list={list}
+                                                  setList={setList}
+                                              />
+                                          )}
+                                      </>
+                                  )
+                              )}
+                    </div>
+                ) : (
+                    <CollegeTableWrapper>
+                        {query.length === 0
+                            ? list.map(
+                                  (college: CollegeListItem, idx: number) => (
+                                      <>
+                                          <CollegeTable
+                                              key={idx}
+                                              data={college}
+                                              list={list}
+                                              setList={setList}
+                                              hideAddToList
+                                          />
+                                      </>
+                                  )
+                              )
+                            : searchCollegeList(query, list).map(
+                                  (college: CollegeListItem, idx: number) => (
+                                      <>
+                                          <CollegeTable
+                                              key={idx}
+                                              data={college}
+                                              list={list}
+                                              setList={setList}
+                                              hideAddToList
+                                          />
+                                      </>
+                                  )
+                              )}
+                    </CollegeTableWrapper>
+                )}
+                {query.length != 0 &&
+                    searchCollegeList(query, list).length === 0 && (
+                        <div className="flex flex-col items-center justify-center w-full h-full p-24">
+                            <p className="text-slate-500 menlo">
+                                No results found
+                            </p>
+                        </div>
+                    )}
             </div>
             <AddCollegeModal
                 open={open}
