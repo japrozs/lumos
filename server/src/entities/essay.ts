@@ -25,6 +25,10 @@ export class Essay extends BaseEntity {
     @Column({ default: false })
     starred: boolean;
 
+    @Field()
+    @Column({ default: false })
+    published: boolean;
+
     @Field(() => String)
     @Column({ default: "" })
     body: string;

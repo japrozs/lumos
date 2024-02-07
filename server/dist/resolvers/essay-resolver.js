@@ -29,6 +29,9 @@ class EssayResolver {
     async getEssay(id, { req }) {
         return essay_1.Essay.findOne({ where: { id, creatorId: req.session.userId } });
     }
+    async getPublishedEssay(id) {
+        return essay_1.Essay.findOne({ where: { id, published: true } });
+    }
     async starOrUnStarEssay(id, { req }) {
         console.log(id);
         const essay = await essay_1.Essay.findOne(id, { relations: ["creator"] });
@@ -36,6 +39,15 @@ class EssayResolver {
             return false;
         }
         await essay_1.Essay.update({ id }, { starred: !(essay === null || essay === void 0 ? void 0 : essay.starred) });
+        return true;
+    }
+    async publishOrUnPublishEssay(id, { req }) {
+        console.log(id);
+        const essay = await essay_1.Essay.findOne(id, { relations: ["creator"] });
+        if ((essay === null || essay === void 0 ? void 0 : essay.creator.id) != req.session.userId) {
+            return false;
+        }
+        await essay_1.Essay.update({ id }, { published: !(essay === null || essay === void 0 ? void 0 : essay.published) });
         return true;
     }
     async updateEssay(id, title, body, { req }) {
@@ -78,6 +90,14 @@ __decorate([
 ], EssayResolver.prototype, "getEssay", null);
 __decorate([
     (0, type_graphql_1.UseMiddleware)(is_auth_1.isAuth),
+    (0, type_graphql_1.Query)(() => essay_1.Essay),
+    __param(0, (0, type_graphql_1.Arg)("id", () => String)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], EssayResolver.prototype, "getPublishedEssay", null);
+__decorate([
+    (0, type_graphql_1.UseMiddleware)(is_auth_1.isAuth),
     (0, type_graphql_1.Mutation)(() => Boolean),
     __param(0, (0, type_graphql_1.Arg)("id", () => String)),
     __param(1, (0, type_graphql_1.Ctx)()),
@@ -85,6 +105,15 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], EssayResolver.prototype, "starOrUnStarEssay", null);
+__decorate([
+    (0, type_graphql_1.UseMiddleware)(is_auth_1.isAuth),
+    (0, type_graphql_1.Mutation)(() => Boolean),
+    __param(0, (0, type_graphql_1.Arg)("id", () => String)),
+    __param(1, (0, type_graphql_1.Ctx)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], EssayResolver.prototype, "publishOrUnPublishEssay", null);
 __decorate([
     (0, type_graphql_1.UseMiddleware)(is_auth_1.isAuth),
     (0, type_graphql_1.Mutation)(() => Boolean),

@@ -1,0 +1,5 @@
+query getPublishedEssay($id: String!) {
+    getPublishedEssay(id: $id) {
+        ...RegularEssay
+    }
+}

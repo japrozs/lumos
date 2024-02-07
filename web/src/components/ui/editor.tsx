@@ -1,9 +1,11 @@
 import {
     GetEssayQuery,
+    MeQuery,
     useDeleteEssayMutation,
+    usePublishOrUnPublishEssayMutation,
     useUpdateEssayMutation,
 } from "@/generated/graphql";
-import React, { useEffect, useRef, useState } from "react";
+import React, { Fragment, LegacyRef, useEffect, useRef, useState } from "react";
 import { PiHashStraightBold } from "react-icons/pi";
 import ContentEditable from "react-contenteditable";
 import useAutosizeTextArea from "@/utils/utils";
@@ -17,6 +19,12 @@ import { IoMdCheckmark } from "react-icons/io";
 import { DeleteEssayModal } from "../modals/delete-essay";
 import Head from "next/head";
 import { Meta } from "../shared/meta";
+import { Menu, Transition } from "@headlessui/react";
+import { CgBrowser } from "react-icons/cg";
+import { IoIosCheckmarkCircle } from "react-icons/io";
+import { VscGlobe } from "react-icons/vsc";
+import Link from "next/link";
+import { LuSettings } from "react-icons/lu";
 
 interface EditorProps {
     essay: GetEssayQuery["getEssay"];
@@ -27,7 +35,10 @@ export const Editor: React.FC<EditorProps> = ({ essay }) => {
     const [body, setBody] = useState(essay.body);
     const client = useApolloClient();
     const [updateEssayMutation, { loading }] = useUpdateEssayMutation();
+    const [publishOrUnpublishEssayMutation, { loading: publishLoading }] =
+        usePublishOrUnPublishEssayMutation();
     const [open, setOpen] = useState(false);
+    const publishButtonRef = useRef<HTMLButtonElement>();
 
     const titleElementRef = useRef<HTMLParagraphElement>(null);
 
@@ -46,6 +57,15 @@ export const Editor: React.FC<EditorProps> = ({ essay }) => {
 
         return () => clearTimeout(timeout);
     }, [title, body]);
+
+    const publishOrUnpublishEssay = async () => {
+        await publishOrUnpublishEssayMutation({
+            variables: {
+                id: essay.id,
+            },
+        });
+        await client.resetStore();
+    };
 
     return (
         <>
@@ -73,6 +93,39 @@ export const Editor: React.FC<EditorProps> = ({ essay }) => {
                     </p> */}
                 </div>
             </div>
+            {essay.published && (
+                <div className="py-2 bg-blue-100 mb-2">
+                    <div
+                        style={{
+                            maxWidth: "54rem",
+                        }}
+                        className="px-4 mx-auto flex items-center justify-center"
+                    >
+                        <p className="text-primary-color border-none text-sm font-medium">
+                            This page is live on the internet
+                        </p>
+                        <Link
+                            target="_blank"
+                            href={`/view/${essay.id}`}
+                            className="flex items-center mx-4 hover:bg-blue-200 px-1.5 py-1 transition rounded-md"
+                        >
+                            <VscGlobe className="text-primary-color mr-1.5" />
+                            <p className="text-primary-color border-none text-sm">
+                                View site
+                            </p>
+                        </Link>
+                        <div
+                            onClick={() => publishButtonRef.current?.click()}
+                            className="flex items-center cursor-pointer hover:bg-blue-200 px-1.5 py-1 transition rounded-md"
+                        >
+                            <LuSettings className="text-primary-color mr-1.5" />
+                            <p className="text-primary-color border-none text-sm">
+                                Site settings
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )}
             <div
                 style={{
                     maxWidth: "54rem",
@@ -97,14 +150,117 @@ export const Editor: React.FC<EditorProps> = ({ essay }) => {
                         </div>
                     )}
                     {/* FIX – implement share functionality */}
-                    <div className="w-24 mr-3">
-                        <Button
+                    {/* <div className="w-24 mr-3">
+                    <Button
                             // onClick={() => setOpen(true)}
                             label="Share"
                             iconMargin={2}
                             icon={GoShare}
                         />
-                    </div>
+                    </div> */}
+                    <Menu as="div" className="w-28 mr-3">
+                        <div>
+                            <Menu.Button className="w-28">
+                                <Button
+                                    buttonRef={
+                                        publishButtonRef as
+                                            | LegacyRef<HTMLButtonElement>
+                                            | undefined
+                                    }
+                                    // onClick={() => setOpen(true)}
+                                    label={`Publish`}
+                                    iconMargin={2}
+                                    icon={GoShare}
+                                />
+                            </Menu.Button>
+                        </div>
+                        <Transition
+                            as={Fragment}
+                            enter="transition ease-out duration-100"
+                            enterFrom="transform opacity-0 scale-95"
+                            enterTo="transform opacity-100 scale-100"
+                            leave="transition ease-in duration-75"
+                            leaveFrom="transform opacity-100 scale-100"
+                            leaveTo="transform opacity-0 scale-95"
+                        >
+                            <Menu.Items
+                                className={
+                                    "absolute mt-2 w-80 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow focus:outline-none border border-gray-200"
+                                }
+                            >
+                                {essay.published ? (
+                                    <>
+                                        <div className="p-3">
+                                            <div className="flex items-center">
+                                                <IoIosCheckmarkCircle className="text-primary-color mr-2" />
+                                                <p className="text-primary-color border-none text-sm font-medium">
+                                                    Live on the web.
+                                                </p>
+                                            </div>
+                                            <p
+                                                className={
+                                                    "text-slate-600 group menlo overflow-x-scroll transition-all text-xs placeholder-gray-600 py-1.5 px-3 mt-2.5 mb-1.5 bg-white border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-border-blue-100"
+                                                }
+                                            >
+                                                {process.env.NEXT_PUBLIC_ORIGIN}
+                                                /view/
+                                                {essay.id}
+                                            </p>
+                                            <p className="mt-1 text-slate-500 border-none text-xs">
+                                                Your essay is live on the
+                                                internet. Copy the link above to
+                                                access the website.
+                                            </p>
+                                        </div>
+                                        <div className="mt-full mb-0 p-2 border-none flex items-center space-x-1.5">
+                                            <Button
+                                                loading={publishLoading}
+                                                onClick={
+                                                    publishOrUnpublishEssay
+                                                }
+                                                label="Unpublish"
+                                            />
+                                            <Link
+                                                target="_blank"
+                                                href={`/view/${essay.id}`}
+                                                className="w-full"
+                                            >
+                                                <Button
+                                                    icon={VscGlobe}
+                                                    iconMargin={2}
+                                                    label="View site"
+                                                    colored
+                                                />
+                                            </Link>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="p-8 pb-4 min-h-40  flex flex-col items-center justify-center ">
+                                            <CgBrowser className="text-2xl text-slate-400" />
+                                            <p className="mt-1 text-slate-500 border-none text-sm font-medium">
+                                                Publish to the web
+                                            </p>
+                                            <p className="mt-1 text-slate-400 text-center border-none text-sm">
+                                                Publish a static website of this
+                                                page for others to see.
+                                            </p>
+                                        </div>
+                                        <div className="p-2 border-none">
+                                            <Button
+                                                loading={publishLoading}
+                                                onClick={
+                                                    publishOrUnpublishEssay
+                                                }
+                                                label="Publish"
+                                                colored
+                                            />
+                                        </div>
+                                    </>
+                                )}
+                            </Menu.Items>
+                        </Transition>
+                    </Menu>
                     <div className="w-24">
                         <Button
                             onClick={() => setOpen(true)}

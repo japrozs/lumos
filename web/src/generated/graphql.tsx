@@ -24,6 +24,7 @@ export type Essay = {
   creator: User;
   creatorId: Scalars['String']['output'];
   id: Scalars['String']['output'];
+  published: Scalars['Boolean']['output'];
   starred: Scalars['Boolean']['output'];
   title: Scalars['String']['output'];
   updatedAt: Scalars['String']['output'];
@@ -43,6 +44,7 @@ export type Mutation = {
   forgotPassword: Scalars['Boolean']['output'];
   login: UserResponse;
   logout: Scalars['Boolean']['output'];
+  publishOrUnPublishEssay: Scalars['Boolean']['output'];
   register: UserResponse;
   starOrUnStarEssay: Scalars['Boolean']['output'];
   updateCollegeList: Scalars['Boolean']['output'];
@@ -76,6 +78,11 @@ export type MutationForgotPasswordArgs = {
 export type MutationLoginArgs = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
+};
+
+
+export type MutationPublishOrUnPublishEssayArgs = {
+  id: Scalars['String']['input'];
 };
 
 
@@ -113,11 +120,17 @@ export type MutationUpdateTasksArgs = {
 export type Query = {
   __typename?: 'Query';
   getEssay: Essay;
+  getPublishedEssay: Essay;
   me?: Maybe<User>;
 };
 
 
 export type QueryGetEssayArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+export type QueryGetPublishedEssayArgs = {
   id: Scalars['String']['input'];
 };
 
@@ -147,18 +160,18 @@ export type UserResponse = {
 
 export type RegularErrorFragment = { __typename?: 'FieldError', field: string, message: string };
 
-export type RegularEssayFragment = { __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, creatorId: string, createdAt: string, updatedAt: string };
+export type RegularEssayFragment = { __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, published: boolean, creatorId: string, createdAt: string, updatedAt: string };
 
-export type RegularUserResponseFragment = { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: number, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, creatorId: string, createdAt: string, updatedAt: string }> } | null };
+export type RegularUserResponseFragment = { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: number, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, published: boolean, creatorId: string, createdAt: string, updatedAt: string }> } | null };
 
-export type RegularUserFragment = { __typename: 'User', id: number, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, creatorId: string, createdAt: string, updatedAt: string }> };
+export type RegularUserFragment = { __typename: 'User', id: number, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, published: boolean, creatorId: string, createdAt: string, updatedAt: string }> };
 
 export type CreateEssayMutationVariables = Exact<{
   title: Scalars['String']['input'];
 }>;
 
 
-export type CreateEssayMutation = { __typename?: 'Mutation', createEssay: { __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, creatorId: string, createdAt: string, updatedAt: string } };
+export type CreateEssayMutation = { __typename?: 'Mutation', createEssay: { __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, published: boolean, creatorId: string, createdAt: string, updatedAt: string } };
 
 export type DeleteEssayMutationVariables = Exact<{
   id: Scalars['String']['input'];
@@ -173,19 +186,26 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: number, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, creatorId: string, createdAt: string, updatedAt: string }> } | null } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: number, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, published: boolean, creatorId: string, createdAt: string, updatedAt: string }> } | null } };
 
 export type LogoutMutationVariables = Exact<{ [key: string]: never; }>;
 
 
 export type LogoutMutation = { __typename?: 'Mutation', logout: boolean };
 
+export type PublishOrUnPublishEssayMutationVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type PublishOrUnPublishEssayMutation = { __typename?: 'Mutation', publishOrUnPublishEssay: boolean };
+
 export type RegisterMutationVariables = Exact<{
   options: UserInput;
 }>;
 
 
-export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: number, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, creatorId: string, createdAt: string, updatedAt: string }> } | null } };
+export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'UserResponse', errors?: Array<{ __typename?: 'FieldError', field: string, message: string }> | null, user?: { __typename: 'User', id: number, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, published: boolean, creatorId: string, createdAt: string, updatedAt: string }> } | null } };
 
 export type StarOrUnStarEssayMutationVariables = Exact<{
   id: Scalars['String']['input'];
@@ -229,12 +249,19 @@ export type GetEssayQueryVariables = Exact<{
 }>;
 
 
-export type GetEssayQuery = { __typename?: 'Query', getEssay: { __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, creatorId: string, createdAt: string, updatedAt: string } };
+export type GetEssayQuery = { __typename?: 'Query', getEssay: { __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, published: boolean, creatorId: string, createdAt: string, updatedAt: string } };
+
+export type GetPublishedEssayQueryVariables = Exact<{
+  id: Scalars['String']['input'];
+}>;
+
+
+export type GetPublishedEssayQuery = { __typename?: 'Query', getPublishedEssay: { __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, published: boolean, creatorId: string, createdAt: string, updatedAt: string } };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MeQuery = { __typename?: 'Query', me?: { __typename: 'User', id: number, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, creatorId: string, createdAt: string, updatedAt: string }> } | null };
+export type MeQuery = { __typename?: 'Query', me?: { __typename: 'User', id: number, name: string, email: string, collegeList: string, tasks: string, createdAt: string, updatedAt: string, essays: Array<{ __typename?: 'Essay', id: string, title: string, body: string, starred: boolean, published: boolean, creatorId: string, createdAt: string, updatedAt: string }> } | null };
 
 export const RegularErrorFragmentDoc = gql`
     fragment RegularError on FieldError {
@@ -248,6 +275,7 @@ export const RegularEssayFragmentDoc = gql`
   title
   body
   starred
+  published
   creatorId
   createdAt
   updatedAt
@@ -407,6 +435,37 @@ export function useLogoutMutation(baseOptions?: Apollo.MutationHookOptions<Logou
 export type LogoutMutationHookResult = ReturnType<typeof useLogoutMutation>;
 export type LogoutMutationResult = Apollo.MutationResult<LogoutMutation>;
 export type LogoutMutationOptions = Apollo.BaseMutationOptions<LogoutMutation, LogoutMutationVariables>;
+export const PublishOrUnPublishEssayDocument = gql`
+    mutation publishOrUnPublishEssay($id: String!) {
+  publishOrUnPublishEssay(id: $id)
+}
+    `;
+export type PublishOrUnPublishEssayMutationFn = Apollo.MutationFunction<PublishOrUnPublishEssayMutation, PublishOrUnPublishEssayMutationVariables>;
+
+/**
+ * __usePublishOrUnPublishEssayMutation__
+ *
+ * To run a mutation, you first call `usePublishOrUnPublishEssayMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePublishOrUnPublishEssayMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [publishOrUnPublishEssayMutation, { data, loading, error }] = usePublishOrUnPublishEssayMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePublishOrUnPublishEssayMutation(baseOptions?: Apollo.MutationHookOptions<PublishOrUnPublishEssayMutation, PublishOrUnPublishEssayMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<PublishOrUnPublishEssayMutation, PublishOrUnPublishEssayMutationVariables>(PublishOrUnPublishEssayDocument, options);
+      }
+export type PublishOrUnPublishEssayMutationHookResult = ReturnType<typeof usePublishOrUnPublishEssayMutation>;
+export type PublishOrUnPublishEssayMutationResult = Apollo.MutationResult<PublishOrUnPublishEssayMutation>;
+export type PublishOrUnPublishEssayMutationOptions = Apollo.BaseMutationOptions<PublishOrUnPublishEssayMutation, PublishOrUnPublishEssayMutationVariables>;
 export const RegisterDocument = gql`
     mutation Register($options: UserInput!) {
   register(options: $options) {
@@ -637,6 +696,46 @@ export type GetEssayQueryHookResult = ReturnType<typeof useGetEssayQuery>;
 export type GetEssayLazyQueryHookResult = ReturnType<typeof useGetEssayLazyQuery>;
 export type GetEssaySuspenseQueryHookResult = ReturnType<typeof useGetEssaySuspenseQuery>;
 export type GetEssayQueryResult = Apollo.QueryResult<GetEssayQuery, GetEssayQueryVariables>;
+export const GetPublishedEssayDocument = gql`
+    query getPublishedEssay($id: String!) {
+  getPublishedEssay(id: $id) {
+    ...RegularEssay
+  }
+}
+    ${RegularEssayFragmentDoc}`;
+
+/**
+ * __useGetPublishedEssayQuery__
+ *
+ * To run a query within a React component, call `useGetPublishedEssayQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetPublishedEssayQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetPublishedEssayQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetPublishedEssayQuery(baseOptions: Apollo.QueryHookOptions<GetPublishedEssayQuery, GetPublishedEssayQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetPublishedEssayQuery, GetPublishedEssayQueryVariables>(GetPublishedEssayDocument, options);
+      }
+export function useGetPublishedEssayLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetPublishedEssayQuery, GetPublishedEssayQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetPublishedEssayQuery, GetPublishedEssayQueryVariables>(GetPublishedEssayDocument, options);
+        }
+export function useGetPublishedEssaySuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetPublishedEssayQuery, GetPublishedEssayQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetPublishedEssayQuery, GetPublishedEssayQueryVariables>(GetPublishedEssayDocument, options);
+        }
+export type GetPublishedEssayQueryHookResult = ReturnType<typeof useGetPublishedEssayQuery>;
+export type GetPublishedEssayLazyQueryHookResult = ReturnType<typeof useGetPublishedEssayLazyQuery>;
+export type GetPublishedEssaySuspenseQueryHookResult = ReturnType<typeof useGetPublishedEssaySuspenseQuery>;
+export type GetPublishedEssayQueryResult = Apollo.QueryResult<GetPublishedEssayQuery, GetPublishedEssayQueryVariables>;
 export const MeDocument = gql`
     query Me {
   me {

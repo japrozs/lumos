@@ -1,0 +1,3 @@
+mutation publishOrUnPublishEssay($id: String!) {
+    publishOrUnPublishEssay(id: $id)
+}

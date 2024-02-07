@@ -47,7 +47,7 @@ const EssayCardComponent: React.FC<EssayCardProps> = ({
     const [starOrUnStarMutation] = useStarOrUnStarEssayMutation();
     const client = useApolloClient();
 
-    const starEssay = async (id: string) => {
+    const starOrUnStarEssay = async (id: string) => {
         await starOrUnStarMutation({
             variables: {
                 id,
@@ -87,12 +87,12 @@ const EssayCardComponent: React.FC<EssayCardProps> = ({
             <TableCell className="opacity-0 group-hover:opacity-100 flex items-center text-right space-x-2">
                 {essay.starred ? (
                     <FaStar
-                        onClick={() => starEssay(essay.id)}
+                        onClick={() => starOrUnStarEssay(essay.id)}
                         className="mr-3 text-xl self-start text-purple-500 cursor-pointer transition "
                     />
                 ) : (
                     <FaRegStar
-                        onClick={() => starEssay(essay.id)}
+                        onClick={() => starOrUnStarEssay(essay.id)}
                         className="mr-3 text-xl self-start hover:text-purple-500 cursor-pointer transition "
                     />
                 )}

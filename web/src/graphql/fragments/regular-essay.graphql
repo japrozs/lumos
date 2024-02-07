@@ -3,6 +3,7 @@ fragment RegularEssay on Essay {
     title
     body
     starred
+    published
     creatorId
     createdAt
     updatedAt

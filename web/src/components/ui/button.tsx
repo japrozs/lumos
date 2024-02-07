@@ -1,4 +1,4 @@
-import React, { ElementType } from "react";
+import React, { ElementType, LegacyRef } from "react";
 import { IconType } from "react-icons/lib";
 import { Spinner } from "../shared/spinner";
 
@@ -13,6 +13,7 @@ type ButtonProps = {
     iconRight?: boolean;
     iconMargin?: number;
     icon?: IconType;
+    buttonRef?: LegacyRef<HTMLButtonElement> | undefined;
 } & React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
@@ -29,11 +30,13 @@ export const Button: React.FC<ButtonProps> = ({
     iconRight,
     className,
     iconMargin,
+    buttonRef,
     ...props
 }) => {
     return (
         <button
             disabled={disabled}
+            ref={buttonRef}
             style={{
                 fontFamily: "Inter",
                 fontWeight: 444,

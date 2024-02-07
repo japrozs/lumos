@@ -26,6 +26,12 @@ export class EssayResolver {
     }
 
     @UseMiddleware(isAuth)
+    @Query(() => Essay)
+    async getPublishedEssay(@Arg("id", () => String) id: string) {
+        return Essay.findOne({ where: { id, published: true } });
+    }
+
+    @UseMiddleware(isAuth)
     @Mutation(() => Boolean)
     async starOrUnStarEssay(
         @Arg("id", () => String) id: string,
@@ -37,6 +43,21 @@ export class EssayResolver {
             return false;
         }
         await Essay.update({ id }, { starred: !essay?.starred });
+        return true;
+    }
+
+    @UseMiddleware(isAuth)
+    @Mutation(() => Boolean)
+    async publishOrUnPublishEssay(
+        @Arg("id", () => String) id: string,
+        @Ctx() { req }: Context
+    ) {
+        console.log(id);
+        const essay = await Essay.findOne(id, { relations: ["creator"] });
+        if (essay?.creator.id != req.session.userId) {
+            return false;
+        }
+        await Essay.update({ id }, { published: !essay?.published });
         return true;
     }
 
