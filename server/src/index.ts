@@ -9,7 +9,7 @@ import path from "path";
 import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
-import { COOKIE_NAME } from "./constants";
+import { COOKIE_NAME, __prod__ } from "./constants";
 import { Essay } from "./entities/essay";
 import { User } from "./entities/user";
 import { EssayResolver } from "./resolvers/essay-resolver";
@@ -48,8 +48,9 @@ const main = async () => {
             cookie: {
                 maxAge: 1000 * 60 * 60 * 24 * 365 * 10, // 1000 * 60 * 60 * 24 * 365 * 10, // 10 years
                 httpOnly: true,
-                secure: false,
-                domain: undefined,
+                sameSite: "lax",
+                secure: __prod__,
+                domain: __prod__ ? ".japroz.me" : undefined,
             },
             saveUninitialized: false,
             secret: process.env.SESSION_SECRET,
