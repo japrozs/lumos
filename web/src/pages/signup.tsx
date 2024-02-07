@@ -8,6 +8,7 @@ import { Formik, Form } from "formik";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
+import Link from "next/link";
 
 interface SignupProps {}
 
@@ -20,7 +21,7 @@ const Signup: React.FC<SignupProps> = ({}) => {
         <div>
             <div className="h-screen">
                 <div className="px-6 py-5 z-10">
-                    <a href="/">
+                    <Link href="/">
                         <Image
                             src="/logo.svg"
                             className="h-8 w-auto"
@@ -28,7 +29,7 @@ const Signup: React.FC<SignupProps> = ({}) => {
                             width={20}
                             alt="logo"
                         />
-                    </a>
+                    </Link>
                 </div>
                 <div
                     style={{
@@ -85,12 +86,12 @@ const Signup: React.FC<SignupProps> = ({}) => {
                     </Formik>
                     <p className="text-gray-600 text-smol mt-6">
                         Already have an account?{" "}
-                        <a
+                        <Link
                             href="/login"
                             className="underline hover:text-primary-color transition-all"
                         >
                             Login
-                        </a>
+                        </Link>
                     </p>
                     {/* TODO – add functionality to forget your password, if that makes sense */}
                     {/* <p className="text-gray-600 text-smol mt-2">

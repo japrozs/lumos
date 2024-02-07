@@ -76,7 +76,9 @@ const Settings: React.FC<SettingsProps> = ({}) => {
                             className={"text-sm text-slate-600 text-opacity-60"}
                         >
                             Email{" "}
-                            <span className=" menlo">(can't be changed)</span>
+                            <span className=" menlo">
+                                (can{"'"}t be changed)
+                            </span>
                         </label>
                         <br />
                         <p

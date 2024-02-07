@@ -7,6 +7,7 @@ import { Disclosure } from "@headlessui/react";
 import Head from "next/head";
 import Image from "next/image";
 import { BiRightArrowAlt } from "react-icons/bi";
+import Link from "next/link";
 
 export default function Home() {
     useIsAuth();
@@ -28,14 +29,14 @@ export default function Home() {
                     />
                     <div className="hidden md:flex ml-auto mr-0 items-center">
                         <div className="w-24">
-                            <a href="/login">
+                            <Link href="/login">
                                 <Button label="Login" />
-                            </a>
+                            </Link>
                         </div>
                         <div className="w-40 ml-3">
-                            <a href="/signup">
+                            <Link href="/signup">
                                 <Button label="Get Lumos free" colored />
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -58,18 +59,18 @@ export default function Home() {
                 <p className="max-w-xl mx-auto mt-2 text-slate-700 text-opacity-60 text-lg">
                     Lumos is a tool that allows you to research colleges, write
                     your essays, plan your college journey all from one tool so
-                    you don't have to switch browser tabs every second while
+                    you don{"'"}t have to switch browser tabs every second while
                     working.
                 </p>
                 <div className="w-52 mt-5 mx-auto">
-                    <a href="/signup">
+                    <Link href="/signup">
                         <Button
                             colored
                             iconRight
                             label="Get Lumos for free"
                             icon={BiRightArrowAlt}
                         />
-                    </a>
+                    </Link>
                 </div>
             </div>
             <div
@@ -123,8 +124,9 @@ export default function Home() {
                     </span>{" "}
                 </p>
                 <p className="text-center lora pt-3 mx-auto mid:max-w-3xl text-xl mid:text-2xl text-gray-600">
-                    "Lumos has been amazing to use for managing my research and
-                    content across various college applications and portals"
+                    {'"'}Lumos has been amazing to use for managing my research
+                    and content across various college applications and portals
+                    {'"'}
                 </p>
                 <div className="mt-5 flex items-center">
                     <div className="ml-auto mr-2.5">
@@ -280,9 +282,9 @@ export default function Home() {
                 className="p-10 my-16 text-center"
             >
                 <p className="lora shadow pt-3 mx-auto mid:max-w-3xl text-xl mid:text-2xl text-white">
-                    "I’ve been using Lumos for a little while now and I can
-                    definitely say that it has made managing my college journey
-                    so much easier!"
+                    {'"'}I{"’"}ve been using Lumos for a little while now and I
+                    can definitely say that it has made managing my college
+                    journey so much easier!{'"'}
                 </p>
                 <div className="mt-5 flex items-center">
                     <div className="ml-auto mr-2.5">
@@ -339,14 +341,14 @@ export default function Home() {
                     Play around with it first. See if it works for you.
                 </p>
                 <div className="mx-auto w-52 mt-5">
-                    <a href="/signup">
+                    <Link href="/signup">
                         <Button
                             iconRight
                             label="Try Lumos free"
                             colored
                             icon={BiRightArrowAlt}
                         />
-                    </a>
+                    </Link>
                 </div>
                 <img
                     className="mt-10 w-full h-80 text-red-500"

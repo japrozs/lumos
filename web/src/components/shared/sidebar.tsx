@@ -22,6 +22,7 @@ import { useIsAuth } from "@/utils/use-is-auth";
 import { FiLogOut } from "react-icons/fi";
 import { useLogoutMutation } from "@/generated/graphql";
 import { useApolloClient } from "@apollo/client";
+import Link from "next/link";
 
 interface SidebarProps {}
 
@@ -66,7 +67,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                                         Explore
                                     </div>
                                 </AccordionTrigger>
-                                <a href="/app">
+                                <Link href="/app">
                                     <AccordionContent>
                                         <div
                                             className={`flex items-center ml-3.5 cursor-pointer rounded-md ${
@@ -79,8 +80,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                                             Colleges
                                         </div>
                                     </AccordionContent>
-                                </a>
-                                <a href="/app/list">
+                                </Link>
+                                <Link href="/app/list">
                                     {/* rename "Your list" to something else. it is ambigous */}
                                     <AccordionContent>
                                         <div
@@ -94,10 +95,10 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                                             Your list
                                         </div>
                                     </AccordionContent>
-                                </a>
+                                </Link>
                             </AccordionItem>
                         </Accordion>
-                        <a href="/app/essays">
+                        <Link href="/app/essays">
                             <div
                                 className={`flex items-center pt-1.5 px-2 my-1 mx-2 pb-2 rounded-md cursor-pointer ${
                                     pathname == "/app/essays"
@@ -108,8 +109,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                                 <FaRegRectangleList className="mr-2 text-base text-slate-500" />{" "}
                                 <p className="text-sm font-medium ">Essays</p>
                             </div>
-                        </a>
-                        <a href="/app/tasks">
+                        </Link>
+                        <Link href="/app/tasks">
                             <div
                                 className={`flex items-center pt-1.5 px-2 pb-2 my-1 mx-2 rounded-md cursor-pointer ${
                                     pathname == "/app/tasks"
@@ -122,8 +123,8 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                                     Task Board
                                 </p>
                             </div>
-                        </a>
-                        <a href="/app/settings">
+                        </Link>
+                        <Link href="/app/settings">
                             <div
                                 className={`flex items-center pt-1.5 px-2 pb-2 my-1 mx-2 rounded-md cursor-pointer ${
                                     pathname == "/app/settings"
@@ -134,7 +135,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                                 <IoSettingsOutline className="mr-2 text-base text-slate-500" />{" "}
                                 <p className="text-sm font-medium ">Settings</p>
                             </div>
-                        </a>
+                        </Link>
                     </div>
                     <div className="mt-2">
                         <div
