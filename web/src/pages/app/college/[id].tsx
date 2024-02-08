@@ -288,8 +288,7 @@ const CollegePage: React.FC<CollegePageProps> = ({}) => {
                                                 </p>
                                                 <span className="text-center text-sm text-gray-500 px-8 pt-2">
                                                     Average cost of attendance
-                                                    after accounting for
-                                                    financial aid
+                                                    after financial aid
                                                 </span>
                                             </div>
                                             <div className="w-full">

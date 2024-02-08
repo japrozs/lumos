@@ -11,8 +11,8 @@ export const Banner: React.FC<BannerProps> = ({}) => {
                 <>
                     <div className="hidden mid:block mid:flex items-center py-2.5 mid:bg-scribbles-blue border-b bg-black border-gray-900">
                         <div className="mx-auto flex items-center">
-                            <span className="font-semibold mr-2 text-primary-color">
-                                ✨ New!
+                            <span className="font-semibold mr-2 blair text-primary-color">
+                                ✨ new!
                             </span>
                             <p className="font-medium text-gray-100">
                                 Lumos is free for the first 1000 users
