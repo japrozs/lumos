@@ -13,7 +13,7 @@ export default function Home() {
     return (
         <>
             <Head>
-                <Meta title={"Colleges"} />
+                <Meta title={"Lumos - One tool for your college journey"} />
                 <title>Lumos</title>
             </Head>
             <Banner />

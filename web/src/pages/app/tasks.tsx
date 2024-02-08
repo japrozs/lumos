@@ -13,7 +13,7 @@ const Tasks: React.FC<TasksProps> = ({}) => {
     return (
         <Wrapper>
             <Head>
-                <Meta title={"Colleges"} />
+                <Meta title={"Task Board Lumos"} />
                 <title>Task Board – Lumos</title>
             </Head>
             {data && data.me && !loading ? (

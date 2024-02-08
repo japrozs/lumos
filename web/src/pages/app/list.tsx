@@ -14,7 +14,7 @@ const List: React.FC<ListProps> = ({}) => {
     return (
         <>
             <Head>
-                <Meta title={"Colleges"} />
+                <Meta title={"My list – Lumos"} />
                 <title>College list - Lumos</title>
             </Head>
             <Wrapper>

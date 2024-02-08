@@ -121,7 +121,7 @@ const Essays: React.FC<EssaysProps> = ({}) => {
     return (
         <>
             <Head>
-                <Meta title={"Colleges"} />
+                <Meta title={"Essays – Lumos"} />
                 <title>Essays - Lumos</title>
             </Head>
             <Wrapper>

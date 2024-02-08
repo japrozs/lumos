@@ -1,3 +1,4 @@
+import { Meta } from "@/components/shared/meta";
 import { Button } from "@/components/ui/button";
 import { InputField } from "@/components/ui/input-field";
 import { useLoginMutation } from "@/generated/graphql";
@@ -5,6 +6,7 @@ import { toErrorMap } from "@/utils/to-error-map";
 import { useIsAuth } from "@/utils/use-is-auth";
 import { useApolloClient } from "@apollo/client";
 import { Form, Formik } from "formik";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -19,6 +21,10 @@ const Login: React.FC<LoginProps> = ({}) => {
     const router = useRouter();
     return (
         <div>
+            <Head>
+                <Meta title={"Login - Lumos"} />
+                <title>Login – Lumos</title>
+            </Head>
             <div className="h-screen">
                 <div className="px-6 py-5 z-10">
                     <Link href="/">

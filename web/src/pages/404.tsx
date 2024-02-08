@@ -1,3 +1,5 @@
+import { Meta } from "@/components/shared/meta";
+import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 
@@ -6,6 +8,10 @@ interface FourOhFour {}
 const FourOhFour: React.FC<FourOhFour> = ({}) => {
     return (
         <div className="h-screen">
+            <Head>
+                <Meta title={"Page not found – Lumos"} />
+                <title>Page not found</title>
+            </Head>
             <div className="h-screen">
                 <div className="px-6 py-5 z-10">
                     <a href="/">

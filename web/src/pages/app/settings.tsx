@@ -21,7 +21,7 @@ const Settings: React.FC<SettingsProps> = ({}) => {
     return (
         <Wrapper>
             <Head>
-                <Meta title={"Colleges"} />
+                <Meta title={"Settings – Lumos"} />
                 <title>Settings – Lumos</title>
             </Head>
             <div className="bg-white z-10 sticky top-0 px-4 py-3 border-b border-gray-200">
