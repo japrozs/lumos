@@ -287,3 +287,20 @@ export const getReportCardColors = (grade: string): string => {
         "bg-slate-100 text-slate-500"
     );
 };
+
+type SortFunctionArgType = RegularEssayFragment;
+export const sort = (struct: SortFunctionArgType[]) => {
+    const structClone = [...struct];
+    structClone.sort((a: SortFunctionArgType, b: SortFunctionArgType) => {
+        // TODO – should this be createdAt or updatedAt
+        //  updatedAt is gonna change the order if you star the essay
+        const dateA = new Date(parseInt(a.createdAt));
+        const dateB = new Date(parseInt(b.createdAt));
+
+        if (dateA < dateB) return 1;
+        if (dateA > dateB) return -1;
+        return 0;
+    });
+
+    return structClone;
+};

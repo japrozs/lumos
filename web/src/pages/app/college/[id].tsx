@@ -1,16 +1,14 @@
+import {
+    AcceptanceRatePill,
+    FeesPill,
+    RatingPill,
+    SATRangePill,
+} from "@/components/shared/component-pill";
 import { Meta } from "@/components/shared/meta";
 import { Wrapper } from "@/components/shared/wrapper";
 import { Button } from "@/components/ui/button";
-import { Pill } from "@/components/ui/pill";
 import { MAIN_COLLEGE_LIST } from "@/data/colleges";
 import { AdmissionStatsType, CollegeListItem, ReportCardType } from "@/types";
-import {
-    getPillBgColor,
-    getPillBorderColor,
-    getPillEmoji,
-    getPillIcon,
-    getPillTextColor,
-} from "@/utils/pill";
 import { getReportCardColors, getStatName } from "@/utils/utils";
 import Head from "next/head";
 import Link from "next/link";
@@ -92,52 +90,16 @@ const CollegePage: React.FC<CollegePageProps> = ({}) => {
                                 </div>
                                 <div className="flex flex-wrap space-x-2">
                                     <div className="my-0.5">
-                                        <Pill
-                                            borderColor={getPillBorderColor(
-                                                college
-                                            )}
-                                            textColor={getPillTextColor(
-                                                college
-                                            )}
-                                            bgColor={getPillBgColor(college)}
-                                            icon={getPillIcon(college)}
-                                            noMargin
-                                            label={`${(
-                                                college.content.grades[0]
-                                                    ?.value || 1
-                                            )?.toFixed(2)}`}
-                                        />
+                                        <RatingPill college={college} />
                                     </div>
                                     <div className="my-0.5">
-                                        <Pill
-                                            noMargin
-                                            label={`💯 SAT Range ${
-                                                college.content.facts[2]
-                                                    .value || 400
-                                            }`}
-                                        />
+                                        <SATRangePill college={college} />
                                     </div>
                                     <div className="my-0.5">
-                                        <Pill
-                                            noMargin
-                                            label={`💰 $ ${(
-                                                college.content.facts[1]
-                                                    .value || 10000
-                                            )?.toLocaleString()}`}
-                                        />
+                                        <FeesPill college={college} />
                                     </div>
                                     <div className="my-0.5">
-                                        <Pill
-                                            noMargin
-                                            label={`${getPillEmoji(
-                                                college
-                                            )}\tAcceptance rate – ${(
-                                                (college.content.facts[0]
-                                                    .value || 1.0) * 100
-                                            )
-                                                .toFixed(1)
-                                                .toString()} %`}
-                                        />
+                                        <AcceptanceRatePill college={college} />
                                     </div>
                                 </div>
                                 {college.content.photos.mapbox_header?.crops

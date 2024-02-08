@@ -17,7 +17,7 @@ import {
     useStarOrUnStarEssayMutation,
 } from "@/generated/graphql";
 import { useIsAuth } from "@/utils/use-is-auth";
-import { searchEssayList } from "@/utils/utils";
+import { searchEssayList, sort } from "@/utils/utils";
 import { useApolloClient } from "@apollo/client";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -192,7 +192,10 @@ const Essays: React.FC<EssaysProps> = ({}) => {
                             </TableHeader>
                             <TableBody>
                                 {query.trim().length === 0
-                                    ? data?.me?.essays.map(
+                                    ? sort(
+                                          data?.me
+                                              ?.essays as RegularEssayFragment[]
+                                      ).map(
                                           (
                                               essay: RegularEssayFragment,
                                               idx: number

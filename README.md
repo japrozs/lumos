@@ -42,5 +42,7 @@
 -   saved searches
 -   make a real settings page
 -   add opengraph tags
+-   Add scrollbar to task board to go left (PC's cant scroll left without scrollbar);
+-   match the acceptance rate
 
 -- link to scholarship https://phillips-scholarship.org/apply/determining-financial-eligibility/cost-of-college-list/

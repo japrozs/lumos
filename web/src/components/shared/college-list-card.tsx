@@ -1,17 +1,15 @@
 import { CollegeListItem } from "@/types";
-import {
-    getPillBgColor,
-    getPillBorderColor,
-    getPillEmoji,
-    getPillIcon,
-    getPillTextColor,
-} from "@/utils/pill";
 import { toTitleCase } from "@/utils/utils";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { toast } from "sonner";
-import { Pill } from "../ui/pill";
+import {
+    AcceptanceRatePill,
+    FeesPill,
+    RatingPill,
+    SATRangePill,
+} from "./component-pill";
 
 interface CollegeListCardProps {
     college: CollegeListItem;
@@ -74,51 +72,16 @@ export const CollegeListCard: React.FC<CollegeListCardProps> = ({
                 </div>
                 <div className="px-2  flex flex-wrap space-x-2">
                     <div className="my-0.5">
-                        <Pill
-                            borderColor={getPillBorderColor(college)}
-                            textColor={getPillTextColor(college)}
-                            bgColor={getPillBgColor(college)}
-                            icon={getPillIcon(college)}
-                            noMargin
-                            label={`${(
-                                college.content.grades[0]?.value || 1
-                            )?.toFixed(2)}`}
-                        />
+                        <RatingPill college={college} />
                     </div>
                     <div className="my-0.5">
-                        <Pill
-                            noMargin
-                            label={`💯 SAT Range ${
-                                college.content.facts[2].value || 400
-                            }`}
-                        />
+                        <SATRangePill college={college} />
                     </div>
                     <div className="my-0.5">
-                        <Pill
-                            noMargin
-                            label={`💰 $ ${
-                                college.content.complete_profile
-                                    ? college.content.complete_profile.cost.net_price.split(
-                                          "$"
-                                      )[1]
-                                    : (
-                                          college.content.facts[1].value ||
-                                          10000
-                                      )?.toLocaleString()
-                            }`}
-                        />
+                        <FeesPill college={college} />
                     </div>
                     <div className="my-0.5">
-                        <Pill
-                            noMargin
-                            label={`${getPillEmoji(
-                                college
-                            )}\tAcceptance rate – ${(
-                                (college.content.facts[0].value || 1.0) * 100
-                            )
-                                .toFixed(1)
-                                .toString()} %`}
-                        />
+                        <AcceptanceRatePill college={college} />
                     </div>
                 </div>
                 {college.content.photos.mapbox_header?.crops.DesktopHeader && (

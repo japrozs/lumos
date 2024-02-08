@@ -5,21 +5,19 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { CollegeListItem } from "@/types";
-import {
-    getPillBgColor,
-    getPillBorderColor,
-    getPillEmoji,
-    getPillIcon,
-    getPillTextColor,
-} from "@/utils/pill";
 import { toTitleCase } from "@/utils/utils";
 import Link from "next/link";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { FaRegSquarePlus, FaSquareMinus } from "react-icons/fa6";
 import { toast } from "sonner";
-import { Pill } from "../ui/pill";
 import { ShadCNButton } from "../ui/shadcn-button";
 import { TableCell, TableRow } from "../ui/table";
+import {
+    AcceptanceRatePill,
+    FeesPill,
+    RatingPill,
+    SATRangePill,
+} from "./component-pill";
 
 interface CollegeTableProps {
     data: CollegeListItem;
@@ -114,43 +112,13 @@ export const CollegeTable: React.FC<CollegeTableProps> = ({
             </TableCell>
             <TableCell className="text-gray-500 border-r border-gray-200">
                 <div className="w-16">
-                    <Pill
-                        borderColor={getPillBorderColor(data)}
-                        textColor={getPillTextColor(data)}
-                        bgColor={getPillBgColor(data)}
-                        icon={getPillIcon(data)}
-                        noMargin
-                        label={`${(data.content.grades[0]?.value || 1)?.toFixed(
-                            2
-                        )}`}
-                    />
+                    <RatingPill college={data} />
                 </div>
             </TableCell>
             <TableCell className="flex items-center text-right space-x-2">
-                <Pill
-                    noMargin
-                    label={`$ ${
-                        data.content.complete_profile
-                            ? data.content.complete_profile.cost.net_price.split(
-                                  "$"
-                              )[1]
-                            : (
-                                  data.content.facts[1].value || 10000
-                              )?.toLocaleString()
-                    }`}
-                />
-                <Pill
-                    noMargin
-                    label={`${getPillEmoji(data)}\tAcceptance rate – ${(
-                        (data.content.facts[0].value || 1.0) * 100
-                    )
-                        .toFixed(1)
-                        .toString()} %`}
-                />
-                <Pill
-                    noMargin
-                    label={`🎓 SAT Range ${data.content.facts[2].value || 400}`}
-                />
+                <FeesPill college={data} />
+                <AcceptanceRatePill college={data} />
+                <SATRangePill college={data} />
             </TableCell>
         </TableRow>
     );
