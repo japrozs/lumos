@@ -1,30 +1,25 @@
 import {
     GetEssayQuery,
-    MeQuery,
-    useDeleteEssayMutation,
     usePublishOrUnPublishEssayMutation,
     useUpdateEssayMutation,
 } from "@/generated/graphql";
-import React, { Fragment, LegacyRef, useEffect, useRef, useState } from "react";
-import { PiHashStraightBold } from "react-icons/pi";
-import ContentEditable from "react-contenteditable";
-import useAutosizeTextArea from "@/utils/utils";
-import TextareaAutosize from "react-textarea-autosize";
-import { Button } from "./button";
-import { GoShare } from "react-icons/go";
-import { AiOutlineDelete } from "react-icons/ai";
 import { useApolloClient } from "@apollo/client";
-import { useRouter } from "next/router";
-import { IoMdCheckmark } from "react-icons/io";
-import { DeleteEssayModal } from "../modals/delete-essay";
-import Head from "next/head";
-import { Meta } from "../shared/meta";
 import { Menu, Transition } from "@headlessui/react";
-import { CgBrowser } from "react-icons/cg";
-import { IoIosCheckmarkCircle } from "react-icons/io";
-import { VscGlobe } from "react-icons/vsc";
+import Head from "next/head";
 import Link from "next/link";
+import React, { Fragment, LegacyRef, useEffect, useRef, useState } from "react";
+import ContentEditable from "react-contenteditable";
+import { AiOutlineDelete } from "react-icons/ai";
+import { CgBrowser } from "react-icons/cg";
+import { GoShare } from "react-icons/go";
+import { IoIosCheckmarkCircle, IoMdCheckmark } from "react-icons/io";
 import { LuSettings } from "react-icons/lu";
+import { PiHashStraightBold } from "react-icons/pi";
+import { VscGlobe } from "react-icons/vsc";
+import TextareaAutosize from "react-textarea-autosize";
+import { DeleteEssayModal } from "../modals/delete-essay";
+import { Meta } from "../shared/meta";
+import { Button } from "./button";
 
 interface EditorProps {
     essay: GetEssayQuery["getEssay"];

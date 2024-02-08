@@ -7,13 +7,11 @@ import {
     getPillTextColor,
 } from "@/utils/pill";
 import { toTitleCase } from "@/utils/utils";
-import React, { Dispatch, SetStateAction } from "react";
-import { Pill } from "../ui/pill";
-import { Button } from "../ui/button";
-import { AiOutlineDelete } from "react-icons/ai";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { toast } from "sonner";
 import Link from "next/link";
+import React, { Dispatch, SetStateAction } from "react";
+import { AiOutlineDelete } from "react-icons/ai";
+import { toast } from "sonner";
+import { Pill } from "../ui/pill";
 
 interface CollegeListCardProps {
     college: CollegeListItem;

@@ -1,31 +1,3 @@
-import { CollegeListItem } from "@/types";
-import { list } from "postcss";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { BiSearch } from "react-icons/bi";
-import { FiPlus } from "react-icons/fi";
-import { IoMdCheckmark } from "react-icons/io";
-import { RxCross2 } from "react-icons/rx";
-import { AddCollegeModal } from "../modals/add-college";
-import { Button } from "../ui/button";
-import { CollegeListCard } from "./college-list-card";
-import { useApolloClient } from "@apollo/client";
-import { MeQuery, useUpdateCollegeListMutation } from "@/generated/graphql";
-import {
-    searchCollegeList,
-    searchCollegeWithList,
-    searchEssayList,
-} from "@/utils/utils";
-import { BsColumnsGap } from "react-icons/bs";
-import { IoListOutline } from "react-icons/io5";
-import { PiSquaresFourFill, PiSuitcaseSimple } from "react-icons/pi";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { ShadCNButton } from "../ui/shadcn-button";
-import { CollegeTable } from "./college-table";
 import {
     Table,
     TableBody,
@@ -33,8 +5,30 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { RiMapPin2Line } from "react-icons/ri";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { MeQuery, useUpdateCollegeListMutation } from "@/generated/graphql";
+import { CollegeListItem } from "@/types";
+import { searchCollegeList } from "@/utils/utils";
+import { useApolloClient } from "@apollo/client";
+import React, { useEffect, useState } from "react";
+import { BiSearch } from "react-icons/bi";
 import { FaRankingStar } from "react-icons/fa6";
+import { FiPlus } from "react-icons/fi";
+import { IoMdCheckmark } from "react-icons/io";
+import { IoListOutline } from "react-icons/io5";
+import { PiSquaresFourFill, PiSuitcaseSimple } from "react-icons/pi";
+import { RiMapPin2Line } from "react-icons/ri";
+import { RxCross2 } from "react-icons/rx";
+import { AddCollegeModal } from "../modals/add-college";
+import { Button } from "../ui/button";
+import { ShadCNButton } from "../ui/shadcn-button";
+import { CollegeListCard } from "./college-list-card";
+import { CollegeTable } from "./college-table";
 
 interface CollegeListProps {
     data: MeQuery | undefined;

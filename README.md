@@ -1,4 +1,6 @@
 ![Screenshot](assets/homepage.png)
+![Screenshot](assets/college.png)
+![Screenshot](assets/publish.png)
 ![Screenshot](assets/delete-essay.png)
 ![Screenshot](assets/essay.png)
 ![Screenshot](assets/essays.png)

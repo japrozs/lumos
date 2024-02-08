@@ -1,11 +1,9 @@
 import { Meta } from "@/components/shared/meta";
 import { Wrapper } from "@/components/shared/wrapper";
+import { Button } from "@/components/ui/button";
+import { Pill } from "@/components/ui/pill";
 import { MAIN_COLLEGE_LIST } from "@/data/colleges";
 import { AdmissionStatsType, CollegeListItem, ReportCardType } from "@/types";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import Head from "next/head";
-import { LuSchool } from "react-icons/lu";
 import {
     getPillBgColor,
     getPillBorderColor,
@@ -13,16 +11,15 @@ import {
     getPillIcon,
     getPillTextColor,
 } from "@/utils/pill";
-import { Pill } from "@/components/ui/pill";
-import { MdOutlineLocationOn } from "react-icons/md";
-import { FaStar } from "react-icons/fa";
-import { LiaBookSolid } from "react-icons/lia";
-import { FaMoneyBill } from "react-icons/fa";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { IoIosCheckmarkCircle } from "react-icons/io";
 import { getReportCardColors, getStatName } from "@/utils/utils";
-import { Spinner } from "@/components/shared/spinner";
+import Head from "next/head";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { FaMoneyBill, FaStar } from "react-icons/fa";
+import { LiaBookSolid } from "react-icons/lia";
+import { LuSchool } from "react-icons/lu";
+import { MdOutlineLocationOn } from "react-icons/md";
 
 interface CollegePageProps {}
 

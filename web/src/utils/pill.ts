@@ -1,7 +1,7 @@
 import { CollegeListItem } from "@/types";
 import { IconType } from "react-icons";
-import { FaArrowUp, FaArrowDown } from "react-icons/fa6";
 import { AiOutlineStock } from "react-icons/ai";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa6";
 
 export const getPillBorderColor = (item: CollegeListItem): string => {
     const rate = item.content.grades[0].value;

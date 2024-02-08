@@ -3,11 +3,10 @@ import { Footer } from "@/components/shared/footer";
 import { Meta } from "@/components/shared/meta";
 import { Button } from "@/components/ui/button";
 import { useIsAuth } from "@/utils/use-is-auth";
-import { Disclosure } from "@headlessui/react";
 import Head from "next/head";
 import Image from "next/image";
-import { BiRightArrowAlt } from "react-icons/bi";
 import Link from "next/link";
+import { BiRightArrowAlt } from "react-icons/bi";
 
 export default function Home() {
     useIsAuth();

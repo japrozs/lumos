@@ -1,36 +1,32 @@
+import { DeleteEssayModal } from "@/components/modals/delete-essay";
+import { Meta } from "@/components/shared/meta";
+import { Spinner } from "@/components/shared/spinner";
 import { Wrapper } from "@/components/shared/wrapper";
 import { Button } from "@/components/ui/button";
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { BiSearch } from "react-icons/bi";
-import { FiPlus } from "react-icons/fi";
-import { RxCross2 } from "react-icons/rx";
 import {
     Table,
     TableBody,
+    TableCell,
     TableHead,
     TableHeader,
-    TableCell,
     TableRow,
 } from "@/components/ui/table";
-import { PiSuitcaseSimple } from "react-icons/pi";
-import { RiDeleteBin6Line, RiMapPin2Line } from "react-icons/ri";
-import { FaRegClock } from "react-icons/fa6";
-import { useIsAuth } from "@/utils/use-is-auth";
-import { Spinner } from "@/components/shared/spinner";
 import {
     RegularEssayFragment,
     useCreateEssayMutation,
     useStarOrUnStarEssayMutation,
 } from "@/generated/graphql";
-import { AiOutlineDelete } from "react-icons/ai";
-import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
-import { FaRegStar, FaStar } from "react-icons/fa6";
-import { useRouter } from "next/router";
-import { DeleteEssayModal } from "@/components/modals/delete-essay";
-import { useApolloClient } from "@apollo/client";
+import { useIsAuth } from "@/utils/use-is-auth";
 import { searchEssayList } from "@/utils/utils";
+import { useApolloClient } from "@apollo/client";
 import Head from "next/head";
-import { Meta } from "@/components/shared/meta";
+import { useRouter } from "next/router";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { AiOutlineDelete } from "react-icons/ai";
+import { BiSearch } from "react-icons/bi";
+import { FaRegClock, FaRegStar, FaStar } from "react-icons/fa6";
+import { FiPlus } from "react-icons/fi";
+import { RxCross2 } from "react-icons/rx";
 
 interface EssaysProps {}
 interface EssayCardProps {

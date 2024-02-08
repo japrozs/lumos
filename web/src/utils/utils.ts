@@ -1,5 +1,5 @@
-import { MeQuery, RegularEssayFragment } from "@/generated/graphql";
 import { MAIN_COLLEGE_LIST } from "@/data/colleges";
+import { RegularEssayFragment } from "@/generated/graphql";
 import { AdmissionStatsType, CollegeListItem } from "@/types";
 import { useEffect } from "react";
 import sanitizeHTML from "sanitize-html";

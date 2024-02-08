@@ -1,29 +1,22 @@
+import { useLogoutMutation } from "@/generated/graphql";
+import { useIsAuth } from "@/utils/use-is-auth";
+import { useApolloClient } from "@apollo/client";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 import React from "react";
+import { FaUniversity } from "react-icons/fa";
+import { FaRegRectangleList } from "react-icons/fa6";
+import { FiCompass, FiLogOut, FiSettings } from "react-icons/fi";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
+import { MdFormatListBulleted } from "react-icons/md";
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
 } from "../ui/accordion";
-import { FiCompass } from "react-icons/fi";
-import { FaUniversity } from "react-icons/fa";
-import { MdFormatListBulleted } from "react-icons/md";
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import { FaRegRectangleList } from "react-icons/fa6";
-import { FaRegStar } from "react-icons/fa";
-import { IoSettingsOutline } from "react-icons/io5";
-import { IoBookmarksOutline } from "react-icons/io5";
-import { FaRegFolderOpen } from "react-icons/fa";
-import { useRouter } from "next/router";
-import { usePathname } from "next/navigation";
-import { MAIN_COLLEGE_LIST } from "@/data/colleges";
-import { useIsAuth } from "@/utils/use-is-auth";
-import { FiLogOut } from "react-icons/fi";
-import { useLogoutMutation } from "@/generated/graphql";
-import { useApolloClient } from "@apollo/client";
-import { FiSettings } from "react-icons/fi";
-import Link from "next/link";
 
 interface SidebarProps {}
 

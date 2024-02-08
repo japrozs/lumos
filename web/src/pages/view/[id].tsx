@@ -1,14 +1,14 @@
+import { Meta } from "@/components/shared/meta";
 import { Spinner } from "@/components/shared/spinner";
 import { Button } from "@/components/ui/button";
 import { useGetPublishedEssayQuery } from "@/generated/graphql";
+import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
+import { FiExternalLink } from "react-icons/fi";
 import { PiHashStraightBold } from "react-icons/pi";
 import ReactTextareaAutosize from "react-textarea-autosize";
-import { FiExternalLink } from "react-icons/fi";
-import Link from "next/link";
-import { Meta } from "@/components/shared/meta";
-import Head from "next/head";
 
 interface PublishedEssayProps {}
 

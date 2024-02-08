@@ -1,33 +1,11 @@
 import { Wrapper } from "@/components/shared/wrapper";
-import { Button } from "@/components/ui/button";
 // import { Welcome } from "@/components/ui/welcome";
 // import { useIsAuth } from "@/utils/use-is-auth";
-import React, { useEffect, useState } from "react";
-import { LuSettings } from "react-icons/lu";
-import { BiSearch, BiSortAlt2 } from "react-icons/bi";
-import { RxCross2 } from "react-icons/rx";
-import { CollegeTable } from "@/components/shared/college-table";
-import { MAIN_COLLEGE_LIST } from "../../data/colleges";
-import { CollegeListItem } from "@/types";
-import {
-    Table,
-    TableBody,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table";
-import { RiMapPin2Line } from "react-icons/ri";
-import { PiSuitcaseSimple } from "react-icons/pi";
-import { paginate, search } from "@/utils/utils";
-import { IoChevronBack, IoChevronForward } from "react-icons/io5";
-import { useIsAuth } from "@/utils/use-is-auth";
-import { FaRankingStar } from "react-icons/fa6";
-import { Meta } from "@/components/shared/meta";
-import Head from "next/head";
-import { Spinner } from "@/components/shared/spinner";
-import { useApolloClient } from "@apollo/client";
-import { useUpdateCollegeListMutation } from "@/generated/graphql";
 import { ExploreCollege } from "@/components/shared/explore-college";
+import { Meta } from "@/components/shared/meta";
+import { Spinner } from "@/components/shared/spinner";
+import { useIsAuth } from "@/utils/use-is-auth";
+import Head from "next/head";
 
 export default function MainApp() {
     const { data, loading } = useIsAuth();

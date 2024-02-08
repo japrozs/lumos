@@ -1,7 +1,6 @@
 import { CollegeListItem } from "@/types";
-import { search, searchCollegeWithList } from "@/utils/utils";
-import { Transition, Dialog } from "@headlessui/react";
-import { list } from "postcss";
+import { searchCollegeWithList } from "@/utils/utils";
+import { Dialog, Transition } from "@headlessui/react";
 import React, { Dispatch, Fragment, SetStateAction, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { toast } from "sonner";

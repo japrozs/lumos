@@ -1,7 +1,6 @@
 import { NextRouter, useRouter } from "next/router";
 import { useEffect } from "react";
-import { Exact, MeQuery, Query, useMeQuery } from "../generated/graphql";
-import { QueryResult } from "@apollo/client";
+import { useMeQuery } from "../generated/graphql";
 
 export const useIsAuth = (): ReturnType<typeof useMeQuery> => {
     const { data, loading, ...rest } = useMeQuery();

@@ -1,20 +1,17 @@
 import { Column } from "@/types";
-import { Droppable, Draggable } from "@hello-pangea/dnd";
-import React, { useEffect, useState, useRef } from "react";
-import { BiDetail, BiPlus } from "react-icons/bi";
-import { v4 } from "uuid";
-import { PiPencil } from "react-icons/pi";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { Button } from "../ui/button";
 import { formatText } from "@/utils/utils";
+import { Draggable, Droppable } from "@hello-pangea/dnd";
+import React, { useEffect, useRef, useState } from "react";
+import { PiPencil } from "react-icons/pi";
+import { v4 } from "uuid";
+import { Button } from "../ui/button";
 // import { EditColumn } from "../modals/edit-column";
 import { useUpdateTasksMutation } from "@/generated/graphql";
 import { useApolloClient } from "@apollo/client";
-import { matchFilter } from "../../utils/utils";
-import { AiOutlineDelete } from "react-icons/ai";
-import { IoIosMore } from "react-icons/io";
 import ContentEditable from "react-contenteditable";
+import { AiOutlineDelete } from "react-icons/ai";
 import { toast } from "sonner";
+import { matchFilter } from "../../utils/utils";
 
 interface TableProps {
     columnId: string;

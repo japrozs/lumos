@@ -1,14 +1,10 @@
-import React, { Dispatch, Fragment, SetStateAction, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { BiSearch } from "react-icons/bi";
-import { CollegeListItem } from "@/types";
-import { useRouter } from "next/router";
-import { useApolloClient } from "@apollo/client";
 import { useDeleteEssayMutation } from "@/generated/graphql";
-import { Button } from "../ui/button";
-import { GoShare } from "react-icons/go";
-import { AiOutlineDelete } from "react-icons/ai";
+import { useApolloClient } from "@apollo/client";
+import { Dialog, Transition } from "@headlessui/react";
+import { useRouter } from "next/router";
+import React, { Dispatch, Fragment, SetStateAction } from "react";
 import { toast } from "sonner";
+import { Button } from "../ui/button";
 
 interface DeleteEssayModalProps {
     open: boolean;

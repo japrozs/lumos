@@ -1,22 +1,10 @@
-import { Wrapper } from "@/components/shared/wrapper";
-import { Button } from "@/components/ui/button";
-import React, { useEffect, useState } from "react";
-import { BiSearch, BiSortAlt2 } from "react-icons/bi";
-import { LuSettings } from "react-icons/lu";
-import { RxCross2 } from "react-icons/rx";
-import { FiPlus } from "react-icons/fi";
-import { MAIN_COLLEGE_LIST } from "../../data/colleges";
-import { CollegeListItem } from "@/types";
-import { CollegeListCard } from "@/components/shared/college-list-card";
-import { AddCollegeModal } from "@/components/modals/add-college";
-import { useIsAuth } from "@/utils/use-is-auth";
-import { useUpdateCollegeListMutation } from "@/generated/graphql";
-import { useApolloClient } from "@apollo/client";
-import { IoMdCheckmark } from "react-icons/io";
-import { Spinner } from "@/components/shared/spinner";
 import { CollegeList } from "@/components/shared/college-list";
-import Head from "next/head";
 import { Meta } from "@/components/shared/meta";
+import { Spinner } from "@/components/shared/spinner";
+import { Wrapper } from "@/components/shared/wrapper";
+import { useIsAuth } from "@/utils/use-is-auth";
+import Head from "next/head";
+import React from "react";
 
 interface ListProps {}
 

@@ -1,15 +1,10 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "../ui/table";
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { CollegeListItem } from "@/types";
-import { Pill } from "../ui/pill";
 import {
     getPillBgColor,
     getPillBorderColor,
@@ -18,19 +13,13 @@ import {
     getPillTextColor,
 } from "@/utils/pill";
 import { toTitleCase } from "@/utils/utils";
-import { FaRegSquarePlus, FaSquarePlus } from "react-icons/fa6";
-import { FaSquareMinus } from "react-icons/fa6";
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { ShadCNButton } from "../ui/shadcn-button";
-import { Observable, ObservableQuery, useApolloClient } from "@apollo/client";
-import { useUpdateCollegeListMutation } from "@/generated/graphql";
-import { toast } from "sonner";
 import Link from "next/link";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { FaRegSquarePlus, FaSquareMinus } from "react-icons/fa6";
+import { toast } from "sonner";
+import { Pill } from "../ui/pill";
+import { ShadCNButton } from "../ui/shadcn-button";
+import { TableCell, TableRow } from "../ui/table";
 
 interface CollegeTableProps {
     data: CollegeListItem;

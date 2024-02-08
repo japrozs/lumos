@@ -1,4 +1,4 @@
-import React, { ElementType, LegacyRef } from "react";
+import React, { LegacyRef } from "react";
 import { IconType } from "react-icons/lib";
 import { Spinner } from "../shared/spinner";
 

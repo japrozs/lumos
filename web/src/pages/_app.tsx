@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
-import type { AppProps } from "next/app";
-import NextTransitionBar from "next-transition-bar";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import NextTransitionBar from "next-transition-bar";
+import type { AppProps } from "next/app";
 
 const client = new ApolloClient({
     uri: `${process.env.NEXT_PUBLIC_API_URL}/graphql`,

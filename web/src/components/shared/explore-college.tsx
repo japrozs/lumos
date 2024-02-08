@@ -1,6 +1,8 @@
+import { MAIN_COLLEGE_LIST } from "@/data/colleges";
+import { MeQuery, useUpdateCollegeListMutation } from "@/generated/graphql";
 import { CollegeListItem } from "@/types";
-import { pages } from "next/dist/build/templates/app-page";
-import { list } from "postcss";
+import { paginate, search } from "@/utils/utils";
+import { useApolloClient } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { FaRankingStar } from "react-icons/fa6";
@@ -11,16 +13,12 @@ import { RxCross2 } from "react-icons/rx";
 import { Button } from "../ui/button";
 import {
     Table,
+    TableBody,
+    TableHead,
     TableHeader,
     TableRow,
-    TableHead,
-    TableBody,
 } from "../ui/table";
 import { CollegeTable } from "./college-table";
-import { MAIN_COLLEGE_LIST } from "@/data/colleges";
-import { MeQuery, useUpdateCollegeListMutation } from "@/generated/graphql";
-import { search, paginate } from "@/utils/utils";
-import { useApolloClient } from "@apollo/client";
 
 interface ExploreCollegeProps {
     data: MeQuery | undefined;
