@@ -13,6 +13,7 @@ import { Button } from "../ui/button";
 import { AiOutlineDelete } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { toast } from "sonner";
+import Link from "next/link";
 
 interface CollegeListCardProps {
     college: CollegeListItem;
@@ -48,15 +49,20 @@ export const CollegeListCard: React.FC<CollegeListCardProps> = ({
                         />
                     </div>
                     <div className="w-full truncate line-clamp-1">
-                        <p className="text-xl font-bold mb-0.5 leading-tight truncate text-ellipsis">
-                            {college.content.entity.name}
-                        </p>
-                        <p className="text-sm text-gray-400 leading-tight ">
-                            {toTitleCase(
-                                college.content.entity.location?.split(",")[0]
-                            )}
-                            ,{college.content.entity.location?.split(",")[1]}
-                        </p>
+                        <Link href={`/app/college/${college.guid}`}>
+                            <p className="text-xl font-bold mb-0.5 leading-tight truncate text-ellipsis">
+                                {college.content.entity.name}
+                            </p>
+                            <p className="text-sm text-gray-400 leading-tight ">
+                                {toTitleCase(
+                                    college.content.entity.location?.split(
+                                        ","
+                                    )[0]
+                                )}
+                                ,
+                                {college.content.entity.location?.split(",")[1]}
+                            </p>
+                        </Link>
                     </div>
                     <AiOutlineDelete
                         onClick={() => {
@@ -92,9 +98,16 @@ export const CollegeListCard: React.FC<CollegeListCardProps> = ({
                     <div className="my-0.5">
                         <Pill
                             noMargin
-                            label={`💰 $ ${(
-                                college.content.facts[1].value || 10000
-                            )?.toLocaleString()}`}
+                            label={`💰 $ ${
+                                college.content.complete_profile
+                                    ? college.content.complete_profile.cost.net_price.split(
+                                          "$"
+                                      )[1]
+                                    : (
+                                          college.content.facts[1].value ||
+                                          10000
+                                      )?.toLocaleString()
+                            }`}
                         />
                     </div>
                     <div className="my-0.5">

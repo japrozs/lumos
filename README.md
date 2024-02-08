@@ -27,12 +27,12 @@
 
 -   ❓ add default columns to task board (dream, target, safety)
 -   ✅❓ create a college page to show useful information and not trash things
--   create college profile builder
+-   🕰️ create college profile builder
 -   ✅ add logout to the bottom of the sidebar
 -   ✅ hide settings (add a popup on the sidebar profile section)
 -   ✅ move logout to the bottom
 -   link kanban board to your list
--   (future) – use keys to move through add college modal search results
+-   (future 🕰️) – use keys to move through add college modal search results
 -   ✅ replace "college highlights" with something else
 -   ✅ view data in "my list" as cards or as list
 -   change college highlights acceptance rate fees (it shows fees after)
