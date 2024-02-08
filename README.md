@@ -26,7 +26,7 @@
 -   ❓ add numbers next to explore college page
 
 -   ❓ add default columns to task board (dream, target, safety)
--   create a college page to show useful information and not trash things
+-   ✅❓ create a college page to show useful information and not trash things
 -   create college profile builder
 -   ✅ add logout to the bottom of the sidebar
 -   ✅ hide settings (add a popup on the sidebar profile section)

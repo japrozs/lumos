@@ -322,7 +322,7 @@ const CollegePage: React.FC<CollegePageProps> = ({}) => {
                                     <IoIosCheckmarkCircle className="text-primary-color mr-2.5" />
                                     Admissions
                                 </p> */}
-                                        {/* <div className="mt-3 flex items-start">
+                                        <div className="mt-3 flex items-start">
                                             <div className="w-full">
                                                 {Object.keys(
                                                     college.content
@@ -340,7 +340,7 @@ const CollegePage: React.FC<CollegePageProps> = ({}) => {
                                                                 .statistics[
                                                                 key as keyof AdmissionStatsType
                                                             ].length !== 0 && (
-                                                                <div className="my-2 flex items-center">
+                                                                <div className="my-3 flex items-center">
                                                                     <p className="font-medium text-gray-700">
                                                                         {getStatName(
                                                                             key
@@ -363,8 +363,48 @@ const CollegePage: React.FC<CollegePageProps> = ({}) => {
                                                     )
                                                 )}
                                             </div>
-                                            <div className="w-full p-2 flex flex-col items-center justify-center">
-                                                <p className="mt-4 text-2xl font-bold text-gray-800">
+                                            <div className="w-full p-2 pt-0 ml-8 flex flex-col items-center">
+                                                {/* <div className="w-full flex items-center flex-wrap"> */}
+                                                {Object.keys(
+                                                    college.content
+                                                        .complete_profile
+                                                        .niche_report_card
+                                                ).map(
+                                                    (
+                                                        key: string,
+                                                        idx: number
+                                                    ) => (
+                                                        <div
+                                                            key={idx}
+                                                            className="w-full flex items-center my-1.5"
+                                                        >
+                                                            <p className="font-medium text-gray-600 mr-2">
+                                                                {key}
+                                                            </p>
+                                                            <p
+                                                                className={`${getReportCardColors(
+                                                                    college
+                                                                        .content
+                                                                        .complete_profile!
+                                                                        .niche_report_card[
+                                                                        key as keyof ReportCardType
+                                                                    ]
+                                                                )} font-medium ml-auto text-sm mr-0 py-0.5 px-2 rounded-md`}
+                                                            >
+                                                                {
+                                                                    college
+                                                                        .content
+                                                                        .complete_profile!
+                                                                        .niche_report_card[
+                                                                        key as keyof ReportCardType
+                                                                    ]
+                                                                }
+                                                            </p>
+                                                        </div>
+                                                    )
+                                                )}
+                                                {/* </div> */}
+                                                {/* <p className="mt-4 text-2xl font-bold text-gray-800">
                                                     {
                                                         college.content
                                                             .complete_profile
@@ -396,55 +436,14 @@ const CollegePage: React.FC<CollegePageProps> = ({}) => {
                                                             deadline
                                                         </p>
                                                     </>
-                                                )}
+                                                )} */}
                                             </div>
-                                        </div> */}
-                                        <p className="flex items-center text-lg font-medium text-slate-800">
+                                        </div>
+                                        {/* <p className="flex items-center text-lg font-medium text-slate-800">
                                             <IoIosCheckmarkCircle className="text-primary-color mr-2.5" />
                                             Report card
                                         </p>
-                                        <div className="mt-3">
-                                            <div className="w-full flex items-center flex-wrap">
-                                                {Object.keys(
-                                                    college.content
-                                                        .complete_profile
-                                                        .niche_report_card
-                                                ).map(
-                                                    (
-                                                        key: string,
-                                                        idx: number
-                                                    ) => (
-                                                        <div
-                                                            key={idx}
-                                                            className="flex items-center mr-8 my-1.5"
-                                                        >
-                                                            <p className="font-medium text-gray-600 mr-2">
-                                                                {key} –
-                                                            </p>
-                                                            <p
-                                                                className={`${getReportCardColors(
-                                                                    college
-                                                                        .content
-                                                                        .complete_profile!
-                                                                        .niche_report_card[
-                                                                        key as keyof ReportCardType
-                                                                    ]
-                                                                )} font-medium py-0.5 px-2 rounded-md`}
-                                                            >
-                                                                {
-                                                                    college
-                                                                        .content
-                                                                        .complete_profile!
-                                                                        .niche_report_card[
-                                                                        key as keyof ReportCardType
-                                                                    ]
-                                                                }
-                                                            </p>
-                                                        </div>
-                                                    )
-                                                )}
-                                            </div>
-                                        </div>
+                                        <div className="mt-3"></div> */}
                                     </>
                                 )}
                             </div>

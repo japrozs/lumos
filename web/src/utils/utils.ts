@@ -282,5 +282,8 @@ export const getReportCardColors = (grade: string): string => {
         e: "bg-red-300 bg-opacity-60 text-red-700",
     };
 
-    return dict[grade.charAt(0).toLowerCase() as keyof typeof dict];
+    return (
+        dict[grade.charAt(0).toLowerCase() as keyof typeof dict] ||
+        "bg-slate-100 text-slate-500"
+    );
 };
