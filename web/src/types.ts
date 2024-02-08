@@ -1,5 +1,34 @@
 import { IconType } from "react-icons/lib";
 
+export interface AdmissionStatsType {
+    acceptance_rate: string;
+    early_decision_acceptance_rate: string;
+    total_applicants: string;
+    sat_range: string;
+    sat_reading: string;
+    sat_math: string;
+    sat_submission_percentage: string;
+    act_range: string;
+    act_english: string;
+    act_math: string;
+    act_writing: string;
+    act_submission_percentage: string;
+}
+
+export interface ReportCardType {
+    Academics: string;
+    Value: string;
+    Diversity: string;
+    Campus: string;
+    Athletics: string;
+    "Party Scene": string;
+    Professors: string;
+    Location: string;
+    Dorms: string;
+    "Campus Food": string;
+    "Student Life": string;
+    Safety: string;
+}
 export interface CollegeListItem {
     guid: string;
     badge: {
@@ -128,6 +157,78 @@ export interface CollegeListItem {
                 value: string;
             }
         ];
+        address?: {
+            place_id: number;
+            licence: string;
+            osm_type: string;
+            osm_id: number;
+            lat: string;
+            lon: string;
+            class: string;
+            type: string;
+            place_rank: number;
+            importance: number;
+            addresstype: string;
+            name: string;
+            display_name: string;
+            address: {
+                building: string;
+                house_number: string;
+                road: string;
+                neighbourhood: string;
+                city: string;
+                county: string;
+                state: string;
+                "ISO3166-2-lvl4": string;
+                postcode: string;
+                country: string;
+                country_code: string;
+            };
+            boundingbox: string[];
+        };
+        complete_profile?: {
+            niche_report_card: ReportCardType;
+            after_college: {
+                median_earning_6_years: string;
+                graduation_rate: string;
+                employment_rate: string;
+            };
+            students: {
+                full_time: string;
+                part_time: string;
+                over_25: string;
+                pell_grant: string;
+                varsity_athletes: string;
+            };
+            popular_majors: string[];
+            cost: {
+                net_price: string;
+                average_aid: string;
+                percentage_aid: string;
+            };
+            admissions: {
+                statistics: AdmissionStatsType;
+                deadlines: {
+                    application_deadline: string;
+                    early_decision_deadline: string;
+                    early_action_deadline: string;
+                    offers_early_decision: string;
+                    offers_early_action: string;
+                    application_fee: string;
+                    application_website: string;
+                    accepts_common_app: string;
+                    accepts_coalition_app: string;
+                };
+                requirements: {
+                    gpa: string;
+                    rank: string;
+                    transcript: string;
+                    college_prep_coures: string;
+                    "sat/act": string;
+                    recommendations: string;
+                };
+            };
+        };
     };
 }
 

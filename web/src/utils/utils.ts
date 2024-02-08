@@ -1,6 +1,6 @@
 import { MeQuery, RegularEssayFragment } from "@/generated/graphql";
 import { MAIN_COLLEGE_LIST } from "@/data/colleges";
-import { CollegeListItem } from "@/types";
+import { AdmissionStatsType, CollegeListItem } from "@/types";
 import { useEffect } from "react";
 import sanitizeHTML from "sanitize-html";
 
@@ -250,3 +250,37 @@ export const matchFilter = (filter: string, text: string) => {
 // export const essayTitleGenerator = () => {
 //     return bios[Math.floor(Math.random() * essayTitles.length)];
 // };
+
+export const getStatName = (key: string) => {
+    const dict = {
+        acceptance_rate: "Acceptance Rate",
+        early_decision_acceptance_rate: "Early decision",
+        total_applicants: "Total applicants",
+        sat_range: "SAT Range",
+        sat_reading: "SAT Reading",
+        sat_math: "SAT Math",
+        sat_submission_percentage: "SAT Submission %",
+        act_range: "ACT Range",
+        act_english: "ACT English",
+        act_math: "ACT Math",
+        act_writing: "ACT Writing",
+        act_submission_percentage: "ACT Submission %",
+    };
+    return dict[key as keyof AdmissionStatsType];
+};
+
+export const getReportCardColors = (grade: string): string => {
+    if (grade.length === 0) {
+        return "bg-blue-100 text-primary-color";
+    }
+
+    const dict = {
+        a: "bg-green-100 text-green-700",
+        b: "bg-yellow-300 bg-opacity-60 text-yellow-700",
+        c: "bg-red-300 bg-opacity-60 text-red-700",
+        d: "bg-red-300 bg-opacity-60 text-red-700",
+        e: "bg-red-300 bg-opacity-60 text-red-700",
+    };
+
+    return dict[grade.charAt(0).toLowerCase() as keyof typeof dict];
+};

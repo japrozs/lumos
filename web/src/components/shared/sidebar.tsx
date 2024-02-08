@@ -22,6 +22,7 @@ import { useIsAuth } from "@/utils/use-is-auth";
 import { FiLogOut } from "react-icons/fi";
 import { useLogoutMutation } from "@/generated/graphql";
 import { useApolloClient } from "@apollo/client";
+import { FiSettings } from "react-icons/fi";
 import Link from "next/link";
 
 interface SidebarProps {}
@@ -116,7 +117,7 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                         <Link href="/app/essays">
                             <div
                                 className={`flex items-center pt-1.5 px-2 my-1 mx-2 pb-2 rounded-md cursor-pointer ${
-                                    pathname == "/app/essays"
+                                    pathname === "/app/essays"
                                         ? "bg-gray-200"
                                         : "hover:bg-gray-200"
                                 }`}
@@ -168,6 +169,12 @@ export const Sidebar: React.FC<SidebarProps> = ({}) => {
                                     {data?.me?.email}
                                 </p>
                             </div>
+                            <Link
+                                href="/app/settings"
+                                className="ml-auto mr-0 "
+                            >
+                                <FiSettings className="text-xl hover:text-slate-600 transition cursor-pointer text-slate-500" />
+                            </Link>
                         </div>
                     </div>
                 </aside>

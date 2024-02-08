@@ -20,8 +20,6 @@ const PublishedEssay: React.FC<PublishedEssayProps> = ({}) => {
             id,
         },
     });
-
-    console.log(data?.getPublishedEssay.body);
     return (
         <>
             {data && !loading ? (

@@ -66,7 +66,7 @@ const CollegeTableWrapper: React.FC<{ children: React.ReactNode }> = ({
                     <TableHead className="">
                         <div className="flex items-center">
                             <PiSuitcaseSimple className="mr-1" />
-                            College Highlights
+                            College Profile
                         </div>
                     </TableHead>
                 </TableRow>

@@ -1,0 +1,241 @@
+{
+    "guid": "10c79507-9628-415e-84bb-85e869d5b0dd",
+    "badge": {
+        "display": "Best Colleges in America",
+        "ordinal": 1,
+        "total": 1537,
+        "vanityURL": "best-colleges",
+        "photoURLs": {
+            "desktop": "https://d33a4decm84gsn.cloudfront.net/search/2024/colleges/colleges-best_2048.png",
+            "mobile": "https://d33a4decm84gsn.cloudfront.net/search/2024/colleges/colleges-best_640.png"
+        }
+    },
+    "content": {
+        "centroid": { "lat": 41.310725, "lon": -72.9261294 },
+        "entity": {
+            "abbreviation": "Yale",
+            "alternates": { "ceeb": "3987", "ipeds": "130794" },
+            "character": "4 Year",
+            "claimed": true,
+            "displayable": true,
+            "genus": "College",
+            "guid": "10c79507-9628-415e-84bb-85e869d5b0dd",
+            "isClaimed": true,
+            "isPremium": false,
+            "location": "NEW HAVEN, CT",
+            "name": "Yale University",
+            "parentGUIDs": {
+                "country": "f931a1cd-e1b4-44bb-9e2c-b0d3e9241e98",
+                "county": "14d8f8f0-3dcc-4461-a74d-8a6090b2c712",
+                "gradSchool": "24212d22-0941-4a21-a756-64a9cfb3d9ac",
+                "neighborhood": "89e964cc-16a0-4382-960e-2cb9a3ca1de6",
+                "state": "37169cde-9039-4b96-a2c5-8c385ef2c504",
+                "town": "f4975393-5e34-4599-9725-bed8e7e5652e",
+                "zipCode": "c658893b-d3f8-47b7-835b-8d168db8373d"
+            },
+            "premium": false,
+            "published": true,
+            "shortName": "Yale",
+            "tagline": ["4 Year", "NEW HAVEN, CT"],
+            "type": "College",
+            "url": "yale-university",
+            "variation": 4
+        },
+        "facts": [
+            {
+                "config": {
+                    "format": ["percent"],
+                    "rounding": ["multiply_100", "whole"]
+                },
+                "label": "Acceptance Rate",
+                "value": 0.05311176968670618
+            },
+            {
+                "config": {
+                    "format": ["comma", "dollar"],
+                    "rounding": ["whole"]
+                },
+                "label": "Net Price",
+                "value": 20605
+            },
+            { "label": "SAT Range", "value": "1480-1580" }
+        ],
+        "featuredReview": {
+            "author": "Sophomore",
+            "body": "Yale has been a fun and enjoyable experience overall. I would definitely choose Yale again if I had to re-do my college application. \nAcademics: some departments are better taught than other departments. Yale can be weaker in CS and Math compared to other universities, but most alums are still very successful. Like most colleges, there is a lot of independent learning and there are numerous resources to help you. The environment is not competitive unless premed.\nSocial life: Yale has an AMAZING social life compared to other universities of equal caliber. There is always something going on and you can be as social as you want. Social life is nonexistent during midterm season. There are parties, frats, concerts, woads, club formals, and many other events.\nSports: Not a big sports school but many students are involved in club sports.\nYale dining is delicious and healthy!",
+            "categories": ["Overall Experience"],
+            "created": "2022-06-30T21:33:29.89411Z",
+            "guid": "dc372228-a988-415f-af56-3bdbfd823971",
+            "rating": 5
+        },
+        "grades": [
+            {
+                "description": "Based on millions of statistics and student reviews.",
+                "guid": "0764a6be-7ac7-44d9-b3d5-310fa319f416",
+                "label": "Overall Niche Grade",
+                "value": 4.33
+            }
+        ],
+        "photos": {
+            "default": {
+                "crops": {
+                    "DesktopHeader": "https://d13b2ieg84qqce.cloudfront.net/56bf962d9b50945b144fb23398fe73404a49d815",
+                    "MobileHeader": "https://d13b2ieg84qqce.cloudfront.net/0458738b833915a50b21ce02ca7cd567f0ff7c07",
+                    "Original": "https://d13b2ieg84qqce.cloudfront.net/4e880bb45f1da8a1faec71d8dbe3c99ab7ff838b",
+                    "Thumbnail": "https://d13b2ieg84qqce.cloudfront.net/320b82fe7b778a8031cefb84026e496ce892a9f0"
+                },
+                "guid": "c3795c1b-11f6-4e9b-a552-cdd804881e64",
+                "licenseName": "UNLICENSED",
+                "uploadTimestamp": "2022-05-09T13:50:13.762861Z"
+            },
+            "editorial": {
+                "crops": {
+                    "Original": "https://d13b2ieg84qqce.cloudfront.net/18eadb2a2e9f878c05b72c2880c3e99a68187894"
+                },
+                "guid": "3d769903-c868-4b78-b74f-e019eded952e",
+                "licenseName": "UNLICENSED",
+                "uploadTimestamp": "2022-02-09T21:04:30.055881Z"
+            },
+            "mapbox_header": {
+                "crops": {
+                    "DesktopHeader": "https://api.mapbox.com/styles/v1/niche-admin/citg1y6rj00312inu917d7y1o/static/-72.9261294,41.310725,13/900x340@2x?access_token=pk.eyJ1IjoibmljaGUtYWRtaW4iLCJhIjoiY2lyODF1YnR6MDB3bGcybTNhdDQxY3pkZCJ9.NQ0kRtM21uVhwbzjSAridg",
+                    "MobileHeader": "https://api.mapbox.com/styles/v1/niche-admin/citg1y6rj00312inu917d7y1o/static/-72.9261294,41.310725,13/400x175@2x?access_token=pk.eyJ1IjoibmljaGUtYWRtaW4iLCJhIjoiY2lyODF1YnR6MDB3bGcybTNhdDQxY3pkZCJ9.NQ0kRtM21uVhwbzjSAridg"
+                },
+                "guid": "149d92df-ae74-4e93-8310-a11f89935346",
+                "licenseName": "UNLICENSED"
+            },
+            "spotlight": {
+                "crops": {
+                    "Original": "https://d13b2ieg84qqce.cloudfront.net/bfcc11660ce8c8f9a9fc93f2124359cdc3d6df68",
+                    "Spotlight": "https://d13b2ieg84qqce.cloudfront.net/bfcc11660ce8c8f9a9fc93f2124359cdc3d6df68"
+                },
+                "guid": "c74c3a63-e13e-4fff-aeea-f670d8f6f483",
+                "licenseName": "UNLICENSED"
+            }
+        },
+        "reviewAverage": {
+            "average": 4.0134874759152215,
+            "count": 1038
+        },
+        "virtualTour": [
+            {
+                "label": "Virtual Tour",
+                "value": "http://admissions.yale.edu/virtual-tour"
+            }
+        ],
+        "complete_profile": {
+            "niche_report_card": {
+                "Academics": "A+",
+                "Value": "A+",
+                "Diversity": "A+",
+                "Campus": "A+",
+                "Athletics": "A-",
+                "Party Scene": "A",
+                "Professors": "A+",
+                "Location": "B+",
+                "Dorms": "A+",
+                "Campus Food": "A",
+                "Student Life": "A+",
+                "Safety": "C"
+            },
+            "after_college": {
+                "median_earning_6_years": "$83,200",
+                "graduation_rate": "97%",
+                "employment_rate": "92%"
+            },
+            "students": {
+                "full_time": "5,743",
+                "part_time": "3",
+                "over_25": "1%",
+                "pell_grant": "16%",
+                "varsity_athletes": "15%"
+            },
+            "popular_majors": [
+                "Economics",
+                "Political Science and Government",
+                "History",
+                "English",
+                "Cellular Biology",
+                "Liberal Arts and Humanities",
+                "Psychology",
+                "Information Science",
+                "International Relations",
+                "North American Studies"
+            ],
+            "cost": {
+                "net_price": "$18,053",
+                "average_aid": "$50,897",
+                "percentage_aid": "59%"
+            },
+            "admissions": {
+                "statistics": {
+                    "acceptance_rate": "7%",
+                    "early_decision_acceptance_rate": "",
+                    "total_applicants": "32,879",
+                    "sat_range": "1460-1580",
+                    "sat_reading": "730-780",
+                    "sat_math": "730-800",
+                    "sat_submission_percentage": "61%",
+                    "act_range": "32-35",
+                    "act_english": "34-36",
+                    "act_math": "31-35",
+                    "act_writing": "",
+                    "act_submission_percentage": "57%"
+                },
+                "deadlines": {
+                    "application_deadline": "January 1",
+                    "early_decision_deadline": "",
+                    "early_action_deadline": "November 1",
+                    "offers_early_decision": "No",
+                    "offers_early_action": "Yes",
+                    "application_fee": "$80",
+                    "application_website": "admissions.yale.edu/freshman-application-process",
+                    "accepts_common_app": "Yes",
+                    "accepts_coalition_app": "Yes"
+                },
+                "requirements": {
+                    "gpa": "Recommended",
+                    "rank": "Recommended",
+                    "transcript": "Required",
+                    "college_prep_coures": "Neither required nor recommended",
+                    "sat/act": "Required",
+                    "recommendations": "Required"
+                }
+            }
+        },
+        "address": {
+            "place_id": 11768828,
+            "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+            "osm_type": "way",
+            "osm_id": 216863215,
+            "lat": "41.31047825",
+            "lon": "-72.92595920049175",
+            "class": "building",
+            "type": "university",
+            "place_rank": 30,
+            "importance": 0.00000999999999995449,
+            "addresstype": "building",
+            "name": "Stoeckel Hall",
+            "display_name": "Stoeckel Hall, 469, College Street, Downtown, New Haven, South Central Connecticut Planning Region, Connecticut, 06511, United States",
+            "address": {
+                "building": "Stoeckel Hall",
+                "house_number": "469",
+                "road": "College Street",
+                "neighbourhood": "Downtown",
+                "city": "New Haven",
+                "county": "South Central Connecticut Planning Region",
+                "state": "Connecticut",
+                "ISO3166-2-lvl4": "US-CT",
+                "postcode": "06511",
+                "country": "United States",
+                "country_code": "us"
+            },
+            "boundingbox": [
+                "41.3103588",
+                "41.3106308",
+                "-72.9261215",
+                "-72.9257968"
+            ]
+        }
+    }
+}
