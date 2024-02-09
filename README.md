@@ -44,5 +44,5 @@
 -   add opengraph tags
 -   Add scrollbar to task board to go left (PC's cant scroll left without scrollbar);
 -   match the acceptance rate
-
+-   Add cron job to backup postgres db in digital-ocean vm
 -- link to scholarship https://phillips-scholarship.org/apply/determining-financial-eligibility/cost-of-college-list/
