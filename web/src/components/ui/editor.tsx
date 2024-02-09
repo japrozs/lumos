@@ -12,7 +12,7 @@ import ContentEditable from "react-contenteditable";
 import { AiOutlineDelete } from "react-icons/ai";
 import { CgBrowser } from "react-icons/cg";
 import { GoShare } from "react-icons/go";
-import { IoIosCheckmarkCircle, IoMdCheckmark } from "react-icons/io";
+import { IoMdCheckmark } from "react-icons/io";
 import { LuSettings } from "react-icons/lu";
 import { PiHashStraightBold } from "react-icons/pi";
 import { VscGlobe } from "react-icons/vsc";
@@ -187,7 +187,50 @@ export const Editor: React.FC<EditorProps> = ({ essay }) => {
                                     <>
                                         <div className="p-3">
                                             <div className="flex items-center">
-                                                <IoIosCheckmarkCircle className="text-primary-color mr-2" />
+                                                {/* <IoIosCheckmarkCircle className="text-primary-color mr-2" /> */}
+                                                <svg
+                                                    role="graphics-symbol"
+                                                    viewBox="0 0 16 16"
+                                                    className="blueCircleDot mr-1.5"
+                                                    style={{
+                                                        width: "17px",
+                                                        height: "17px",
+                                                        display: "block",
+                                                        fill: "inherit",
+                                                        flexShrink: "0",
+                                                    }}
+                                                >
+                                                    <circle
+                                                        cx="8"
+                                                        cy="8"
+                                                        r="8"
+                                                        fill="none"
+                                                        stroke="#2383E2"
+                                                    >
+                                                        <animate
+                                                            attributeName="r"
+                                                            from="3"
+                                                            to="8"
+                                                            dur="1s"
+                                                            begin="0s"
+                                                            repeatCount="indefinite"
+                                                        ></animate>
+                                                        <animate
+                                                            attributeName="opacity"
+                                                            from="1"
+                                                            to="0"
+                                                            dur="1s"
+                                                            begin="0s"
+                                                            repeatCount="indefinite"
+                                                        ></animate>
+                                                    </circle>
+                                                    <circle
+                                                        cx="8"
+                                                        cy="8"
+                                                        r="3"
+                                                        fill="#2383E2"
+                                                    ></circle>
+                                                </svg>
                                                 <p className="text-primary-color border-none text-sm font-medium">
                                                     Live on the web.
                                                 </p>
