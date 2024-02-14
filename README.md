@@ -33,16 +33,17 @@
 -   ✅ add logout to the bottom of the sidebar
 -   ✅ hide settings (add a popup on the sidebar profile section)
 -   ✅ move logout to the bottom
--   link kanban board to your list
+-   ❓ link kanban board to your list
 -   (future 🕰️) – use keys to move through add college modal search results
 -   ✅ replace "college highlights" with something else
 -   ✅ view data in "my list" as cards or as list
--   change college highlights acceptance rate fees (it shows fees after)
+-   ✅ change college highlights acceptance rate fees (it shows fees after)
 -   ✅ add a share functionality
 -   saved searches
 -   make a real settings page
 -   add opengraph tags
+-   ✅ system to verify emails
 -   Add scrollbar to task board to go left (PC's cant scroll left without scrollbar);
--   match the acceptance rate
+-   ✅ match the acceptance rate
 -   Add cron job to backup postgres db in digital-ocean vm
--- link to scholarship https://phillips-scholarship.org/apply/determining-financial-eligibility/cost-of-college-list/
+    -- link to scholarship https://phillips-scholarship.org/apply/determining-financial-eligibility/cost-of-college-list/

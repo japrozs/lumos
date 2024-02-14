@@ -26,6 +26,7 @@ const is_auth_1 = require("../middleware/is-auth");
 const user_input_1 = require("../schemas/user-input");
 const send_email_1 = require("../utils/send-email");
 const validate_register_1 = require("../utils/validate-register");
+const node_crypto_1 = __importDefault(require("node:crypto"));
 let FieldError = class FieldError {
 };
 __decorate([
@@ -123,6 +124,9 @@ let UserResolver = class UserResolver {
         }
         const hashedPassword = await argon2_1.default.hash(options.password);
         let user;
+        const code = node_crypto_1.default
+            .randomBytes(constants_1.VERIFICATION_CODE_LENGTH)
+            .toString("hex");
         try {
             const result = await (0, typeorm_1.getConnection)()
                 .createQueryBuilder()
@@ -132,6 +136,7 @@ let UserResolver = class UserResolver {
                 name: options.name,
                 email: options.email,
                 password: hashedPassword,
+                verificationCode: code,
             })
                 .returning("*")
                 .execute();
@@ -153,6 +158,7 @@ let UserResolver = class UserResolver {
         const us = await user_1.User.findOne(user.id, {
             relations: ["essays"],
         });
+        (0, send_email_1.sendEmail)(us.email, `<a href="http://localhost:4000/verify/${code}">verify email</a>`);
         return { user: us };
     }
     async login(email, password, { req }) {

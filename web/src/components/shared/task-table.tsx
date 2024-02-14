@@ -5,7 +5,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { PiPencil } from "react-icons/pi";
 import { v4 } from "uuid";
 import { Button } from "../ui/button";
-// import { EditColumn } from "../modals/edit-column";
 import { useUpdateTasksMutation } from "@/generated/graphql";
 import { useApolloClient } from "@apollo/client";
 import ContentEditable from "react-contenteditable";
@@ -335,14 +334,6 @@ export const Table: React.FC<TableProps> = ({
                     }}
                 </Droppable>
             </div>
-            {/* <EditColumn
-                setOpen={setOpen}
-                open={open}
-                id={columnId}
-                column={column}
-                board={board}
-                setBoard={setBoard}
-            /> */}
         </div>
     );
 };

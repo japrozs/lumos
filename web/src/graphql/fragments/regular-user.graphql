@@ -3,6 +3,7 @@ fragment RegularUser on User {
     name
     email
     collegeList
+    verified
     tasks
     essays {
         ...RegularEssay

@@ -14,6 +14,7 @@ import { Essay } from "./entities/essay";
 import { User } from "./entities/user";
 import { EssayResolver } from "./resolvers/essay-resolver";
 import { UserResolver } from "./resolvers/user-resolver";
+import { expressIsAuth } from "./middleware/is-auth";
 
 const main = async () => {
     const conn = await createConnection({
@@ -75,6 +76,21 @@ const main = async () => {
     apolloServer.applyMiddleware({
         app,
         cors: false,
+    });
+
+    app.get("/verify/:code", expressIsAuth, async (req, res) => {
+        const code = req.params.code;
+        const user: User = await User.findOne(req.session.userId);
+        if (user.verificationCode === code) {
+            await User.update(
+                { id: req.session.userId },
+                {
+                    verified: true,
+                }
+            );
+            return res.redirect(`${process.env.CORS_ORIGIN}/app`);
+        }
+        return res.redirect(`${process.env.CORS_ORIGIN}/incorrect`);
     });
 
     app.listen(parseInt(process.env.PORT), () => {
