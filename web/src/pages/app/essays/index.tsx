@@ -239,6 +239,15 @@ const Essays: React.FC<EssaysProps> = ({}) => {
                                     )}
                             </TableBody>
                         </Table>
+                        {data?.me?.essays.length === 0 && (
+                            <>
+                                <div className="flex flex-col items-center justify-center w-full h-full p-24">
+                                    <p className="text-slate-500 menlo">
+                                        Create a new essay to tell your story
+                                    </p>
+                                </div>
+                            </>
+                        )}
                     </div>
                 ) : (
                     <div className="flex flex-col items-center justify-center max-w-full min-h-screen">
