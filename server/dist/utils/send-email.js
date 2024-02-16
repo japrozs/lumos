@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendEmail = void 0;
 const nodemailer_1 = __importDefault(require("nodemailer"));
-async function sendEmail(to, html) {
+async function sendEmail({ to, html, subject }) {
     let transporter = nodemailer_1.default.createTransport({
         host: "smtp.ethereal.email",
         port: 587,
@@ -16,9 +16,9 @@ async function sendEmail(to, html) {
         },
     });
     let info = await transporter.sendMail({
-        from: '"Fred Foo 👻" <foo@example.com>',
+        from: "sainijaproz@gmail.com>",
         to: to,
-        subject: "Change password or verify Account",
+        subject,
         html,
     });
     console.log("Message sent: %s", info.messageId);

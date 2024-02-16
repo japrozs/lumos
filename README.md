@@ -8,12 +8,6 @@
 ![Screenshot](assets/list.png)
 ![Screenshot](assets/tasks.png)
 
--   resources tab should contain info about financial aid, international student immigration stuff, mental health
--   AI help in writing your college essays
--   peer review for helping students with essays.
--   profile builder? (using AI, and the college list data, give tips)
--   job shadowing and internship oppurtunities
-
 ========
 
 -   do the vscode 'organise imports' thingy
@@ -38,12 +32,20 @@
 -   ✅ replace "college highlights" with something else
 -   ✅ view data in "my list" as cards or as list
 -   ✅ change college highlights acceptance rate fees (it shows fees after)
+-   resources tab should contain info about financial aid, international student immigration stuff, mental health
+-   AI help in writing your college essays
+-   peer review for helping students with essays.
+-   profile builder? (using AI, and the college list data, give tips)
+-   job shadowing and internship oppurtunities
+-   share college list online
 -   ✅ add a share functionality
 -   saved searches
 -   make a real settings page
 -   add opengraph tags
 -   ✅ system to verify emails
+-   make search fields activate by pressing '/' key
 -   Add scrollbar to task board to go left (PC's cant scroll left without scrollbar);
 -   ✅ match the acceptance rate
+-   figure out how to send emails in production
 -   Add cron job to backup postgres db in digital-ocean vm
     -- link to scholarship https://phillips-scholarship.org/apply/determining-financial-eligibility/cost-of-college-list/

@@ -11,18 +11,13 @@ import {
 } from "type-graphql";
 import { getConnection } from "typeorm";
 import { v4 } from "uuid";
-import {
-    COOKIE_NAME,
-    FORGET_PASSWORD_PREFIX,
-    VERIFICATION_CODE_LENGTH,
-} from "../constants";
+import { COOKIE_NAME, FORGET_PASSWORD_PREFIX } from "../constants";
 import { User } from "../entities/user";
 import { isAuth } from "../middleware/is-auth";
 import { UserInput } from "../schemas/user-input";
 import { Context } from "../types";
 import { sendEmail } from "../utils/send-email";
 import { validateRegister } from "../utils/validate-register";
-import crypto from "node:crypto";
 
 @ObjectType()
 export class FieldError {
@@ -122,10 +117,11 @@ export class UserResolver {
             1000 * 60 * 60 * 24 * 3
         ); // 3 days
 
-        await sendEmail(
-            email,
-            `<a href="${process.env.CORS_ORIGIN}/changepass/${token}">reset password</a>`
-        );
+        await sendEmail({
+            subject: "Change your password",
+            to: email,
+            html: `<a href="${process.env.CORS_ORIGIN}/changepass/${token}">reset password</a>`,
+        });
 
         return true;
     }
@@ -154,9 +150,6 @@ export class UserResolver {
 
         const hashedPassword = await argon2.hash(options.password);
         let user;
-        const code = crypto
-            .randomBytes(VERIFICATION_CODE_LENGTH)
-            .toString("hex");
         try {
             const result = await getConnection()
                 .createQueryBuilder()
@@ -166,7 +159,6 @@ export class UserResolver {
                     name: options.name,
                     email: options.email,
                     password: hashedPassword,
-                    verificationCode: code,
                 })
                 .returning("*")
                 .execute();
@@ -190,10 +182,11 @@ export class UserResolver {
             relations: ["essays"],
         });
 
-        sendEmail(
-            us.email,
-            `<a href="http://localhost:4000/verify/${code}">verify email</a>`
-        );
+        // sendEmail({
+        //     subject: "Verify your email",
+        //     to: us.email,
+        //     html: `<a href="http://localhost:4000/verify/${code}">verify email</a>`,
+        // });
 
         return { user: us };
     }

@@ -21,12 +21,12 @@ export class User extends BaseEntity {
     @Column()
     name: string;
 
-    @Field()
-    @Column({ default: false })
-    verified: boolean;
+    // @Field()
+    // @Column({ default: false })
+    // verified: boolean;
 
-    @Column()
-    verificationCode: string;
+    // @Column()
+    // verificationCode: string;
 
     @Field()
     @Column({ unique: true })

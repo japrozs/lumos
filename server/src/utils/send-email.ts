@@ -1,6 +1,12 @@
 import nodemailer from "nodemailer";
 
-export async function sendEmail(to: string, html: string) {
+interface EmailArgType {
+    to: string;
+    html: string;
+    subject: string;
+}
+
+export async function sendEmail({ to, html, subject }: EmailArgType) {
     // const testAccount = await nodemailer.createTestAccount();
     // console.log("testAccount :: ", testAccount);
     let transporter = nodemailer.createTransport({
@@ -15,9 +21,9 @@ export async function sendEmail(to: string, html: string) {
 
     // send mail with defined transport object
     let info = await transporter.sendMail({
-        from: '"Fred Foo 👻" <foo@example.com>',
+        from: "sainijaproz@gmail.com>",
         to: to,
-        subject: "Change password or verify Account",
+        subject,
         html,
     });
 
