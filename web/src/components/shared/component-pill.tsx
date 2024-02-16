@@ -62,6 +62,8 @@ export const SATRangePill: React.FC<SATRangePillProps> = ({ college }) => {
             noMargin
             label={`🎓 SAT Range ${
                 college.content.complete_profile &&
+                college.content.complete_profile.admissions.statistics
+                    .sat_range &&
                 college.content.complete_profile.admissions.statistics.sat_range
                     .length != 0
                     ? college.content.complete_profile.admissions.statistics
